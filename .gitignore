@@ -6,6 +6,21 @@ __pycache__/
 # C extensions
 *.so
 
+# Data
+data/
+out/
+
+# LaTeX
+*.aux
+*.log
+*.out
+*.nav
+*.snm
+*.vrb
+*.toc
+*.bbl
+*.blg
+
 # Distribution / packaging
 .Python
 build/

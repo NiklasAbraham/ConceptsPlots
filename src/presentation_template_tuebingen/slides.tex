@@ -1,0 +1,359 @@
+\documentclass[aspectratio=169, 10pt]{beamer}
+
+% This is a template by Philipp Hennig for the University of Tuebingen.
+% It was generated using ChatGPT by having it look in a similar style to the slides of Philipp Hennig.
+
+% --- Packages ---
+\usepackage{fontspec}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{amsmath, amssymb}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage[most]{tcolorbox} % Powerful box engine
+
+% --- Typography ---
+\usefonttheme{professionalfonts}
+\setmainfont{RobotoCondensed-Light}
+\setsansfont{RobotoCondensed-Light}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- COLOR PALETTE (Sampled from Screenshots) ---
+\definecolor{TuebingenAnthrazit}{HTML}{32414B} % Dark Header/Text
+\definecolor{TuebingenRot}{HTML}{A51E37}      % Primary Red
+\definecolor{TuebingenGold}{HTML}{C5913E}      % Bullets / Strings
+\definecolor{TuebingenGray}{HTML}{747D88}      % Footer
+\definecolor{TuebingenGrayDark}{HTML}{5A6570} % Darker gray for theorem text
+\definecolor{TuebingenGreen}{HTML}{4F8128}     % Code Border/Sidebar
+\definecolor{TuebingenCyan}{HTML}{368CBF}      % Code methods (np.min)
+\definecolor{TuebingenBeige}{HTML}{F5F6F6}     % Theorem Body Background
+
+% --- Beamer Base Colors ---
+\setbeamercolor{normal text}{fg=TuebingenAnthrazit}
+\setbeamercolor{frametitle}{bg=TuebingenAnthrazit, fg=white}
+\setbeamercolor{title}{fg=TuebingenRot}
+\setbeamercolor{structure}{fg=TuebingenGold} 
+\setbeamercolor{footline}{fg=TuebingenGray}
+
+% --- Geometry ---
+\setbeamersize{text margin left=0.8cm, text margin right=0.8cm}
+\setbeamertemplate{navigation symbols}{}
+
+% --- Bullets (Gold Triangles) ---
+\setbeamertemplate{itemize item}{\scriptsize\raise1.25pt\hbox{\donotcoloroutermaths$\blacktriangleright$}}
+\setbeamertemplate{itemize subitem}{\tiny\raise1.5pt\hbox{\donotcoloroutermaths$\blacktriangleright$}}
+
+% --- METADATA ---
+\newcommand{\lecturenumber}{01}
+\newcommand{\license}{CC BY-SA 4.0}
+\newcommand{\shortdate}{DD/MM/YYYY}
+\newcommand{\longdate}{DD Month YYYY}
+\title{Project}
+\subtitle{Subtitle}
+\author{Niklas Abraham}
+
+% --- SOURCE PLACEHOLDER ---
+% Use \framesource{Your source text} in a frame to set the source
+\makeatletter
+\newcommand{\framesource}[1]{\gdef\@framesource{#1}}
+\framesource{} % Initialize as empty
+
+% --- BACKGROUND IMAGE FOR TITLE PAGE ---
+% Use \titlebgimage{filename.jpg} to set a background image for the title page
+\newcommand{\titlebgimage}[1]{\gdef\@titlebgimage{#1}}
+\titlebgimage{} % Initialize as empty
+\makeatother
+
+% ==============================================================================
+%   SPECIAL ELEMENTS
+% ==============================================================================
+
+% 1. THEOREM BOX (Red Header, Beige Body)
+% Matches: image_fcac79.png
+\newtcolorbox{theorembox}[2][]{
+    enhanced,
+    colback=TuebingenBeige,      % Light beige interior
+    colframe=TuebingenRot,       % Red border
+    colbacktitle=TuebingenRot,   % Red Title background
+    coltitle=white,              % White Title text
+    coltext=TuebingenAnthrazit,  % Dark grey text color (#32414b)
+    fonttitle=\bfseries\large,
+    title={#2},
+    arc=4pt, outer arc=4pt,      % Rounded corners
+    boxrule=0.8pt,               % Thin border
+    left=6pt, right=6pt, top=6pt, bottom=6pt,
+    titlerule=0mm,
+    toptitle=0.8mm, bottomtitle=0.8mm,  % Slimmer red title bar
+    width=0.95\textwidth,        % Make theorem block narrower
+    center,                      % Center the narrower box
+    #1
+}
+
+% 2. CODE BOX (Green Border, Green Sidebar)
+% Matches: image_fcac1f.png
+\newtcolorbox{codebox}{
+    enhanced,
+    colback=white,
+    colframe=TuebingenGreen,     % Green Border
+    arc=5pt, outer arc=5pt,      % Rounded corners on all sides
+    boxrule=1.5pt,               % Thicker border
+    left=6mm,                    % Space for sidebar
+    top=0mm, bottom=0mm,
+    overlay={
+        % The Solid Green Sidebar for numbers with rounded left corners
+        \fill[TuebingenGreen, rounded corners=5pt] 
+            (frame.south west) -- 
+            ([xshift=6mm]frame.south west) -- 
+            ([xshift=6mm]frame.north west) -- 
+            (frame.north west) -- 
+            cycle;
+    }
+}
+
+% 3. CODE LISTING STYLE
+\lstdefinestyle{TuebingenStyle}{
+    language=Python,
+    basicstyle=\ttfamily\footnotesize\color{black},
+    keywordstyle=\color{TuebingenRot}\bfseries, % import, as
+    stringstyle=\color{TuebingenGold},          % "strings"
+    commentstyle=\color{TuebingenGreen},        % # comments
+    identifierstyle=\color{black},
+    % Custom highlighting for methods like .min
+    classoffset=1, 
+    morekeywords={min, max, mean, array, choice},
+    keywordstyle=\color{TuebingenCyan}, 
+    classoffset=0,
+    numbers=left,
+    numberstyle=\scriptsize\color{white}\hfill,   % Line number centered in its space
+    numbersep=10pt,
+    breaklines=true,
+    showstringspaces=false,
+    frame=none
+}
+\lstset{style=TuebingenStyle}
+
+% ==============================================================================
+%   SLIDE LAYOUTS
+% ==============================================================================
+
+% --- HEADER (Dark Bar + Logo) ---
+\makeatletter
+\setbeamertemplate{frametitle}{
+    \nointerlineskip
+    \begin{beamercolorbox}[wd=\paperwidth, ht=1.2cm, dp=0.3cm]{frametitle}
+        \begin{tikzpicture}
+            \useasboundingbox (0,0) rectangle (\paperwidth,1.2);
+            % Title
+            \node[anchor=north west, white, align=left] at (0.25, 1.05) {\Large \insertframetitle};
+            % Subtitle
+            \node[anchor=north west, color=gray!50, align=left] at (0.25, 0.3) {\small \insertframesubtitle};
+            % Logo (Top Right)
+            \node[anchor=north east] at (\paperwidth-0.2cm, 1.1) {
+                \IfFileExists{logo_white.png}{
+                    \includegraphics[height=0.665cm]{logo_white.png}
+                }{
+                    \tikz\node[draw=white, text=white, inner sep=2pt] {\scriptsize LOGO};
+                }
+            };
+            % Sources Placeholder (Below Logo)
+            \node[anchor=north east, align=right] at (\paperwidth-0.2cm, 0.25) {
+                \small \color{gray!50} 
+                \ifx\@framesource\empty
+                    % then empty
+                    \textcolor{white}{ }
+                \else
+                    \@framesource
+                \fi
+            };
+        \end{tikzpicture}
+    \end{beamercolorbox}
+}
+\makeatother
+
+% --- FOOTER (Standard) ---
+\setbeamertemplate{footline}{
+    \ifnum\thepage>1 % Skip footer on title page (usually)
+    \begin{tikzpicture}[remember picture, overlay]
+        \node[anchor=south west, align=left] at ([xshift=0.5cm, yshift=0.2cm]current page.south west) {
+            \tiny \color{TuebingenGray} Course Name \#\lecturenumber \ -- \ \the\year \ \insertauthor, \license \ -- \ \shortdate
+        };
+        \node[anchor=south east, align=right] at ([xshift=-0.5cm, yshift=0.2cm]current page.south east) {
+            \tiny \color{TuebingenGray} \insertframenumber
+        };
+    \end{tikzpicture}
+    \fi
+}
+
+% --- TITLE PAGE (Complex Layout) ---
+\makeatletter
+\setbeamertemplate{title page}{
+    \begin{tikzpicture}[remember picture, overlay]
+        % Optional Background Image
+        \ifx\@titlebgimage\empty
+            % No background image, use white background
+        \else
+            \node[anchor=center, opacity=0.15] at (current page.center) {
+                \includegraphics[width=\paperwidth, height=\paperheight, keepaspectratio=false]{\@titlebgimage}
+            };
+        \fi
+        
+        % 1. Titles (Top Center) - Smaller now
+        \node[anchor=north, align=center] at ([yshift=-1.5cm]current page.north) {
+            {\LARGE \color{TuebingenRot} \textsc{COURSE NAME}} \\[0.15cm]
+            {\normalsize \color{TuebingenAnthrazit} \textsc{LECTURE \lecturenumber \ -- \ \inserttitle}} \\[0.05cm]
+            {\small \color{TuebingenAnthrazit} \textsc{\insertsubtitle}}
+        };
+
+        % 2. Author and Date (Center)
+        \node[anchor=center, align=center] at ([yshift=0.3cm]current page.center) {
+            {\large \insertauthor} \\[0.3cm]
+            {\normalsize \longdate}
+        };
+
+        % 3. Logos (Lower Third)
+        \node[anchor=south, align=center] at ([yshift=1.5cm]current page.south) {
+            \begin{minipage}{0.9\textwidth}
+                \centering
+                % Left: University Logo Text (Logo a bit smaller)
+                \begin{minipage}{0.35\textwidth}
+                    \raggedright
+                    \IfFileExists{logo_red.png}{
+                        \includegraphics[height=1.5cm]{logo_red.png}
+                    }{
+                        {\large \color{TuebingenRot} \textsc{EBERHARD KARLS}} \\
+                        {\Large \color{TuebingenRot} \textsc{UNIVERSITÄT}} \\
+                        {\Large \color{TuebingenRot} \textsc{TÜBINGEN}}
+                    }
+                \end{minipage}%
+                \hfill
+                % Right: Faculty Text (now left-aligned)
+                \begin{minipage}{0.45\textwidth}
+                    \raggedright
+                    \small \color{TuebingenRot}
+                    \textsc{FACULTY NAME} \\
+                    \textsc{DEPARTMENT NAME} \\
+                    \textsc{CHAIR NAME}
+                \end{minipage}
+            \end{minipage}
+        };
+
+    \end{tikzpicture}
+}
+\makeatother
+
+% ==============================================================================
+%   CONTENT
+% ==============================================================================
+
+\begin{document}
+
+% --- 1. TITLE SLIDE ---
+\begin{frame}[plain]
+    \titlepage
+\end{frame}
+
+% --- 2. RECAP SLIDE (Standard Text) ---
+\begin{frame}{The Sine Function}
+    \framesubtitle{trigonometric function}
+    
+    {\color{TuebingenGray} The sine function is a fundamental trigonometric function that relates angles to ratios of side lengths in right triangles.}
+    
+    \vspace{0.5em}
+    \begin{itemize}
+        \setlength\itemsep{0.5em}
+        \item \textbf{Definition:} For an angle $\theta$ in a right triangle, $\sin(\theta) = \frac{\text{opposite}}{\text{hypotenuse}}$
+        \item \textbf{Unit circle:} On the unit circle, $\sin(\theta)$ is the $y$-coordinate of the point at angle $\theta$
+        \item \textbf{Range:} The sine function takes values in $[-1, 1]$
+        \item \textbf{Periodicity:} $\sin(\theta + 2\pi) = \sin(\theta)$ for all $\theta$
+    \end{itemize}
+\end{frame}
+
+% --- 3. THEOREM SLIDE (Box Style) ---
+\begin{frame}{Fundamental Theorem of Calculus}
+    \framesubtitle{connecting differentiation and integration}
+
+    \begin{theorembox}{Theorem: Fundamental Theorem of Calculus}
+        \textbf{Part I:} If $f$ is continuous on $[a, b]$ and $F$ is defined by
+        \[
+            F(x) = \int_a^x f(t) \, dt,
+        \]
+        then $F$ is differentiable on $(a, b)$ and $F'(x) = f(x)$.
+        
+        \vspace{0.5em}
+        
+        \textbf{Part II:} If $f$ is continuous on $[a, b]$ and $F$ is any antiderivative of $f$ on $[a, b]$, then
+        \[
+            \int_a^b f(x) \, dx = F(b) - F(a).
+        \]
+        
+        \hfill {\footnotesize \color{TuebingenGreen!80!black} (This theorem connects the two main operations of calculus.)}
+    \end{theorembox}
+\end{frame}
+
+% --- 4. CODE SLIDE (Green Box) ---
+\begin{frame}[fragile]{Prime Number Sieve}
+    \framesubtitle{Sieve of Eratosthenes}
+
+    \begin{codebox}
+\begin{lstlisting}
+def sieve_of_eratosthenes(n):
+    # Create a boolean array for prime numbers
+    is_prime = [True] * (n + 1)
+    is_prime[0] = is_prime[1] = False
+    
+    # Sieve algorithm
+    for i in range(2, int(n**0.5) + 1):
+        if is_prime[i]:
+            # Mark multiples of i as non-prime
+            for j in range(i*i, n + 1, i):
+                is_prime[j] = False
+    
+    # Collect all prime numbers
+    primes = [i for i in range(2, n + 1) if is_prime[i]]
+    return primes
+
+# Find all primes up to 100
+primes = sieve_of_eratosthenes(100)
+print(primes)
+\end{lstlisting}
+    \end{codebox}
+\end{frame}
+
+% --- 5. DARK SUMMARY SLIDE ---
+{ 
+% Local color override for Dark Mode
+\setbeamercolor{background canvas}{bg=TuebingenAnthrazit}
+\setbeamercolor{normal text}{fg=white}
+\setbeamercolor{itemize item}{fg=white}
+\setbeamercolor{structure}{fg=white}
+
+\begin{frame}[plain]
+    \begin{columns}
+        \column{0.6\textwidth}
+            {\color{white}\textbf{\Large Summary}}
+            \vspace{1em}
+            \begin{itemize}
+                \setlength\itemsep{1em}
+                \item {\color{white}Summary point 1}
+                \item {\color{white}Summary point 2}
+                \item {\color{white}Summary point 3}
+                \item {\color{white}Summary point 4}
+            \end{itemize}
+
+        \column{0.4\textwidth}
+            \centering
+            \vspace{1em}
+            {\color{white}Thank you!}
+    \end{columns}
+    
+    % Manual Footer for Dark Slide
+    \vspace{2cm}
+    \begin{tikzpicture}[remember picture, overlay]
+         \node[anchor=south west, white] at ([xshift=0.5cm, yshift=0.2cm]current page.south west) {\tiny Course Name \#\lecturenumber \ -- \ \the\year \ \insertauthor, \license \ -- \ \shortdate};
+         \node[anchor=south east, white] at ([xshift=-0.5cm, yshift=0.2cm]current page.south east) {\tiny \insertframenumber};
+    \end{tikzpicture}
+\end{frame}
+}
+
+\end{document}
