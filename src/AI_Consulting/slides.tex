@@ -207,6 +207,59 @@
 %   SLIDE LAYOUTS
 % ==============================================================================
 
+% ==============================================================================
+%   REUSABLE SLIDES
+% ==============================================================================
+
+% --- COFFEE BREAK (Use the Act 0 version everywhere) ---
+\newcommand{\CoffeeBreakFrame}{
+\begin{frame}[plain]
+    \begin{tikzpicture}[remember picture, overlay]
+        % Decorative circles in background (drawn first so they're behind everything)
+        \fill[TuebingenGold!10] (current page.center) circle (4cm);
+        \fill[TuebingenGold!5] ([xshift=-3cm, yshift=2cm]current page.center) circle (2cm);
+        \fill[TuebingenGold!5] ([xshift=3cm, yshift=-2cm]current page.center) circle (2cm);
+        
+        % Coffee cup illustration (positioned above the main decorative circle)
+        \node[anchor=center] at ([yshift=1.125cm]current page.center) {
+            \begin{tikzpicture}[scale=1.0]
+                % Cup body (trapezoid shape - wider at top)
+                \fill[TuebingenGold!15] (-0.6,0) -- (-0.75,0) -- (-0.9,1.8) -- (-0.9,2.1) -- (0.9,2.1) -- (0.9,1.8) -- (0.75,0) -- (0.6,0) -- cycle;
+                \draw[TuebingenGold, line width=2.5pt] (-0.6,0) -- (-0.75,0) -- (-0.9,1.8) -- (-0.9,2.1) -- (0.9,2.1) -- (0.9,1.8) -- (0.75,0) -- (0.6,0) -- cycle;
+                
+                % Cup rim (top edge)
+                \draw[TuebingenGold, line width=3pt] (-0.9,2.1) -- (0.9,2.1);
+                
+                % Coffee liquid inside
+                \fill[TuebingenAnthrazit!40] (-0.85,1.9) -- (0.85,1.9) -- (0.85,1.7) -- (-0.85,1.7) -- cycle;
+                \draw[TuebingenAnthrazit!60, line width=1pt] (-0.85,1.8) -- (0.85,1.8);
+                
+                % Handle (curved, more realistic)
+                \draw[TuebingenGold, line width=2.5pt] (0.9,1.6) .. controls (1.4,1.6) and (1.5,1.0) .. (1.3,0.5) .. controls (1.2,0.3) and (1.1,0.3) .. (0.9,0.5);
+                \draw[TuebingenGold, line width=2.5pt] (0.9,1.4) .. controls (1.2,1.4) and (1.3,0.9) .. (1.15,0.6) .. controls (1.05,0.4) and (1.0,0.4) .. (0.9,0.6);
+                
+                % Steam lines (curved, wavy)
+                \draw[TuebingenGold!50, line width=2pt] (-0.4,2.1) .. controls (-0.5,2.4) and (-0.3,2.6) .. (-0.4,2.9) .. controls (-0.5,3.1) and (-0.3,3.2) .. (-0.4,3.4);
+                \draw[TuebingenGold!50, line width=2pt] (0,2.1) .. controls (0.1,2.4) and (-0.1,2.6) .. (0,2.9) .. controls (0.1,3.1) and (-0.1,3.2) .. (0,3.4);
+                \draw[TuebingenGold!50, line width=2pt] (0.4,2.1) .. controls (0.5,2.4) and (0.3,2.6) .. (0.4,2.9) .. controls (0.5,3.1) and (0.3,3.2) .. (0.4,3.4);
+            \end{tikzpicture}
+        };
+        
+        % Subtitle with decorative elements (centered below circle)
+        \node[anchor=center, align=center] at ([yshift=-2.5cm]current page.center) {
+            {\Large \color{TuebingenAnthrazit} Take a moment to refresh}
+            \\[0.3cm]
+            {\normalsize \color{TuebingenGray} We'll resume shortly}
+        };
+        
+        % Main title in top left corner (drawn last so it's in front)
+        \node[anchor=north west, align=left] at ([xshift=0.5cm, yshift=-0.5cm]current page.north west) {
+            {\Huge \color{TuebingenGold} \textbf{COFFEE BREAK}}
+        };
+    \end{tikzpicture}
+\end{frame}
+}
+
 % --- HEADER (Dark Bar + Logo) ---
 \makeatletter
 \setbeamertemplate{frametitle}{
@@ -355,51 +408,7 @@
 \input{acts/act0_software_primer/act0_software_primer.tex}
 
 % --- COFFEE BREAK ---
-\begin{frame}[plain]
-    \begin{tikzpicture}[remember picture, overlay]
-        % Decorative circles in background (drawn first so they're behind everything)
-        \fill[TuebingenGold!10] (current page.center) circle (4cm);
-        \fill[TuebingenGold!5] ([xshift=-3cm, yshift=2cm]current page.center) circle (2cm);
-        \fill[TuebingenGold!5] ([xshift=3cm, yshift=-2cm]current page.center) circle (2cm);
-        
-        % Coffee cup illustration (positioned above the main decorative circle)
-        \node[anchor=center] at ([yshift=1.125cm]current page.center) {
-            \begin{tikzpicture}[scale=1.0]
-                % Cup body (trapezoid shape - wider at top)
-                \fill[TuebingenGold!15] (-0.6,0) -- (-0.75,0) -- (-0.9,1.8) -- (-0.9,2.1) -- (0.9,2.1) -- (0.9,1.8) -- (0.75,0) -- (0.6,0) -- cycle;
-                \draw[TuebingenGold, line width=2.5pt] (-0.6,0) -- (-0.75,0) -- (-0.9,1.8) -- (-0.9,2.1) -- (0.9,2.1) -- (0.9,1.8) -- (0.75,0) -- (0.6,0) -- cycle;
-                
-                % Cup rim (top edge)
-                \draw[TuebingenGold, line width=3pt] (-0.9,2.1) -- (0.9,2.1);
-                
-                % Coffee liquid inside
-                \fill[TuebingenAnthrazit!40] (-0.85,1.9) -- (0.85,1.9) -- (0.85,1.7) -- (-0.85,1.7) -- cycle;
-                \draw[TuebingenAnthrazit!60, line width=1pt] (-0.85,1.8) -- (0.85,1.8);
-                
-                % Handle (curved, more realistic)
-                \draw[TuebingenGold, line width=2.5pt] (0.9,1.6) .. controls (1.4,1.6) and (1.5,1.0) .. (1.3,0.5) .. controls (1.2,0.3) and (1.1,0.3) .. (0.9,0.5);
-                \draw[TuebingenGold, line width=2.5pt] (0.9,1.4) .. controls (1.2,1.4) and (1.3,0.9) .. (1.15,0.6) .. controls (1.05,0.4) and (1.0,0.4) .. (0.9,0.6);
-                
-                % Steam lines (curved, wavy)
-                \draw[TuebingenGold!50, line width=2pt] (-0.4,2.1) .. controls (-0.5,2.4) and (-0.3,2.6) .. (-0.4,2.9) .. controls (-0.5,3.1) and (-0.3,3.2) .. (-0.4,3.4);
-                \draw[TuebingenGold!50, line width=2pt] (0,2.1) .. controls (0.1,2.4) and (-0.1,2.6) .. (0,2.9) .. controls (0.1,3.1) and (-0.1,3.2) .. (0,3.4);
-                \draw[TuebingenGold!50, line width=2pt] (0.4,2.1) .. controls (0.5,2.4) and (0.3,2.6) .. (0.4,2.9) .. controls (0.5,3.1) and (0.3,3.2) .. (0.4,3.4);
-            \end{tikzpicture}
-        };
-        
-        % Subtitle with decorative elements (centered below circle)
-        \node[anchor=center, align=center] at ([yshift=-2.5cm]current page.center) {
-            {\Large \color{TuebingenAnthrazit} Take a moment to refresh}
-            \\[0.3cm]
-            {\normalsize \color{TuebingenGray} We'll resume shortly}
-        };
-        
-        % Main title in top left corner (drawn last so it's in front)
-        \node[anchor=north west, align=left] at ([xshift=0.5cm, yshift=-0.5cm]current page.north west) {
-            {\Huge \color{TuebingenGold} \textbf{COFFEE BREAK}}
-        };
-    \end{tikzpicture}
-\end{frame}
+\CoffeeBreakFrame
 
 % --- ACT 1 ---
 \begin{frame}[plain]
@@ -418,56 +427,7 @@
 \input{acts/act1_ai_history/act1_ai_history.tex}
 
 % --- COFFEE BREAK ---
-\begin{frame}[plain]
-    \begin{tikzpicture}[remember picture, overlay]
-        % Decorative circles in background (drawn first so they're behind everything)
-        \fill[TuebingenGold!10] (current page.center) circle (4cm);
-        \fill[TuebingenGold!5] ([xshift=-3cm, yshift=2cm]current page.center) circle (2cm);
-        \fill[TuebingenGold!5] ([xshift=3cm, yshift=-2cm]current page.center) circle (2cm);
-        
-        % Coffee cup illustration (positioned above the main decorative circle)
-        \node[anchor=center] at ([yshift=2.125cm]current page.center) {
-            \begin{tikzpicture}[scale=1.0]
-                % Cup body (trapezoid shape - wider at top)
-                \fill[TuebingenGold!15] (-0.6,0) -- (-0.75,0) -- (-0.9,1.8) -- (-0.9,2.1) -- (0.9,2.1) -- (0.9,1.8) -- (0.75,0) -- (0.6,0) -- cycle;
-                \draw[TuebingenGold, line width=2.5pt] (-0.6,0) -- (-0.75,0) -- (-0.9,1.8) -- (-0.9,2.1) -- (0.9,2.1) -- (0.9,1.8) -- (0.75,0) -- (0.6,0) -- cycle;
-                
-                % Cup rim (top edge)
-                \draw[TuebingenGold, line width=3pt] (-0.9,2.1) -- (0.9,2.1);
-                
-                % Coffee liquid inside
-                \fill[TuebingenAnthrazit!40] (-0.85,1.9) -- (0.85,1.9) -- (0.85,1.7) -- (-0.85,1.7) -- cycle;
-                \draw[TuebingenAnthrazit!60, line width=1pt] (-0.85,1.8) -- (0.85,1.8);
-                
-                % Handle (curved, more realistic)
-                \draw[TuebingenGold, line width=2.5pt] (0.9,1.6) .. controls (1.4,1.6) and (1.5,1.0) .. (1.3,0.5) .. controls (1.2,0.3) and (1.1,0.3) .. (0.9,0.5);
-                \draw[TuebingenGold, line width=2.5pt] (0.9,1.4) .. controls (1.2,1.4) and (1.3,0.9) .. (1.15,0.6) .. controls (1.05,0.4) and (1.0,0.4) .. (0.9,0.6);
-                
-                % Saucer (optional, adds realism)
-                \fill[TuebingenGold!10] (-1.1,-0.15) ellipse (1.1 and 0.2);
-                \draw[TuebingenGold, line width=2pt] (-1.1,-0.15) ellipse (1.1 and 0.2);
-                \draw[TuebingenGold!30, line width=1pt] (-0.6,-0.15) ellipse (0.6 and 0.15);
-                
-                % Steam lines (curved, wavy)
-                \draw[TuebingenGold!50, line width=2pt] (-0.4,2.1) .. controls (-0.5,2.4) and (-0.3,2.6) .. (-0.4,2.9) .. controls (-0.5,3.1) and (-0.3,3.2) .. (-0.4,3.4);
-                \draw[TuebingenGold!50, line width=2pt] (0,2.1) .. controls (0.1,2.4) and (-0.1,2.6) .. (0,2.9) .. controls (0.1,3.1) and (-0.1,3.2) .. (0,3.4);
-                \draw[TuebingenGold!50, line width=2pt] (0.4,2.1) .. controls (0.5,2.4) and (0.3,2.6) .. (0.4,2.9) .. controls (0.5,3.1) and (0.3,3.2) .. (0.4,3.4);
-            \end{tikzpicture}
-        };
-        
-        % Subtitle with decorative elements (centered below circle)
-        \node[anchor=center, align=center] at ([yshift=-1.5cm]current page.center) {
-            {\Large \color{TuebingenAnthrazit} Take a moment to refresh}
-            \\[0.3cm]
-            {\normalsize \color{TuebingenGray} We'll resume shortly}
-        };
-        
-        % Main title in top left corner (drawn last so it's in front)
-        \node[anchor=north west, align=left] at ([xshift=0.5cm, yshift=-0.5cm]current page.north west) {
-            {\Huge \color{TuebingenGold} \textbf{COFFEE BREAK}}
-        };
-    \end{tikzpicture}
-\end{frame}
+\CoffeeBreakFrame
 
 % --- ACT 2 ---
 \begin{frame}[plain]
@@ -486,56 +446,7 @@
 \input{acts/act2_modern_ai/act2_modern_ai.tex}
 
 % --- COFFEE BREAK ---
-\begin{frame}[plain]
-    \begin{tikzpicture}[remember picture, overlay]
-        % Decorative circles in background (drawn first so they're behind everything)
-        \fill[TuebingenGold!10] (current page.center) circle (4cm);
-        \fill[TuebingenGold!5] ([xshift=-3cm, yshift=2cm]current page.center) circle (2cm);
-        \fill[TuebingenGold!5] ([xshift=3cm, yshift=-2cm]current page.center) circle (2cm);
-        
-        % Coffee cup illustration (positioned above the main decorative circle)
-        \node[anchor=center] at ([yshift=2.125cm]current page.center) {
-            \begin{tikzpicture}[scale=1.0]
-                % Cup body (trapezoid shape - wider at top)
-                \fill[TuebingenGold!15] (-0.6,0) -- (-0.75,0) -- (-0.9,1.8) -- (-0.9,2.1) -- (0.9,2.1) -- (0.9,1.8) -- (0.75,0) -- (0.6,0) -- cycle;
-                \draw[TuebingenGold, line width=2.5pt] (-0.6,0) -- (-0.75,0) -- (-0.9,1.8) -- (-0.9,2.1) -- (0.9,2.1) -- (0.9,1.8) -- (0.75,0) -- (0.6,0) -- cycle;
-                
-                % Cup rim (top edge)
-                \draw[TuebingenGold, line width=3pt] (-0.9,2.1) -- (0.9,2.1);
-                
-                % Coffee liquid inside
-                \fill[TuebingenAnthrazit!40] (-0.85,1.9) -- (0.85,1.9) -- (0.85,1.7) -- (-0.85,1.7) -- cycle;
-                \draw[TuebingenAnthrazit!60, line width=1pt] (-0.85,1.8) -- (0.85,1.8);
-                
-                % Handle (curved, more realistic)
-                \draw[TuebingenGold, line width=2.5pt] (0.9,1.6) .. controls (1.4,1.6) and (1.5,1.0) .. (1.3,0.5) .. controls (1.2,0.3) and (1.1,0.3) .. (0.9,0.5);
-                \draw[TuebingenGold, line width=2.5pt] (0.9,1.4) .. controls (1.2,1.4) and (1.3,0.9) .. (1.15,0.6) .. controls (1.05,0.4) and (1.0,0.4) .. (0.9,0.6);
-                
-                % Saucer (optional, adds realism)
-                \fill[TuebingenGold!10] (-1.1,-0.15) ellipse (1.1 and 0.2);
-                \draw[TuebingenGold, line width=2pt] (-1.1,-0.15) ellipse (1.1 and 0.2);
-                \draw[TuebingenGold!30, line width=1pt] (-0.6,-0.15) ellipse (0.6 and 0.15);
-                
-                % Steam lines (curved, wavy)
-                \draw[TuebingenGold!50, line width=2pt] (-0.4,2.1) .. controls (-0.5,2.4) and (-0.3,2.6) .. (-0.4,2.9) .. controls (-0.5,3.1) and (-0.3,3.2) .. (-0.4,3.4);
-                \draw[TuebingenGold!50, line width=2pt] (0,2.1) .. controls (0.1,2.4) and (-0.1,2.6) .. (0,2.9) .. controls (0.1,3.1) and (-0.1,3.2) .. (0,3.4);
-                \draw[TuebingenGold!50, line width=2pt] (0.4,2.1) .. controls (0.5,2.4) and (0.3,2.6) .. (0.4,2.9) .. controls (0.5,3.1) and (0.3,3.2) .. (0.4,3.4);
-            \end{tikzpicture}
-        };
-        
-        % Subtitle with decorative elements (centered below circle)
-        \node[anchor=center, align=center] at ([yshift=-1.5cm]current page.center) {
-            {\Large \color{TuebingenAnthrazit} Take a moment to refresh}
-            \\[0.3cm]
-            {\normalsize \color{TuebingenGray} We'll resume shortly}
-        };
-        
-        % Main title in top left corner (drawn last so it's in front)
-        \node[anchor=north west, align=left] at ([xshift=0.5cm, yshift=-0.5cm]current page.north west) {
-            {\Huge \color{TuebingenGold} \textbf{COFFEE BREAK}}
-        };
-    \end{tikzpicture}
-\end{frame}
+\CoffeeBreakFrame
 
 % --- ACT 3 ---
 \begin{frame}[plain]
@@ -554,56 +465,7 @@
 \input{acts/act3_business_patterns/act3_business_patterns.tex}
 
 % --- COFFEE BREAK ---
-\begin{frame}[plain]
-    \begin{tikzpicture}[remember picture, overlay]
-        % Decorative circles in background (drawn first so they're behind everything)
-        \fill[TuebingenGold!10] (current page.center) circle (4cm);
-        \fill[TuebingenGold!5] ([xshift=-3cm, yshift=2cm]current page.center) circle (2cm);
-        \fill[TuebingenGold!5] ([xshift=3cm, yshift=-2cm]current page.center) circle (2cm);
-        
-        % Coffee cup illustration (positioned above the main decorative circle)
-        \node[anchor=center] at ([yshift=2.125cm]current page.center) {
-            \begin{tikzpicture}[scale=1.0]
-                % Cup body (trapezoid shape - wider at top)
-                \fill[TuebingenGold!15] (-0.6,0) -- (-0.75,0) -- (-0.9,1.8) -- (-0.9,2.1) -- (0.9,2.1) -- (0.9,1.8) -- (0.75,0) -- (0.6,0) -- cycle;
-                \draw[TuebingenGold, line width=2.5pt] (-0.6,0) -- (-0.75,0) -- (-0.9,1.8) -- (-0.9,2.1) -- (0.9,2.1) -- (0.9,1.8) -- (0.75,0) -- (0.6,0) -- cycle;
-                
-                % Cup rim (top edge)
-                \draw[TuebingenGold, line width=3pt] (-0.9,2.1) -- (0.9,2.1);
-                
-                % Coffee liquid inside
-                \fill[TuebingenAnthrazit!40] (-0.85,1.9) -- (0.85,1.9) -- (0.85,1.7) -- (-0.85,1.7) -- cycle;
-                \draw[TuebingenAnthrazit!60, line width=1pt] (-0.85,1.8) -- (0.85,1.8);
-                
-                % Handle (curved, more realistic)
-                \draw[TuebingenGold, line width=2.5pt] (0.9,1.6) .. controls (1.4,1.6) and (1.5,1.0) .. (1.3,0.5) .. controls (1.2,0.3) and (1.1,0.3) .. (0.9,0.5);
-                \draw[TuebingenGold, line width=2.5pt] (0.9,1.4) .. controls (1.2,1.4) and (1.3,0.9) .. (1.15,0.6) .. controls (1.05,0.4) and (1.0,0.4) .. (0.9,0.6);
-                
-                % Saucer (optional, adds realism)
-                \fill[TuebingenGold!10] (-1.1,-0.15) ellipse (1.1 and 0.2);
-                \draw[TuebingenGold, line width=2pt] (-1.1,-0.15) ellipse (1.1 and 0.2);
-                \draw[TuebingenGold!30, line width=1pt] (-0.6,-0.15) ellipse (0.6 and 0.15);
-                
-                % Steam lines (curved, wavy)
-                \draw[TuebingenGold!50, line width=2pt] (-0.4,2.1) .. controls (-0.5,2.4) and (-0.3,2.6) .. (-0.4,2.9) .. controls (-0.5,3.1) and (-0.3,3.2) .. (-0.4,3.4);
-                \draw[TuebingenGold!50, line width=2pt] (0,2.1) .. controls (0.1,2.4) and (-0.1,2.6) .. (0,2.9) .. controls (0.1,3.1) and (-0.1,3.2) .. (0,3.4);
-                \draw[TuebingenGold!50, line width=2pt] (0.4,2.1) .. controls (0.5,2.4) and (0.3,2.6) .. (0.4,2.9) .. controls (0.5,3.1) and (0.3,3.2) .. (0.4,3.4);
-            \end{tikzpicture}
-        };
-        
-        % Subtitle with decorative elements (centered below circle)
-        \node[anchor=center, align=center] at ([yshift=-1.5cm]current page.center) {
-            {\Large \color{TuebingenAnthrazit} Take a moment to refresh}
-            \\[0.3cm]
-            {\normalsize \color{TuebingenGray} We'll resume shortly}
-        };
-        
-        % Main title in top left corner (drawn last so it's in front)
-        \node[anchor=north west, align=left] at ([xshift=0.5cm, yshift=-0.5cm]current page.north west) {
-            {\Huge \color{TuebingenGold} \textbf{COFFEE BREAK}}
-        };
-    \end{tikzpicture}
-\end{frame}
+\CoffeeBreakFrame
 
 % --- ACT 4 ---
 \begin{frame}[plain]
@@ -622,56 +484,7 @@
 \input{acts/act4_governance/act4_governance.tex}
 
 % --- COFFEE BREAK ---
-\begin{frame}[plain]
-    \begin{tikzpicture}[remember picture, overlay]
-        % Decorative circles in background (drawn first so they're behind everything)
-        \fill[TuebingenGold!10] (current page.center) circle (4cm);
-        \fill[TuebingenGold!5] ([xshift=-3cm, yshift=2cm]current page.center) circle (2cm);
-        \fill[TuebingenGold!5] ([xshift=3cm, yshift=-2cm]current page.center) circle (2cm);
-        
-        % Coffee cup illustration (positioned above the main decorative circle)
-        \node[anchor=center] at ([yshift=2.125cm]current page.center) {
-            \begin{tikzpicture}[scale=1.0]
-                % Cup body (trapezoid shape - wider at top)
-                \fill[TuebingenGold!15] (-0.6,0) -- (-0.75,0) -- (-0.9,1.8) -- (-0.9,2.1) -- (0.9,2.1) -- (0.9,1.8) -- (0.75,0) -- (0.6,0) -- cycle;
-                \draw[TuebingenGold, line width=2.5pt] (-0.6,0) -- (-0.75,0) -- (-0.9,1.8) -- (-0.9,2.1) -- (0.9,2.1) -- (0.9,1.8) -- (0.75,0) -- (0.6,0) -- cycle;
-                
-                % Cup rim (top edge)
-                \draw[TuebingenGold, line width=3pt] (-0.9,2.1) -- (0.9,2.1);
-                
-                % Coffee liquid inside
-                \fill[TuebingenAnthrazit!40] (-0.85,1.9) -- (0.85,1.9) -- (0.85,1.7) -- (-0.85,1.7) -- cycle;
-                \draw[TuebingenAnthrazit!60, line width=1pt] (-0.85,1.8) -- (0.85,1.8);
-                
-                % Handle (curved, more realistic)
-                \draw[TuebingenGold, line width=2.5pt] (0.9,1.6) .. controls (1.4,1.6) and (1.5,1.0) .. (1.3,0.5) .. controls (1.2,0.3) and (1.1,0.3) .. (0.9,0.5);
-                \draw[TuebingenGold, line width=2.5pt] (0.9,1.4) .. controls (1.2,1.4) and (1.3,0.9) .. (1.15,0.6) .. controls (1.05,0.4) and (1.0,0.4) .. (0.9,0.6);
-                
-                % Saucer (optional, adds realism)
-                \fill[TuebingenGold!10] (-1.1,-0.15) ellipse (1.1 and 0.2);
-                \draw[TuebingenGold, line width=2pt] (-1.1,-0.15) ellipse (1.1 and 0.2);
-                \draw[TuebingenGold!30, line width=1pt] (-0.6,-0.15) ellipse (0.6 and 0.15);
-                
-                % Steam lines (curved, wavy)
-                \draw[TuebingenGold!50, line width=2pt] (-0.4,2.1) .. controls (-0.5,2.4) and (-0.3,2.6) .. (-0.4,2.9) .. controls (-0.5,3.1) and (-0.3,3.2) .. (-0.4,3.4);
-                \draw[TuebingenGold!50, line width=2pt] (0,2.1) .. controls (0.1,2.4) and (-0.1,2.6) .. (0,2.9) .. controls (0.1,3.1) and (-0.1,3.2) .. (0,3.4);
-                \draw[TuebingenGold!50, line width=2pt] (0.4,2.1) .. controls (0.5,2.4) and (0.3,2.6) .. (0.4,2.9) .. controls (0.5,3.1) and (0.3,3.2) .. (0.4,3.4);
-            \end{tikzpicture}
-        };
-        
-        % Subtitle with decorative elements (centered below circle)
-        \node[anchor=center, align=center] at ([yshift=-1.5cm]current page.center) {
-            {\Large \color{TuebingenAnthrazit} Take a moment to refresh}
-            \\[0.3cm]
-            {\normalsize \color{TuebingenGray} We'll resume shortly}
-        };
-        
-        % Main title in top left corner (drawn last so it's in front)
-        \node[anchor=north west, align=left] at ([xshift=0.5cm, yshift=-0.5cm]current page.north west) {
-            {\Huge \color{TuebingenGold} \textbf{COFFEE BREAK}}
-        };
-    \end{tikzpicture}
-\end{frame}
+\CoffeeBreakFrame
 
 % --- ACT 5 ---
 \begin{frame}[plain]

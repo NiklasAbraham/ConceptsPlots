@@ -9,18 +9,18 @@
 \begin{frame}{Act III: Business Application Patterns}
     \framesubtitle{70 minutes — From technical understanding to business value}
     
-    \vspace{0.5em}
+    \vspace{0.3em}
     \begin{center}
         {\Large\color{TuebingenRot} Converting AI Capabilities into Business Outcomes}
         
-        \vspace{0.3em}
+        \vspace{0.2em}
         {\color{TuebingenGray} Six proven patterns for enterprise AI deployment}
     \end{center}
     
-    \vspace{0.5em}
+    \vspace{0.3em}
     \textbf{What We'll Cover:}
     \begin{enumerate}
-        \setlength\itemsep{0.4em}
+        \setlength\itemsep{0.3em}
         \item Pattern catalog overview
         \item Pattern 1: Enterprise knowledge assistant (RAG)
         \item Pattern 2: Customer support augmentation
@@ -40,9 +40,9 @@
 \begin{frame}{The Six Enterprise AI Patterns}
     \framesubtitle{A taxonomy of proven applications}
     
-    \vspace{0.3em}
+    \vspace{0.2em}
     \begin{center}
-        \begin{tikzpicture}[scale=0.85, every node/.style={font=\small}]
+        \begin{tikzpicture}[scale=0.8, every node/.style={font=\small}]
             % Center node
             \node[draw, circle, fill=TuebingenRot!20, minimum size=2cm, align=center] (center) at (0,0) {Enterprise\\AI Patterns};
             
@@ -75,21 +75,21 @@
 \begin{frame}{Pattern 1: Enterprise Knowledge Assistant}
     \framesubtitle{RAG-powered internal knowledge access}
     
-    \vspace{0.3em}
+    \vspace{0.2em}
     \begin{columns}[T]
         \column{0.48\textwidth}
         \textbf{What It Is:}
         \begin{itemize}
-            \setlength\itemsep{0.3em}
+            \setlength\itemsep{0.2em}
             \item Natural language Q\&A over internal knowledge
             \item RAG architecture with citations
             \item Self-service for employees
         \end{itemize}
         
-        \vspace{0.3em}
+        \vspace{0.2em}
         \textbf{Use Cases:}
         \begin{itemize}
-            \setlength\itemsep{0.3em}
+            \setlength\itemsep{0.2em}
             \item \textbf{HR:} Policies, benefits, procedures
             \item \textbf{IT:} Troubleshooting, how-to guides
             \item \textbf{Legal:} Compliance, contract terms
@@ -100,7 +100,7 @@
         \column{0.48\textwidth}
         \textbf{Architecture:}
         \begin{center}
-            \begin{tikzpicture}[scale=0.65, font=\footnotesize]
+            \begin{tikzpicture}[scale=0.6, font=\footnotesize]
                 \node[draw, fill=TuebingenBeige, rounded corners] (user) at (0,2.5) {Employee};
                 \node[draw, fill=TuebingenCyan!30, rounded corners] (chat) at (0,1.5) {Chat Interface};
                 \node[draw, fill=TuebingenGreen!30, rounded corners] (rag) at (0,0.5) {RAG System};
@@ -114,7 +114,7 @@
             \end{tikzpicture}
         \end{center}
         
-        \vspace{0.3em}
+        \vspace{0.2em}
         \textbf{Key Components:}
         \begin{itemize}
             \setlength\itemsep{0.2em}
@@ -251,7 +251,7 @@
         \column{0.48\textwidth}
         \textbf{Prerequisites:}
         \begin{itemize}
-            \setlength\itemsep{0.4em}
+            \setlength\itemsep{0.3em}
             \item[$\square$] Identified knowledge sources
             \item[$\square$] Document access permissions mapped
             \item[$\square$] Content owners engaged
@@ -259,10 +259,10 @@
             \item[$\square$] Success metrics agreed
         \end{itemize}
         
-        \vspace{0.3em}
+        \vspace{0.2em}
         \textbf{Technical Requirements:}
         \begin{itemize}
-            \setlength\itemsep{0.4em}
+            \setlength\itemsep{0.3em}
             \item[$\square$] Document parsing capability
             \item[$\square$] Vector database or search
             \item[$\square$] LLM access (API or hosted)
@@ -273,7 +273,7 @@
         \column{0.48\textwidth}
         \textbf{Governance:}
         \begin{itemize}
-            \setlength\itemsep{0.4em}
+            \setlength\itemsep{0.3em}
             \item[$\square$] Data classification review
             \item[$\square$] Security assessment
             \item[$\square$] Content update process
@@ -281,10 +281,10 @@
             \item[$\square$] Quality review cadence
         \end{itemize}
         
-        \vspace{0.3em}
+        \vspace{0.2em}
         \textbf{Launch Plan:}
         \begin{itemize}
-            \setlength\itemsep{0.4em}
+            \setlength\itemsep{0.3em}
             \item[$\square$] Pilot group selected
             \item[$\square$] Evaluation set created
             \item[$\square$] Feedback mechanism ready
@@ -356,97 +356,99 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}{Customer Support: Compliance \& Escalation}
+\begin{frame}{Customer Support: Compliance Constraints}
     \framesubtitle{Guardrails for customer-facing AI}
     
-    \vspace{0.3em}
-    \begin{columns}[T]
-        \column{0.48\textwidth}
-        {\color{TuebingenRot}\textbf{Compliance Constraints:}}
-        \begin{itemize}
-            \setlength\itemsep{0.4em}
-            \item \textbf{Regulated industries:} Financial advice, medical, legal — AI suggests, human approves
-            \item \textbf{PII handling:} Don't expose customer data in logs
-            \item \textbf{Promises:} AI cannot commit the company
-            \item \textbf{Disclaimers:} Required in some contexts
-        \end{itemize}
-        
-        \vspace{0.3em}
-        \textbf{Content Policies:}
-        \begin{itemize}
-            \setlength\itemsep{0.3em}
-            \item Tone guidelines
-            \item Prohibited topics
-            \item Brand voice consistency
-        \end{itemize}
-        
-        \column{0.48\textwidth}
-        \textbf{Escalation Rules:}
-        \begin{itemize}
-            \setlength\itemsep{0.4em}
-            \item \textbf{Sentiment:} Angry/frustrated → human
-            \item \textbf{Complexity:} Multi-issue → human
-            \item \textbf{Risk:} Legal threat → human + legal
-            \item \textbf{Value:} High-value customer → human
-            \item \textbf{Uncertainty:} Low confidence → human
-        \end{itemize}
-        
-        \vspace{0.3em}
-        \begin{theorembox}{Golden Rule}
-            When in doubt, escalate. \\
-            The cost of over-escalation < cost of wrong answer.
-        \end{theorembox}
-    \end{columns}
-\end{frame}
-
-\begin{frame}{Customer Support: Metrics That Matter}
-    \framesubtitle{How to measure success}
-    
-    \vspace{0.3em}
-    \begin{columns}[T]
-        \column{0.48\textwidth}
-        \textbf{Efficiency Metrics:}
-        \begin{itemize}
-            \setlength\itemsep{0.4em}
-            \item \textbf{Average Handle Time (AHT):}
-            \begin{itemize}
-                \item Target: 15-30\% reduction
-                \item Measure: Time from open to close
-            \end{itemize}
-            \item \textbf{First Contact Resolution (FCR):}
-            \begin{itemize}
-                \item Target: 5-10\% improvement
-                \item Measure: Resolved without transfer
-            \end{itemize}
-            \item \textbf{Agent Utilization:}
-            \begin{itemize}
-                \item More tickets per agent
-                \item Less time searching
-            \end{itemize}
-        \end{itemize}
-        
-        \column{0.48\textwidth}
-        \textbf{Quality Metrics:}
-        \begin{itemize}
-            \setlength\itemsep{0.4em}
-            \item \textbf{CSAT:} Customer satisfaction score
-            \item \textbf{QA Score:} Compliance with guidelines
-            \item \textbf{Error Rate:} Wrong answers caught
-            \item \textbf{Escalation Rate:} Should stay stable
-        \end{itemize}
-        
-        \vspace{0.3em}
-        \textbf{AI-Specific Metrics:}
-        \begin{itemize}
-            \setlength\itemsep{0.3em}
-            \item Suggestion acceptance rate
-            \item Time saved per suggestion
-            \item Retrieval accuracy
-        \end{itemize}
-    \end{columns}
+    \vspace{0.5em}
+    {\color{TuebingenRot}\textbf{Compliance Requirements:}}
+    \begin{itemize}
+        \setlength\itemsep{0.6em}
+        \item \textbf{Regulated industries:} Financial advice, medical, legal — AI suggests, human approves
+        \item \textbf{PII handling:} Don't expose customer data in logs or outputs
+        \item \textbf{Promises:} AI cannot make commitments on behalf of the company
+        \item \textbf{Disclaimers:} Required disclosures in regulated contexts
+    \end{itemize}
     
     \vspace{0.5em}
-    {\color{TuebingenGray}\textbf{Warning:} Don't optimize AHT at expense of quality. Balance is key.}
+    \textbf{Content Policies:}
+    \begin{itemize}
+        \setlength\itemsep{0.5em}
+        \item Tone guidelines and brand voice consistency
+        \item Prohibited topics list
+        \item Approved response templates for sensitive issues
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Customer Support: Escalation Rules}
+    \framesubtitle{When to hand off to humans}
+    
+    \vspace{0.5em}
+    \textbf{Escalation Triggers:}
+    \begin{itemize}
+        \setlength\itemsep{0.6em}
+        \item \textbf{Sentiment:} Angry or frustrated customer → human agent
+        \item \textbf{Complexity:} Multi-issue or edge case → human agent
+        \item \textbf{Risk:} Legal threat → human + legal team
+        \item \textbf{Value:} High-value customer → human agent
+        \item \textbf{Uncertainty:} Low confidence score → human agent
+    \end{itemize}
+    
+    \vspace{0.5em}
+    \begin{theorembox}{Golden Rule}
+        When in doubt, escalate. \\
+        The cost of over-escalation is always less than the cost of a wrong answer.
+    \end{theorembox}
+\end{frame}
+
+\begin{frame}{Customer Support: Efficiency Metrics}
+    \framesubtitle{Measuring operational impact}
+    
+    \vspace{0.5em}
+    \textbf{Core Efficiency Metrics:}
+    \begin{itemize}
+        \setlength\itemsep{0.6em}
+        \item \textbf{Average Handle Time (AHT):}
+        \begin{itemize}
+            \item Target: 15-30\% reduction
+            \item Measure: Time from ticket open to close
+        \end{itemize}
+        \item \textbf{First Contact Resolution (FCR):}
+        \begin{itemize}
+            \item Target: 5-10\% improvement
+            \item Measure: Issues resolved without transfer
+        \end{itemize}
+        \item \textbf{Agent Utilization:}
+        \begin{itemize}
+            \item More tickets handled per agent
+            \item Less time spent searching for information
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Customer Support: Quality Metrics}
+    \framesubtitle{Ensuring answers are correct}
+    
+    \vspace{0.5em}
+    \textbf{Quality Metrics:}
+    \begin{itemize}
+        \setlength\itemsep{0.5em}
+        \item \textbf{CSAT:} Customer satisfaction score
+        \item \textbf{QA Score:} Compliance with guidelines
+        \item \textbf{Error Rate:} Wrong answers caught in review
+        \item \textbf{Escalation Rate:} Should stay stable
+    \end{itemize}
+    
+    \vspace{0.5em}
+    \textbf{AI-Specific Metrics:}
+    \begin{itemize}
+        \setlength\itemsep{0.5em}
+        \item Suggestion acceptance rate
+        \item Time saved per AI suggestion
+        \item Retrieval accuracy
+    \end{itemize}
+    
+    \vspace{0.3em}
+    {\color{TuebingenGray}\textbf{Warning:} Don't optimize AHT at the expense of quality. Balance is key.}
 \end{frame}
 
 \begin{frame}{Customer Support: Implementation Approach}
@@ -492,21 +494,21 @@
 \begin{frame}{Pattern 3: Document \& Workflow Automation}
     \framesubtitle{Intelligent document processing at scale}
     
-    \vspace{0.3em}
+    \vspace{0.2em}
     \begin{columns}[T]
         \column{0.48\textwidth}
         \textbf{What It Is:}
         \begin{itemize}
-            \setlength\itemsep{0.3em}
+            \setlength\itemsep{0.2em}
             \item Extract structured data from documents
             \item Route and process automatically
             \item Integrate with business systems
         \end{itemize}
         
-        \vspace{0.3em}
+        \vspace{0.2em}
         \textbf{Use Cases:}
         \begin{itemize}
-            \setlength\itemsep{0.3em}
+            \setlength\itemsep{0.2em}
             \item \textbf{Invoices:} Extract, match, route to AP
             \item \textbf{Claims:} Parse, validate, adjudicate
             \item \textbf{Contracts:} Extract terms, flag risks
@@ -652,58 +654,59 @@
         \end{itemize}
     \end{columns}
     
-    \vspace{0.5em}
+    \vspace{0.3em}
     \begin{theorembox}{Design Principle}
         Assume errors will occur. Design for graceful degradation. \\
         Automation rate of 80\% with 99\% accuracy beats 95\% with 90\% accuracy.
     \end{theorembox}
 \end{frame}
 
-\begin{frame}{Document Automation: ROI Model}
-    \framesubtitle{Calculating the business case}
+\begin{frame}{Document Automation: Cost Drivers}
+    \framesubtitle{Understanding the current state}
     
-    \vspace{0.3em}
-    \begin{columns}[T]
-        \column{0.48\textwidth}
-        \textbf{Cost Drivers (Current State):}
-        \begin{itemize}
-            \setlength\itemsep{0.3em}
-            \item Manual data entry time
-            \item Error correction rework
-            \item Processing delays (float cost)
-            \item Compliance failures (penalties)
-            \item Missed discounts (late payment)
-        \end{itemize}
-        
-        \vspace{0.3em}
-        \textbf{Example: Invoice Processing}
-        \begin{itemize}
-            \setlength\itemsep{0.2em}
-            \item 50,000 invoices/year
-            \item \$15 cost per manual invoice
-            \item = \$750,000/year baseline
-        \end{itemize}
-        
-        \column{0.48\textwidth}
-        \textbf{Automation Benefits:}
-        \begin{itemize}
-            \setlength\itemsep{0.3em}
-            \item 80\% straight-through processing
-            \item 70\% cost reduction per invoice
-            \item 50\% faster cycle time
-            \item 90\% fewer errors
-        \end{itemize}
-        
-        \vspace{0.3em}
-        \textbf{ROI Calculation:}
-        \begin{itemize}
-            \setlength\itemsep{0.2em}
-            \item Automated: 40,000 × \$4 = \$160K
-            \item Exceptions: 10,000 × \$18 = \$180K
-            \item New cost: \$340K
-            \item Savings: \$410K/year (55\%)
-        \end{itemize}
-    \end{columns}
+    \vspace{0.5em}
+    \textbf{Current State Cost Drivers:}
+    \begin{itemize}
+        \setlength\itemsep{0.5em}
+        \item Manual data entry time
+        \item Error correction and rework
+        \item Processing delays (float cost)
+        \item Compliance failures (penalties)
+        \item Missed discounts from late payments
+    \end{itemize}
+    
+    \vspace{0.5em}
+    \textbf{Example: Invoice Processing Baseline}
+    \begin{itemize}
+        \setlength\itemsep{0.5em}
+        \item 50,000 invoices per year
+        \item \$15 cost per manually processed invoice
+        \item Total baseline cost: \$750,000/year
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Document Automation: ROI Calculation}
+    \framesubtitle{Quantifying the benefits}
+    
+    \vspace{0.5em}
+    \textbf{Automation Benefits:}
+    \begin{itemize}
+        \setlength\itemsep{0.5em}
+        \item 80\% straight-through processing (no human touch)
+        \item 70\% cost reduction per automated invoice
+        \item 50\% faster cycle time
+        \item 90\% fewer errors
+    \end{itemize}
+    
+    \vspace{0.5em}
+    \textbf{ROI Calculation:}
+    \begin{itemize}
+        \setlength\itemsep{0.5em}
+        \item Automated: 40,000 × \$4 = \$160K
+        \item Exceptions (human): 10,000 × \$18 = \$180K
+        \item New total cost: \$340K
+        \item \textbf{Annual savings: \$410K (55\%)}
+    \end{itemize}
     
     \vspace{0.3em}
     {\color{TuebingenGray}\textbf{Note:} Include implementation cost, maintenance, and ramp-up time in full business case.}
