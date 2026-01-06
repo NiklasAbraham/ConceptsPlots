@@ -498,6 +498,16 @@ Ensure leaders can operationalize safely and avoid the “demo trap”.
 ---
 
 # Act V — Transition to your targeted needs analysis + Q&A (10 minutes)
+
+## Additional: Real-World AI Case Studies
+Before the personalized view, we will present several real-world cases (each representing a startup or similar organization) that illustrate how AI was used in practice and what challenges were encountered. Each case will:
+- Briefly describe the company/startup and its business context
+- Explain the specific AI solution implemented
+- Highlight the main technical and organizational challenges faced
+- Summarize the business impact and lessons learned
+
+These cases are supported by dedicated slides and serve as concrete examples to bridge from general patterns to your tailored analysis.
+
 ## Purpose
 Set expectations for the next phase and capture executive concerns.
 

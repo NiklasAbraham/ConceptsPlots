@@ -177,7 +177,7 @@ summary = {
 
 # Detect anomalies (simple rule)
 threshold = summary["mean"] * 3
-anomalies = df[df["amount"] > threshold]
+anomalies = df[df["amount"] } threshold]
 summary["anomalies"] = len(anomalies)
 
 # Output
@@ -221,7 +221,7 @@ with open("report.json", "w") as f:
 \begin{lstlisting}[style=javastyle, basicstyle=\ttfamily\tiny]
 public class TransactionAnalyzer {
     public static void main(String[] args) {
-        List<Transaction> txns = loadCSV("transactions.csv");
+        List<Transaction} txns = loadCSV("transactions.csv");
         
         double total = txns.stream()
             .mapToDouble(Transaction::getAmount)
@@ -230,7 +230,7 @@ public class TransactionAnalyzer {
         double threshold = mean * 3;
         
         long anomalyCount = txns.stream()
-            .filter(t -> t.getAmount() > threshold)
+            .filter(t -} t.getAmount() } threshold)
             .count();
         
         Summary summary = new Summary(
@@ -298,7 +298,7 @@ func analyzeTransactions() error {
     
     var anomalies int
     for _, t := range txns {
-        if t.Amount > threshold {
+        if t.Amount } threshold {
             anomalies++
         }
     }
@@ -347,7 +347,7 @@ func analyzeTransactions() error {
     \vspace{0.5em}
     \begin{columns}[T]
         \column{0.48\textwidth}
-        	extbf{Popular Development Environments:}
+        \textbf{Popular Development Environments:}
         \begin{itemize}
             \setlength\itemsep{0.4em}
             \item \textbf{VS Code}: Free, open source, huge extension ecosystem, strong AI integration (Copilot, etc.), cross-platform. Used by individuals and enterprises.
@@ -356,7 +356,7 @@ func analyzeTransactions() error {
             \item \textbf{Vim/Neovim}: Free, highly customizable, keyboard-driven, used on servers and by power users. AI plugins available.
         \end{itemize}
         \vspace{0.5em}
-        	extbf{AI Coding Assistant Capabilities:}
+        \textbf{AI Coding Assistant Capabilities:}
         \begin{itemize}
             \setlength\itemsep{0.3em}
             \item Code completion (line/block)
@@ -389,7 +389,7 @@ func analyzeTransactions() error {
     \begin{center}
     \begin{tabular}{|l|l|l|l|}
         \hline
-        	extbf{Editor} & \textbf{Key Features} & \textbf{AI Integration} & \textbf{Pricing} \\
+        \textbf{Editor} & \textbf{Key Features} & \textbf{AI Integration} & \textbf{Pricing} \\
         \hline
         VS Code & Extensible, cross-platform & Copilot, 3rd-party & Free \\
         Cursor & AI-native, context tools & Built-in, advanced & Free basic, Paid Pro (\euro20+/mo) \\
@@ -605,4 +605,318 @@ func analyzeTransactions() error {
     \end{itemize}
     \vspace{0.5em}
     {\small\color{TuebingenGray} Always monitor usage and optimize for your workload.}
+\end{frame}
+
+% ==============================================================================
+% 0.8 Software Engineering Roles and Compensation (3 slides)
+% ==============================================================================
+
+\begin{frame}{Software Engineering Roles: The Talent Landscape}
+    \framesubtitle{Understanding who builds what and what they cost}
+    
+    {\color{TuebingenGray} Different roles have different skill sets, capabilities, and market rates. Understanding this helps with hiring, budgeting, and project scoping.}
+    
+    \vspace{0.5em}
+    \begin{center}
+        \begin{tikzpicture}[
+            role/.style={draw=TuebingenAnthrazit, rounded corners=3pt, minimum width=2.2cm, minimum height=0.8cm, align=center, font=\small},
+            arrow/.style={->, thick, TuebingenGold}
+        ]
+            % Core roles arranged in a circle
+            \node[role, fill=TuebingenCyan!30] (frontend) at (0,2.5) {Frontend\\Developer};
+            \node[role, fill=TuebingenGreen!30] (backend) at (2.5,1.5) {Backend\\Developer};
+            \node[role, fill=TuebingenGold!30] (fullstack) at (2.5,-1.5) {Full Stack\\Developer};
+            \node[role, fill=TuebingenRot!30] (ai) at (0,-2.5) {AI/ML\\Engineer};
+            \node[role, fill=TuebingenAnthrazit!20] (data) at (-2.5,-1.5) {Data\\Scientist};
+            \node[role, fill=TuebingenBeige, draw=TuebingenRot] (devops) at (-2.5,1.5) {DevOps/SRE\\Engineer};
+            
+            % Central concept
+            \node[align=center, font=\footnotesize, color=TuebingenAnthrazit] at (0,0) {Software\\Development\\Team};
+            
+            % Connecting lines
+            \draw[thick, TuebingenGray, opacity=0.3] (frontend) -- (0,0);
+            \draw[thick, TuebingenGray, opacity=0.3] (backend) -- (0,0);
+            \draw[thick, TuebingenGray, opacity=0.3] (fullstack) -- (0,0);
+            \draw[thick, TuebingenGray, opacity=0.3] (ai) -- (0,0);
+            \draw[thick, TuebingenGray, opacity=0.3] (data) -- (0,0);
+            \draw[thick, TuebingenGray, opacity=0.3] (devops) -- (0,0);
+        \end{tikzpicture}
+    \end{center}
+    
+    \vspace{0.3em}
+    \begin{center}
+        \small\color{TuebingenRot} \textbf{Key insight:} Each role has distinct skills, capabilities, and market rates. Mismatched expectations lead to project failures.
+    \end{center}
+\end{frame}
+
+\begin{frame}{Role Breakdown: Frontend, Backend, Full Stack}
+    \framesubtitle{Traditional web development roles}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.32\textwidth}
+        \begin{center}
+            {\large \color{TuebingenCyan} \textbf{Frontend Developer}}
+        \end{center}
+        \vspace{0.2em}
+        \textbf{Skills:}
+        \begin{itemize}
+            \setlength\itemsep{0.1em}
+            \item HTML, CSS, JavaScript
+            \item React, Vue, Angular
+            \item UI/UX design principles
+            \item Browser compatibility
+        \end{itemize}
+        \textbf{Can do:}
+        \begin{itemize}
+            \setlength\itemsep{0.1em}
+            \item User interfaces
+            \item Web applications
+            \item Mobile apps (React Native)
+        \end{itemize}
+        \textbf{Cannot do:}
+        \begin{itemize}
+            \setlength\itemsep{0.1em}
+            \item Server logic
+            \item Database design
+            \item AI model development
+        \end{itemize}
+        \textbf{Salary (2026):}
+        \begin{itemize}
+            \setlength\itemsep{0.1em}
+            \item Junior: \euro45-65K
+            \item Senior: \euro70-95K
+            \item Lead: \euro100-130K
+        \end{itemize}
+        
+        \column{0.32\textwidth}
+        \begin{center}
+            {\large \color{TuebingenGreen} \textbf{Backend Developer}}
+        \end{center}
+        \vspace{0.2em}
+        \textbf{Skills:}
+        \begin{itemize}
+            \setlength\itemsep{0.1em}
+            \item Java, Python, Go, C\#
+            \item Databases, APIs
+            \item System architecture
+            \item Performance optimization
+        \end{itemize}
+        \textbf{Can do:}
+        \begin{itemize}
+            \setlength\itemsep{0.1em}
+            \item Server applications
+            \item API development
+            \item Database integration
+            \item Microservices
+        \end{itemize}
+        \textbf{Cannot do:}
+        \begin{itemize}
+            \setlength\itemsep{0.1em}
+            \item UI design
+            \item Complex ML algorithms
+            \item Infrastructure automation
+        \end{itemize}
+        \textbf{Salary (2026):}
+        \begin{itemize}
+            \setlength\itemsep{0.1em}
+            \item Junior: \euro50-70K
+            \item Senior: \euro75-105K
+            \item Lead: \euro110-140K
+        \end{itemize}
+        
+        \column{0.32\textwidth}
+        \begin{center}
+            {\large \color{TuebingenGold} \textbf{Full Stack Developer}}
+        \end{center}
+        \vspace{0.2em}
+        \textbf{Skills:}
+        \begin{itemize}
+            \setlength\itemsep{0.1em}
+            \item Frontend + Backend
+            \item System integration
+            \item DevOps basics
+            \item Product mindset
+        \end{itemize}
+        \textbf{Can do:}
+        \begin{itemize}
+            \setlength\itemsep{0.1em}
+            \item End-to-end features
+            \item Rapid prototyping
+            \item Small-medium applications
+            \item Technical architecture
+        \end{itemize}
+        \textbf{Cannot do:}
+        \begin{itemize}
+            \setlength\itemsep{0.1em}
+            \item Deep specialization
+            \item Complex ML models
+            \item Large-scale optimization
+        \end{itemize}
+        \textbf{Salary (2026):}
+        \begin{itemize}
+            \setlength\itemsep{0.1em}
+            \item Junior: \euro55-75K
+            \item Senior: \euro80-110K
+            \item Lead: \euro115-150K
+        \end{itemize}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Role Breakdown: AI/ML, Data Science, DevOps}
+    \framesubtitle{Specialized and infrastructure roles}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.32\textwidth}
+        \begin{center}
+            {\large \color{TuebingenRot} \textbf{AI/ML Engineer}}
+        \end{center}
+        \vspace{0.2em}
+        \textbf{Skills:}
+        \begin{itemize}
+            \setlength\itemsep{0.1em}
+            \item Python, TensorFlow, PyTorch
+            \item Statistics, linear algebra
+            \item Model deployment
+            \item MLOps practices
+        \end{itemize}
+        \textbf{Can do:}
+        \begin{itemize}
+            \setlength\itemsep{0.1em}
+            \item Train ML models
+            \item Deploy AI systems
+            \item Optimize inference
+            \item Build ML pipelines
+        \end{itemize}
+        \textbf{Cannot do:}
+        \begin{itemize}
+            \setlength\itemsep{0.1em}
+            \item Complex UI development
+            \item Enterprise architecture
+            \item Advanced statistics research
+        \end{itemize}
+        \textbf{Salary (2026):}
+        \begin{itemize}
+            \setlength\itemsep{0.1em}
+            \item Junior: \euro70-90K
+            \item Senior: \euro100-140K
+            \item Lead: \euro150-200K+
+        \end{itemize}
+        
+        \column{0.32\textwidth}
+        \begin{center}
+            {\large \color{TuebingenAnthrazit} \textbf{Data Scientist}}
+        \end{center}
+        \vspace{0.2em}
+        \textbf{Skills:}
+        \begin{itemize}
+            \setlength\itemsep{0.1em}
+            \item Python, R, SQL
+            \item Statistics, experimentation
+            \item Data visualization
+            \item Business analysis
+        \end{itemize}
+        \textbf{Can do:}
+        \begin{itemize}
+            \setlength\itemsep{0.1em}
+            \item Exploratory analysis
+            \item Statistical modeling
+            \item A/B testing
+            \item Business insights
+        \end{itemize}
+        \textbf{Cannot do:}
+        \begin{itemize}
+            \setlength\itemsep{0.1em}
+            \item Production software
+            \item Complex ML engineering
+            \item System architecture
+        \end{itemize}
+        \textbf{Salary (2026):}
+        \begin{itemize}
+            \setlength\itemsep{0.1em}
+            \item Junior: \euro60-80K
+            \item Senior: \euro85-120K
+            \item Lead: \euro125-160K
+        \end{itemize}
+        
+        \column{0.32\textwidth}
+        \begin{center}
+            {\large \color{TuebingenBeige!50!black} \textbf{DevOps/SRE Engineer}}
+        \end{center}
+        \vspace{0.2em}
+        \textbf{Skills:}
+        \begin{itemize}
+            \setlength\itemsep{0.1em}
+            \item AWS, Docker, Kubernetes
+            \item CI/CD pipelines
+            \item Infrastructure as Code
+            \item Monitoring, alerting
+        \end{itemize}
+        \textbf{Can do:}
+        \begin{itemize}
+            \setlength\itemsep{0.1em}
+            \item Deploy applications
+            \item Manage infrastructure
+            \item Automate workflows
+            \item Ensure reliability
+        \end{itemize}
+        \textbf{Cannot do:}
+        \begin{itemize}
+            \setlength\itemsep{0.1em}
+            \item Feature development
+            \item ML model training
+            \item Business analysis
+        \end{itemize}
+        \textbf{Salary (2026):}
+        \begin{itemize}
+            \setlength\itemsep{0.1em}
+            \item Junior: \euro60-85K
+            \item Senior: \euro90-125K
+            \item Lead: \euro130-170K
+        \end{itemize}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Role Selection: Executive Decision Framework}
+    \framesubtitle{Matching roles to project needs}
+    
+    \vspace{0.3em}
+    \begin{theorembox}{Hiring Strategy}
+        Role selection depends on \textbf{project phase}, \textbf{technical complexity}, and \textbf{business context}. Mismatched skills = project delays and budget overruns.
+    \end{theorembox}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{When to hire what:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{Frontend Dev:} User-facing applications, web interfaces, mobile apps
+            \item \textbf{Backend Dev:} APIs, databases, business logic, integrations
+            \item \textbf{Full Stack:} MVPs, small teams, rapid prototyping, startup phases
+            \item \textbf{AI/ML Engineer:} Model development, AI feature implementation, MLOps
+            \item \textbf{Data Scientist:} Analysis, insights, experimentation, business intelligence
+            \item \textbf{DevOps/SRE:} Infrastructure, deployment, scaling, reliability
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Team composition patterns:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{Startup (5-10 people):} 2-3 full stack, 1 AI/ML, 1 DevOps
+            \item \textbf{Scale-up (20-50):} Specialized frontend/backend, 2-3 AI/ML, data scientists
+            \item \textbf{Enterprise (100+):} Full specialization, lead roles, architects
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Cost considerations:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item AI/ML engineers command premium (scarcity)
+            \item Full stack offers versatility but less depth
+            \item DevOps crucial for scaling (often overlooked early)
+            \item Location affects salaries (Silicon Valley +40-60\%)
+        \end{itemize}
+    \end{columns}
 \end{frame}

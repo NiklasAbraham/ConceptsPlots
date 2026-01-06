@@ -10,9 +10,12 @@
 \usetikzlibrary{shapes.geometric, positioning, arrows.meta}
 \usepackage{xcolor}
 \usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+\usepackage{newunicodechar}
 \usepackage{hyperref}
 \usepackage{listings}
 \usepackage[most]{tcolorbox} % Powerful box engine
+\usepackage{eurosym} % Euro symbol support
 
 % --- Bibliography ---
 \usepackage[backend=biber, style=authoryear-comp, maxcitenames=2, maxbibnames=99, uniquename=false, uniquelist=false]{biblatex}
@@ -26,6 +29,9 @@
 \setmainfont{RobotoCondensed-Light}
 \setsansfont{RobotoCondensed-Light}
 \renewcommand{\familydefault}{\sfdefault}
+
+% Map Unicode arrow to LaTeX command
+\newunicodechar{→}{\ensuremath{\rightarrow}}
 
 % --- COLOR PALETTE (Sampled from Screenshots) ---
 \definecolor{TuebingenAnthrazit}{HTML}{32414B} % Dark Header/Text
@@ -54,11 +60,12 @@
 
 % --- METADATA ---
 \newcommand{\lecturenumber}{01}
+\newcommand{\coursename}{Strategic AI: From Vision to Value}
 \newcommand{\license}{CC BY-SA 4.0}
 \newcommand{\shortdate}{07/01/2026}
 \newcommand{\longdate}{7 January 2026}
-	itle{AI and Coding for C-Level Executives: Foundations, Methods, and Business Patterns}
-\subtitle{Executive Briefing — Software, AI, and Governance for Decision Makers}
+\title{AI and Coding for C-Level Executives: Foundations, Methods, and Business Patterns}
+\subtitle{Guinea Pigs: Jan Köberle and Gabriel Käppler}
 \author{Niklas Abraham}
 
 % Faculty/Department/Chair for title slide (see template usage)
@@ -261,8 +268,8 @@
         
         % 1. Titles (Top Center) - Smaller now
         \node[anchor=north, align=center] at ([yshift=-1.5cm]current page.north) {
-            {\LARGE \color{TuebingenRot} \textsc{COURSE NAME}} \\[0.15cm]
-            {\normalsize \color{TuebingenAnthrazit} \textsc{LECTURE \lecturenumber \ -- \ \inserttitle}} \\[0.05cm]
+            {\LARGE \color{TuebingenRot} \textsc{\coursename}} \\[0.15cm]
+            {\normalsize \color{TuebingenAnthrazit} \textsc{\inserttitle}} \\[0.05cm]
             {\small \color{TuebingenAnthrazit} \textsc{\insertsubtitle}}
         };
 
@@ -273,29 +280,18 @@
         };
 
         % 3. Logos (Lower Third)
-        \node[anchor=south, align=center] at ([yshift=1.5cm]current page.south) {
+        \node[anchor=south, align=center] at ([yshift=1cm, xshift=0.5cm]current page.south) {
             \begin{minipage}{0.9\textwidth}
                 \centering
-                % Left: University Logo Text (Logo a bit smaller)
+                % Left: Logo
                 \begin{minipage}{0.35\textwidth}
                     \raggedright
                     \IfFileExists{logo_red.png}{
-                        \includegraphics[height=1.5cm]{logo_red.png}
+                        \includegraphics[height=2cm]{logo_red.png}
                     }{
-                        {\large \color{TuebingenRot} \textsc{EBERHARD KARLS}} \\
-                        {\Large \color{TuebingenRot} \textsc{UNIVERSITÄT}} \\
-                        {\Large \color{TuebingenRot} \textsc{TÜBINGEN}}
+                        % Fallback if logo doesn't exist
                     }
                 \end{minipage}%
-                \hfill
-                % Right: Faculty Text (now left-aligned)
-                \begin{minipage}{0.45\textwidth}
-                    \raggedright
-                    \small \color{TuebingenRot}
-                    	extsc{\facultyname} \\
-                    	extsc{\departmentname} \\
-                    	extsc{\chairname}
-                \end{minipage}
             \end{minipage}
         };
 
@@ -312,7 +308,7 @@
 
 % --- 1. TITLE SLIDE ---
 \begin{frame}[plain]
-    	itlepage
+    \titlepage
 \end{frame}
 
 % --- 2. OUTLINE SLIDE ---
