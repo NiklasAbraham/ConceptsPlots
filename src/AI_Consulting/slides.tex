@@ -8,14 +8,16 @@
 \usepackage{graphicx}
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric, positioning, arrows.meta}
-\usepackage{xcolor}
+\usepackage[table]{xcolor}
 \usepackage{amsmath, amssymb}
 \usepackage{booktabs}
+\usepackage{array}
 \usepackage{newunicodechar}
 \usepackage{hyperref}
 \usepackage{listings}
 \usepackage[most]{tcolorbox} % Powerful box engine
 \usepackage{eurosym} % Euro symbol support
+\usepackage{setspace} % Line spacing control
 
 % --- Bibliography ---
 \usepackage[backend=biber, style=authoryear-comp, maxcitenames=2, maxbibnames=99, uniquename=false, uniquelist=false]{biblatex}
@@ -219,7 +221,7 @@
             % Logo (Top Right)
             \node[anchor=north east] at (\paperwidth-0.2cm, 1.1) {
                 \IfFileExists{logo_white.png}{
-                    \includegraphics[height=0.665cm]{logo_white.png}
+                    \includegraphics[height=0.95cm]{logo_white.png}
                 }{
                     \tikz\node[draw=white, text=white, inner sep=2pt] {\scriptsize LOGO};
                 }
@@ -244,7 +246,7 @@
     \ifnum\thepage>1 % Skip footer on title page (usually)
     \begin{tikzpicture}[remember picture, overlay]
         \node[anchor=south west, align=left] at ([xshift=0.5cm, yshift=0.2cm]current page.south west) {
-            \tiny \color{TuebingenGray} Course Name \#\lecturenumber \ -- \ \the\year \ \insertauthor, \license \ -- \ \shortdate
+            \tiny \color{TuebingenGray} \coursename \ -- \ \the\year \ \insertauthor, \license \ -- \ \shortdate
         };
         \node[anchor=south east, align=right] at ([xshift=-0.5cm, yshift=0.2cm]current page.south east) {
             \tiny \color{TuebingenGray} \insertframenumber
@@ -336,11 +338,310 @@
 %   INCLUDE ACT CHAPTERS
 % ==============================================================================
 
+% --- ACT 0 ---
+\begin{frame}[plain]
+    \begin{center}
+        \vspace{2cm}
+        {\Huge \color{TuebingenRot} \textbf{ACT 0}}
+        \vspace{1cm}
+        \begin{tikzpicture}
+            \node[align=center] {
+                {\Large \color{TuebingenAnthrazit} Software Literacy Primer}
+            };
+        \end{tikzpicture}
+    \end{center}
+\end{frame}
+
 \input{acts/act0_software_primer/act0_software_primer.tex}
+
+% --- COFFEE BREAK ---
+\begin{frame}[plain]
+    \begin{tikzpicture}[remember picture, overlay]
+        % Decorative circles in background
+        \fill[TuebingenGold!10] (current page.center) circle (4cm);
+        \fill[TuebingenGold!5] ([xshift=-3cm, yshift=2cm]current page.center) circle (2cm);
+        \fill[TuebingenGold!5] ([xshift=3cm, yshift=-2cm]current page.center) circle (2cm);
+        
+        % Coffee cup illustration (simplified)
+        \node[anchor=center] at ([yshift=1.5cm]current page.center) {
+            \begin{tikzpicture}[scale=1.2]
+                % Cup body
+                \fill[TuebingenGold!20] (0,0) -- (-0.8,0) -- (-0.8,1.5) arc (180:0:0.8) -- (0.8,0) -- cycle;
+                \draw[TuebingenGold, line width=2pt] (0,0) -- (-0.8,0) -- (-0.8,1.5) arc (180:0:0.8) -- (0.8,0);
+                % Handle
+                \draw[TuebingenGold, line width=2pt] (0.8,1.2) .. controls (1.2,1.2) and (1.2,0.8) .. (0.8,0.8);
+                % Steam lines
+                \draw[TuebingenGold!60, line width=1.5pt] (-0.3,1.5) .. controls (-0.4,2) and (-0.2,2.2) .. (-0.3,2.5);
+                \draw[TuebingenGold!60, line width=1.5pt] (0,1.5) .. controls (0.1,2) and (-0.1,2.2) .. (0,2.5);
+                \draw[TuebingenGold!60, line width=1.5pt] (0.3,1.5) .. controls (0.4,2) and (0.2,2.2) .. (0.3,2.5);
+            \end{tikzpicture}
+        };
+        
+        % Main title
+        \node[anchor=center, align=center] at ([yshift=-0.5cm]current page.center) {
+            {\Huge \color{TuebingenGold} \textbf{COFFEE BREAK}}
+        };
+        
+        % Subtitle with decorative elements
+        \node[anchor=center, align=center] at ([yshift=-2cm]current page.center) {
+            {\Large \color{TuebingenAnthrazit} Take a moment to refresh}
+            \\[0.3cm]
+            {\normalsize \color{TuebingenGray} We'll resume shortly}
+        };
+        
+        % Decorative dots
+        \foreach \x in {-2, 0, 2} {
+            \fill[TuebingenGold] ([xshift=\x cm, yshift=-3.5cm]current page.center) circle (0.15cm);
+        }
+    \end{tikzpicture}
+\end{frame}
+
+% --- ACT 1 ---
+\begin{frame}[plain]
+    \begin{center}
+        \vspace{2cm}
+        {\Huge \color{TuebingenRot} \textbf{ACT I}}
+        \vspace{1cm}
+        \begin{tikzpicture}
+            \node[align=center] {
+                {\Large \color{TuebingenAnthrazit} AI Foundations and History}
+            };
+        \end{tikzpicture}
+    \end{center}
+\end{frame}
+
 \input{acts/act1_ai_history/act1_ai_history.tex}
+
+% --- COFFEE BREAK ---
+\begin{frame}[plain]
+    \begin{tikzpicture}[remember picture, overlay]
+        % Decorative circles in background
+        \fill[TuebingenGold!10] (current page.center) circle (4cm);
+        \fill[TuebingenGold!5] ([xshift=-3cm, yshift=2cm]current page.center) circle (2cm);
+        \fill[TuebingenGold!5] ([xshift=3cm, yshift=-2cm]current page.center) circle (2cm);
+        
+        % Coffee cup illustration (simplified)
+        \node[anchor=center] at ([yshift=1.5cm]current page.center) {
+            \begin{tikzpicture}[scale=1.2]
+                % Cup body
+                \fill[TuebingenGold!20] (0,0) -- (-0.8,0) -- (-0.8,1.5) arc (180:0:0.8) -- (0.8,0) -- cycle;
+                \draw[TuebingenGold, line width=2pt] (0,0) -- (-0.8,0) -- (-0.8,1.5) arc (180:0:0.8) -- (0.8,0);
+                % Handle
+                \draw[TuebingenGold, line width=2pt] (0.8,1.2) .. controls (1.2,1.2) and (1.2,0.8) .. (0.8,0.8);
+                % Steam lines
+                \draw[TuebingenGold!60, line width=1.5pt] (-0.3,1.5) .. controls (-0.4,2) and (-0.2,2.2) .. (-0.3,2.5);
+                \draw[TuebingenGold!60, line width=1.5pt] (0,1.5) .. controls (0.1,2) and (-0.1,2.2) .. (0,2.5);
+                \draw[TuebingenGold!60, line width=1.5pt] (0.3,1.5) .. controls (0.4,2) and (0.2,2.2) .. (0.3,2.5);
+            \end{tikzpicture}
+        };
+        
+        % Main title
+        \node[anchor=center, align=center] at ([yshift=-0.5cm]current page.center) {
+            {\Huge \color{TuebingenGold} \textbf{COFFEE BREAK}}
+        };
+        
+        % Subtitle with decorative elements
+        \node[anchor=center, align=center] at ([yshift=-2cm]current page.center) {
+            {\Large \color{TuebingenAnthrazit} Take a moment to refresh}
+            \\[0.3cm]
+            {\normalsize \color{TuebingenGray} We'll resume shortly}
+        };
+        
+        % Decorative dots
+        \foreach \x in {-2, 0, 2} {
+            \fill[TuebingenGold] ([xshift=\x cm, yshift=-3.5cm]current page.center) circle (0.15cm);
+        }
+    \end{tikzpicture}
+\end{frame}
+
+% --- ACT 2 ---
+\begin{frame}[plain]
+    \begin{center}
+        \vspace{2cm}
+        {\Huge \color{TuebingenRot} \textbf{ACT II}}
+        \vspace{1cm}
+        \begin{tikzpicture}
+            \node[align=center] {
+                {\Large \color{TuebingenAnthrazit} Modern AI Methods (Deep Dive)}
+            };
+        \end{tikzpicture}
+    \end{center}
+\end{frame}
+
 \input{acts/act2_modern_ai/act2_modern_ai.tex}
+
+% --- COFFEE BREAK ---
+\begin{frame}[plain]
+    \begin{tikzpicture}[remember picture, overlay]
+        % Decorative circles in background
+        \fill[TuebingenGold!10] (current page.center) circle (4cm);
+        \fill[TuebingenGold!5] ([xshift=-3cm, yshift=2cm]current page.center) circle (2cm);
+        \fill[TuebingenGold!5] ([xshift=3cm, yshift=-2cm]current page.center) circle (2cm);
+        
+        % Coffee cup illustration (simplified)
+        \node[anchor=center] at ([yshift=1.5cm]current page.center) {
+            \begin{tikzpicture}[scale=1.2]
+                % Cup body
+                \fill[TuebingenGold!20] (0,0) -- (-0.8,0) -- (-0.8,1.5) arc (180:0:0.8) -- (0.8,0) -- cycle;
+                \draw[TuebingenGold, line width=2pt] (0,0) -- (-0.8,0) -- (-0.8,1.5) arc (180:0:0.8) -- (0.8,0);
+                % Handle
+                \draw[TuebingenGold, line width=2pt] (0.8,1.2) .. controls (1.2,1.2) and (1.2,0.8) .. (0.8,0.8);
+                % Steam lines
+                \draw[TuebingenGold!60, line width=1.5pt] (-0.3,1.5) .. controls (-0.4,2) and (-0.2,2.2) .. (-0.3,2.5);
+                \draw[TuebingenGold!60, line width=1.5pt] (0,1.5) .. controls (0.1,2) and (-0.1,2.2) .. (0,2.5);
+                \draw[TuebingenGold!60, line width=1.5pt] (0.3,1.5) .. controls (0.4,2) and (0.2,2.2) .. (0.3,2.5);
+            \end{tikzpicture}
+        };
+        
+        % Main title
+        \node[anchor=center, align=center] at ([yshift=-0.5cm]current page.center) {
+            {\Huge \color{TuebingenGold} \textbf{COFFEE BREAK}}
+        };
+        
+        % Subtitle with decorative elements
+        \node[anchor=center, align=center] at ([yshift=-2cm]current page.center) {
+            {\Large \color{TuebingenAnthrazit} Take a moment to refresh}
+            \\[0.3cm]
+            {\normalsize \color{TuebingenGray} We'll resume shortly}
+        };
+        
+        % Decorative dots
+        \foreach \x in {-2, 0, 2} {
+            \fill[TuebingenGold] ([xshift=\x cm, yshift=-3.5cm]current page.center) circle (0.15cm);
+        }
+    \end{tikzpicture}
+\end{frame}
+
+% --- ACT 3 ---
+\begin{frame}[plain]
+    \begin{center}
+        \vspace{2cm}
+        {\Huge \color{TuebingenRot} \textbf{ACT III}}
+        \vspace{1cm}
+        \begin{tikzpicture}
+            \node[align=center] {
+                {\Large \color{TuebingenAnthrazit} Business Patterns}
+            };
+        \end{tikzpicture}
+    \end{center}
+\end{frame}
+
 \input{acts/act3_business_patterns/act3_business_patterns.tex}
+
+% --- COFFEE BREAK ---
+\begin{frame}[plain]
+    \begin{tikzpicture}[remember picture, overlay]
+        % Decorative circles in background
+        \fill[TuebingenGold!10] (current page.center) circle (4cm);
+        \fill[TuebingenGold!5] ([xshift=-3cm, yshift=2cm]current page.center) circle (2cm);
+        \fill[TuebingenGold!5] ([xshift=3cm, yshift=-2cm]current page.center) circle (2cm);
+        
+        % Coffee cup illustration (simplified)
+        \node[anchor=center] at ([yshift=1.5cm]current page.center) {
+            \begin{tikzpicture}[scale=1.2]
+                % Cup body
+                \fill[TuebingenGold!20] (0,0) -- (-0.8,0) -- (-0.8,1.5) arc (180:0:0.8) -- (0.8,0) -- cycle;
+                \draw[TuebingenGold, line width=2pt] (0,0) -- (-0.8,0) -- (-0.8,1.5) arc (180:0:0.8) -- (0.8,0);
+                % Handle
+                \draw[TuebingenGold, line width=2pt] (0.8,1.2) .. controls (1.2,1.2) and (1.2,0.8) .. (0.8,0.8);
+                % Steam lines
+                \draw[TuebingenGold!60, line width=1.5pt] (-0.3,1.5) .. controls (-0.4,2) and (-0.2,2.2) .. (-0.3,2.5);
+                \draw[TuebingenGold!60, line width=1.5pt] (0,1.5) .. controls (0.1,2) and (-0.1,2.2) .. (0,2.5);
+                \draw[TuebingenGold!60, line width=1.5pt] (0.3,1.5) .. controls (0.4,2) and (0.2,2.2) .. (0.3,2.5);
+            \end{tikzpicture}
+        };
+        
+        % Main title
+        \node[anchor=center, align=center] at ([yshift=-0.5cm]current page.center) {
+            {\Huge \color{TuebingenGold} \textbf{COFFEE BREAK}}
+        };
+        
+        % Subtitle with decorative elements
+        \node[anchor=center, align=center] at ([yshift=-2cm]current page.center) {
+            {\Large \color{TuebingenAnthrazit} Take a moment to refresh}
+            \\[0.3cm]
+            {\normalsize \color{TuebingenGray} We'll resume shortly}
+        };
+        
+        % Decorative dots
+        \foreach \x in {-2, 0, 2} {
+            \fill[TuebingenGold] ([xshift=\x cm, yshift=-3.5cm]current page.center) circle (0.15cm);
+        }
+    \end{tikzpicture}
+\end{frame}
+
+% --- ACT 4 ---
+\begin{frame}[plain]
+    \begin{center}
+        \vspace{2cm}
+        {\Huge \color{TuebingenRot} \textbf{ACT IV}}
+        \vspace{1cm}
+        \begin{tikzpicture}
+            \node[align=center] {
+                {\Large \color{TuebingenAnthrazit} Governance and Economics}
+            };
+        \end{tikzpicture}
+    \end{center}
+\end{frame}
+
 \input{acts/act4_governance/act4_governance.tex}
+
+% --- COFFEE BREAK ---
+\begin{frame}[plain]
+    \begin{tikzpicture}[remember picture, overlay]
+        % Decorative circles in background
+        \fill[TuebingenGold!10] (current page.center) circle (4cm);
+        \fill[TuebingenGold!5] ([xshift=-3cm, yshift=2cm]current page.center) circle (2cm);
+        \fill[TuebingenGold!5] ([xshift=3cm, yshift=-2cm]current page.center) circle (2cm);
+        
+        % Coffee cup illustration (simplified)
+        \node[anchor=center] at ([yshift=1.5cm]current page.center) {
+            \begin{tikzpicture}[scale=1.2]
+                % Cup body
+                \fill[TuebingenGold!20] (0,0) -- (-0.8,0) -- (-0.8,1.5) arc (180:0:0.8) -- (0.8,0) -- cycle;
+                \draw[TuebingenGold, line width=2pt] (0,0) -- (-0.8,0) -- (-0.8,1.5) arc (180:0:0.8) -- (0.8,0);
+                % Handle
+                \draw[TuebingenGold, line width=2pt] (0.8,1.2) .. controls (1.2,1.2) and (1.2,0.8) .. (0.8,0.8);
+                % Steam lines
+                \draw[TuebingenGold!60, line width=1.5pt] (-0.3,1.5) .. controls (-0.4,2) and (-0.2,2.2) .. (-0.3,2.5);
+                \draw[TuebingenGold!60, line width=1.5pt] (0,1.5) .. controls (0.1,2) and (-0.1,2.2) .. (0,2.5);
+                \draw[TuebingenGold!60, line width=1.5pt] (0.3,1.5) .. controls (0.4,2) and (0.2,2.2) .. (0.3,2.5);
+            \end{tikzpicture}
+        };
+        
+        % Main title
+        \node[anchor=center, align=center] at ([yshift=-0.5cm]current page.center) {
+            {\Huge \color{TuebingenGold} \textbf{COFFEE BREAK}}
+        };
+        
+        % Subtitle with decorative elements
+        \node[anchor=center, align=center] at ([yshift=-2cm]current page.center) {
+            {\Large \color{TuebingenAnthrazit} Take a moment to refresh}
+            \\[0.3cm]
+            {\normalsize \color{TuebingenGray} We'll resume shortly}
+        };
+        
+        % Decorative dots
+        \foreach \x in {-2, 0, 2} {
+            \fill[TuebingenGold] ([xshift=\x cm, yshift=-3.5cm]current page.center) circle (0.15cm);
+        }
+    \end{tikzpicture}
+\end{frame}
+
+% --- ACT 5 ---
+\begin{frame}[plain]
+    \begin{center}
+        \vspace{2cm}
+        {\Huge \color{TuebingenRot} \textbf{ACT V}}
+        \vspace{1cm}
+        \begin{tikzpicture}
+            \node[align=center] {
+                {\Large \color{TuebingenAnthrazit} Transition and Q\&A}
+            };
+        \end{tikzpicture}
+    \end{center}
+\end{frame}
+
 \input{acts/act5_transition/act5_transition.tex}
 
 % --- 5. DARK SUMMARY SLIDE ---
@@ -373,7 +674,7 @@
     % Manual Footer for Dark Slide
     \vspace{2cm}
     \begin{tikzpicture}[remember picture, overlay]
-         \node[anchor=south west, white] at ([xshift=0.5cm, yshift=0.2cm]current page.south west) {\tiny Course Name \#\lecturenumber \ -- \ \the\year \ \insertauthor, \license \ -- \ \shortdate};
+         \node[anchor=south west, white] at ([xshift=0.5cm, yshift=0.2cm]current page.south west) {\tiny \coursename \ -- \ \the\year \ \insertauthor, \license \ -- \ \shortdate};
          \node[anchor=south east, white] at ([xshift=-0.5cm, yshift=0.2cm]current page.south east) {\tiny \insertframenumber};
     \end{tikzpicture}
 \end{frame}

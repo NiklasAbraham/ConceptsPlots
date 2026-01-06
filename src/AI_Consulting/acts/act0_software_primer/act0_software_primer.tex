@@ -10,42 +10,46 @@
     
     {\color{TuebingenGray} AI is not magic—it's software built on data, running on infrastructure, serving business processes.}
     
-    \vspace{0.8em}
-    \begin{center}
-        \begin{tikzpicture}[
-            box/.style={draw=TuebingenAnthrazit, rounded corners=3pt, minimum width=2.8cm, minimum height=0.9cm, align=center, font=\small},
+    \vspace{0.2em}
+    \begin{columns}[T,onlytextwidth]
+        \column{0.44\textwidth}
+        % Scaled down TikZ graph on the left
+        \begin{center}
+        \begin{tikzpicture}[scale=0.95, every node/.style={transform shape},
+            box/.style={draw=TuebingenAnthrazit, rounded corners=3pt, minimum width=2.2cm, minimum height=0.7cm, align=center, font=\scriptsize},
             arrow/.style={->, thick, TuebingenGold}
         ]
-            % Stack layers (bottom to top)
-            \node[box, fill=TuebingenBeige] (infra) at (0,0) {Infrastructure\\{\tiny CPU/GPU, Cloud}};
-            \node[box, fill=TuebingenBeige] (data) at (0,1.3) {Data Systems\\{\tiny Databases, Pipelines}};
-            \node[box, fill=TuebingenBeige] (software) at (0,2.6) {Software Systems\\{\tiny APIs, Services}};
-            \node[box, fill=TuebingenRot!20] (ai) at (0,3.9) {ML/AI Models\\{\tiny Training, Inference}};
-            \node[box, fill=TuebingenBeige] (product) at (0,5.2) {Product Interface\\{\tiny Apps, Dashboards}};
-            \node[box, fill=TuebingenBeige] (govern) at (0,6.5) {Monitoring \& Governance\\{\tiny Compliance, Ops}};
-            
+            % Stack layers (bottom to top, closer together), all moved up by 0.8
+            \node[box, fill=TuebingenBeige] (infra) at (0,0.9) {Infrastructure\\{\tiny CPU/GPU, Cloud}};
+            \node[box, fill=TuebingenBeige] (data) at (0,1.85) {Data Systems\\{\tiny Databases, Pipelines}};
+            \node[box, fill=TuebingenBeige] (software) at (0,2.8) {Software Systems\\{\tiny APIs, Services}};
+            \node[box, fill=TuebingenRot!20] (ai) at (0,3.75) {ML/AI Models\\{\tiny Training, Inference}};
+            \node[box, fill=TuebingenBeige] (product) at (0,4.7) {Product Interface\\{\tiny Apps, Dashboards}};
+            \node[box, fill=TuebingenBeige] (govern) at (0,5.65) {Monitoring \& Governance\\{\tiny Compliance, Ops}};
             % Arrows
             \draw[arrow] (infra) -- (data);
             \draw[arrow] (data) -- (software);
             \draw[arrow] (software) -- (ai);
             \draw[arrow] (ai) -- (product);
             \draw[arrow] (product) -- (govern);
-            
-            % Business context
-            \node[anchor=west, align=left, font=\small, TuebingenAnthrazit] at (3,3.9) {
-                \textbf{Executive Reality:}\\[0.3em]
-                $\blacktriangleright$ AI requires \textit{all} layers working\\[0.2em]
-                $\blacktriangleright$ Model is often < 20\% of effort\\[0.2em]
-                $\blacktriangleright$ Data quality gates success\\[0.2em]
-                $\blacktriangleright$ Governance is not optional
-            };
         \end{tikzpicture}
-    \end{center}
-    
-    \vspace{0.5em}
-    \begin{center}
-        \small\color{TuebingenRot} \textbf{Key insight:} "AI" is software + data + evaluation. Invest across the stack.
-    \end{center}
+        \end{center}
+
+        \column{0.53\textwidth}
+            % Business context
+            \vspace{0.1em}
+            \setstretch{1.12}
+            \textbf{Executive Reality:}\\[0.25em]
+            \scriptsize
+            $\blacktriangleright$ AI requires \textit{all} layers working\\[0.18em]
+            $\blacktriangleright$ Model is often < 20\% of effort\\[0.18em]
+            $\blacktriangleright$ Data quality gates success\\[0.18em]
+            $\blacktriangleright$ Governance is not optional
+            \
+            \vspace{1.1em}
+            
+            \small\color{TuebingenRot} \textbf{Key insight:} "AI" is software + data + evaluation. Invest across the stack.
+    \end{columns}
 \end{frame}
 
 % ==============================================================================
@@ -177,7 +181,7 @@ summary = {
 
 # Detect anomalies (simple rule)
 threshold = summary["mean"] * 3
-anomalies = df[df["amount"] } threshold]
+anomalies = df[df["amount"] > threshold]
 summary["anomalies"] = len(anomalies)
 
 # Output
@@ -221,7 +225,7 @@ with open("report.json", "w") as f:
 \begin{lstlisting}[style=javastyle, basicstyle=\ttfamily\tiny]
 public class TransactionAnalyzer {
     public static void main(String[] args) {
-        List<Transaction} txns = loadCSV("transactions.csv");
+        List<Transaction> txns = loadCSV("transactions.csv");
         
         double total = txns.stream()
             .mapToDouble(Transaction::getAmount)
@@ -230,7 +234,7 @@ public class TransactionAnalyzer {
         double threshold = mean * 3;
         
         long anomalyCount = txns.stream()
-            .filter(t -} t.getAmount() } threshold)
+            .filter(t -> t.getAmount() > threshold)
             .count();
         
         Summary summary = new Summary(
@@ -271,11 +275,11 @@ public class TransactionAnalyzer {
 \begin{frame}[fragile]{Code Comparison: Go — Modern Systems Language}
     \framesubtitle{Same task: Explicit error handling, built for services}
     
+
     \begin{columns}[T]
         \column{0.55\textwidth}
+        \vspace{-0.7em} % Move code box further up in its column
         \begin{codebox}
-            {\small\textbf{\color{TuebingenGreen}Go} — Explicit, concurrent-ready}
-            \vspace{0.2em}
 \begin{lstlisting}[style=gostyle, basicstyle=\ttfamily\tiny]
 func analyzeTransactions() error {
     file, err := os.Open("transactions.csv")
@@ -298,7 +302,7 @@ func analyzeTransactions() error {
     
     var anomalies int
     for _, t := range txns {
-        if t.Amount } threshold {
+        if t.Amount > threshold {
             anomalies++
         }
     }
@@ -341,582 +345,818 @@ func analyzeTransactions() error {
 % 0.5 Editors and AI Coding Copilots (1 slide)
 
 % ------------------------------------------------------------------------------
-\begin{frame}{Development Tools: Editors and AI Coding Assistants}
-    \framesubtitle{The delivery vehicle for AI in engineering}
-    {\color{TuebingenGray} Modern editors are where AI meets developers—and where governance matters most.}
+
+% --- Slide 1: Popular Editors Overview ---
+\begin{frame}{Popular Code Editors for AI Development}
+    \framesubtitle{Where modern software is written}
+    {\color{TuebingenGray} Modern editors bridge AI and developers—shaping productivity and delivery.}
     \vspace{0.5em}
-    \begin{columns}[T]
-        \column{0.48\textwidth}
-        \textbf{Popular Development Environments:}
-        \begin{itemize}
-            \setlength\itemsep{0.4em}
-            \item \textbf{VS Code}: Free, open source, huge extension ecosystem, strong AI integration (Copilot, etc.), cross-platform. Used by individuals and enterprises.
-            \item \textbf{Cursor}: AI-native fork of VS Code, built-in copilots, context window navigation, paid plans for advanced AI features.
-            \item \textbf{JetBrains Suite} (IntelliJ, PyCharm, etc.): Paid, advanced refactoring, deep language support, enterprise features, strong static analysis, AI assistant (paid add-on).
-            \item \textbf{Vim/Neovim}: Free, highly customizable, keyboard-driven, used on servers and by power users. AI plugins available.
-        \end{itemize}
-        \vspace{0.5em}
-        \textbf{AI Coding Assistant Capabilities:}
-        \begin{itemize}
-            \setlength\itemsep{0.3em}
-            \item Code completion (line/block)
-            \item Refactoring suggestions
-            \item Test generation
-            \item Documentation writing
-            \item Code search and explanation
-            \item Agentic workflows (bounded)
-        \end{itemize}
-        \column{0.48\textwidth}
-        \begin{theorembox}{Governance Implications}
-            AI coding tools require explicit policies:
-            \vspace{0.3em}
-            \begin{itemize}
-                \setlength\itemsep{0.3em}
-                \item \textbf{Secrets} — API keys, credentials exposure
-                \item \textbf{IP/Licensing} — training data, code ownership
-                \item \textbf{Security} — vulnerable code suggestions
-                \item \textbf{Auditability} — who wrote what?
-                \item \textbf{Data residency} — where does code go?
-            \end{itemize}
-        \end{theorembox}
-        \vspace{0.3em}
-        {\small\color{TuebingenRot} \textit{Productivity gains of 20-40\% reported, but governance is non-negotiable.}}
-    \end{columns}
-\end{frame}
-
-\begin{frame}{Editor Comparison: Features and Pricing}
-    \framesubtitle{What do you get, and at what cost?}
-    \begin{center}
-    \begin{tabular}{|l|l|l|l|}
-        \hline
-        \textbf{Editor} & \textbf{Key Features} & \textbf{AI Integration} & \textbf{Pricing} \\
-        \hline
-        VS Code & Extensible, cross-platform & Copilot, 3rd-party & Free \\
-        Cursor & AI-native, context tools & Built-in, advanced & Free basic, Paid Pro (\euro20+/mo) \\
-        JetBrains & Refactoring, static analysis & AI Assistant (add-on) & \euro20-50/mo/user \\
-        Vim/Neovim & Lightweight, scriptable & Plugins (Copilot, etc.) & Free \\
-        \hline
-    \end{tabular}
-    \end{center}
-    \vspace{0.5em}
-    {\small\color{TuebingenGray} *Prices as of 2026, may vary by region and plan.}
-\end{frame}
-
-% ==============================================================================
-% 0.6 Database Systems Overview (2 slides)
-% ==============================================================================
-
-\begin{frame}{Database Systems: Choosing the Right Tool}
-    \framesubtitle{Different data patterns require different systems}
-    
-    {\color{TuebingenGray} "Which database?" is really "What are your query patterns and constraints?"}
-    
-    \vspace{0.3em}
-    \begin{columns}[T]
-        \column{0.48\textwidth}
-        \textbf{\color{TuebingenRot}Relational (SQL):}
-        \begin{itemize}
-            \setlength\itemsep{0.2em}
-            \item PostgreSQL, MySQL, Oracle
-            \item Transactions, consistency, reporting
-            \item Structured business data
-            \item \textit{Most enterprise use cases}
-        \end{itemize}
-        
-        \vspace{0.3em}
-        \textbf{\color{TuebingenGold}Document Stores:}
-        \begin{itemize}
-            \setlength\itemsep{0.2em}
-            \item MongoDB, CouchDB
-            \item Flexible schemas
-            \item Product data, events, logs
-        \end{itemize}
-        
-        \vspace{0.3em}
-        \textbf{\color{TuebingenGreen}Key-Value Stores:}
-        \begin{itemize}
-            \setlength\itemsep{0.2em}
-            \item Redis, DynamoDB
-            \item Caching, session state
-            \item Sub-millisecond latency
-        \end{itemize}
-        
-        \column{0.48\textwidth}
-        \textbf{\color{TuebingenCyan}Columnar / Data Warehouses:}
-        \begin{itemize}
-            \setlength\itemsep{0.2em}
-            \item Snowflake, BigQuery, Redshift
-            \item Analytics at scale
-            \item Historical analysis, BI
-        \end{itemize}
-        
-        \vspace{0.3em}
-        \textbf{\color{TuebingenAnthrazit}Graph Databases:}
-        \begin{itemize}
-            \setlength\itemsep{0.2em}
-            \item Neo4j, Amazon Neptune
-            \item Relationships, knowledge graphs
-            \item Entity resolution, networks
-        \end{itemize}
-        
-        \vspace{0.3em}
-        \textbf{\color{TuebingenRot}Vector Databases:}
-        \begin{itemize}
-            \setlength\itemsep{0.2em}
-            \item Pinecone, Weaviate, Qdrant
-            \item \textbf{Embeddings for RAG/AI}
-            \item Similarity search
-        \end{itemize}
-    \end{columns}
-\end{frame}
-
-\begin{frame}{Database Selection: Executive Decision Framework}
-    \framesubtitle{Match the system to your constraints}
-    
-    \vspace{0.5em}
-    \begin{center}
-        \begin{tikzpicture}[
-            node distance=1.5cm,
-            box/.style={draw=TuebingenAnthrazit, rounded corners=3pt, minimum width=3cm, minimum height=0.8cm, align=center, font=\small, fill=TuebingenBeige},
-            decision/.style={draw=TuebingenRot, rounded corners=3pt, minimum width=2.5cm, minimum height=0.6cm, align=center, font=\scriptsize, fill=TuebingenRot!10},
-            arrow/.style={->, thick, TuebingenAnthrazit}
-        ]
-            \node[decision] (q1) at (0,0) {Need ACID transactions?};
-            \node[box] (sql) at (5,0) {\textbf{SQL Database}\\PostgreSQL, MySQL};
-            \node[decision] (q2) at (0,-1.5) {Analytics at scale?};
-            \node[box] (warehouse) at (5,-1.5) {\textbf{Data Warehouse}\\Snowflake, BigQuery};
-            \node[decision] (q3) at (0,-3) {AI similarity search?};
-            \node[box] (vector) at (5,-3) {\textbf{Vector DB}\\Pinecone, Weaviate};
-            \node[decision] (q4) at (0,-4.5) {Complex relationships?};
-            \node[box] (graph) at (5,-4.5) {\textbf{Graph DB}\\Neo4j};
-            
-            \draw[arrow] (q1) -- node[above]{\tiny Yes} (sql);
-            \draw[arrow] (q1) -- node[left]{\tiny No} (q2);
-            \draw[arrow] (q2) -- node[above]{\tiny Yes} (warehouse);
-            \draw[arrow] (q2) -- node[left]{\tiny No} (q3);
-            \draw[arrow] (q3) -- node[above]{\tiny Yes} (vector);
-            \draw[arrow] (q3) -- node[left]{\tiny No} (q4);
-            \draw[arrow] (q4) -- node[above]{\tiny Yes} (graph);
-        \end{tikzpicture}
-    \end{center}
-    
-    \vspace{0.5em}
-    \begin{theorembox}{Executive Rule of Thumb}
-        Choose databases based on \textbf{query patterns} and \textbf{constraints} (latency, consistency, scale)—not vendor marketing or "fashion". Most organizations need \textbf{multiple} database types working together.
-    \end{theorembox}
-\end{frame}
-
-% ==============================================================================
-% 0.7 Compute Basics: CPU vs GPU (1 slide)
-
-% ------------------------------------------------------------------------------
-\begin{frame}{Compute Infrastructure: CPU, GPU, and Beyond}
-    \framesubtitle{Understanding what powers AI workloads}
-    {\color{TuebingenGray} AI's compute demands are fundamentally different from traditional software.}
-    \vspace{0.5em}
-    \begin{columns}[T]
-        \column{0.32\textwidth}
-        \begin{center}
-            {\Large \color{TuebingenRot} \textbf{CPU}}
-        \end{center}
-        \vspace{0.2em}
-        \begin{itemize}
-            \setlength\itemsep{0.2em}
-            \item General-purpose processor for all software
-            \item Handles complex logic, branching, and orchestration
-            \item Low to moderate parallelism (8-64 cores typical)
-            \item Used for data processing, serving, business logic
-            \item Widely available, cost-effective
-        \end{itemize}
-        \vspace{0.3em}
-        {\scriptsize\color{TuebingenGray} \textit{Best for: Traditional software, ETL, web servers, orchestration}}
-        \column{0.32\textwidth}
-        \begin{center}
-            {\Large \color{TuebingenGold} \textbf{GPU}}
-        \end{center}
-        \vspace{0.2em}
-        \begin{itemize}
-            \setlength\itemsep{0.2em}
-            \item Massively parallel (10,000+ cores)
-            \item Optimized for matrix math, deep learning
-            \item Essential for AI model training and fast inference
-            \item High memory bandwidth, but expensive
-            \item Used in cloud and on-prem for ML/AI
-        \end{itemize}
-        \vspace{0.3em}
-        {\scriptsize\color{TuebingenGray} \textit{Best for: Deep learning, large-scale analytics, simulation}}
-        \column{0.32\textwidth}
-        \begin{center}
-            {\Large \color{TuebingenGreen} \textbf{TPU/NPU}}
-        \end{center}
-        \vspace{0.2em}
-        \begin{itemize}
-            \setlength\itemsep{0.2em}
-            \item AI-specialized silicon (Google TPU, Apple NPU, etc.)
-            \item Even more efficient for neural nets
-            \item Used in cloud (TPU) and edge/mobile (NPU)
-            \item Vendor lock-in risk, less flexible
-            \item Can dramatically reduce inference cost at scale
-        \end{itemize}
-        \vspace{0.3em}
-        {\scriptsize\color{TuebingenGray} \textit{Best for: Cloud AI services, edge inference, mobile AI}}
-    \end{columns}
-    \vspace{0.8em}
-    \begin{columns}[T]
-        \column{0.65\textwidth}
-        	extbf{\color{TuebingenRot}On "Quantum Computing":}
-        \begin{itemize}
-            \setlength\itemsep{0.2em}
-            \item \textbf{Not relevant} for mainstream ML today
-            \item Potential future niche: optimization, simulation
-            \item Separate timeline from current AI ROI discussions
-        \end{itemize}
-        \column{0.32\textwidth}
-        {\small\color{TuebingenAnthrazit}
-        	extbf{Cost Reality:}\\
-        GPU compute is expensive.\\
-        H100: \$25-50/hour (cloud)\\
-        Training GPT-4: \$50-100M+\\
-        CPU: \$0.05-0.20/hour\\
-        TPU: \$10-30/hour (cloud)
-        }
-    \end{columns}
-\end{frame}
-
-\begin{frame}{Compute in Practice: Cost and Selection}
-    \framesubtitle{How to choose and what to expect}
     \begin{itemize}
-        \item \textbf{Cost drivers:} Model size, training duration, inference volume, hardware type, cloud vs. on-prem
-        \item \textbf{Cloud pricing (2026):}
-        \begin{itemize}
-            \item CPU: \$0.05–0.20/hour (AWS, Azure, GCP)
-            \item GPU (NVIDIA H100): \$25–50/hour
-            \item TPU: \$10–30/hour
-        \end{itemize}
-        \item \textbf{Example:} Training a large LLM (GPT-4 scale) can cost \$50–100M+ in compute alone
-        \item \textbf{Inference:} Serving a single query can cost \$0.001–0.01 (GPU), much less on CPU for small models
-        \item \textbf{Selection guide:}
-        \begin{itemize}
-            \item \textbf{CPU:} Use for traditional software, small models, orchestration
-            \item \textbf{GPU:} Use for deep learning, large models, fast inference
-            \item \textbf{TPU/NPU:} Use for specialized AI, edge/mobile, or when vendor lock-in is acceptable
-        \end{itemize}
-        \item \textbf{Tip:} Start with cloud GPUs for flexibility, optimize for cost as usage grows
+        \setlength\itemsep{0.6em}
+        \item \textbf{VS Code:} Free, open source, huge extension ecosystem, strong AI integration (Copilot, 3rd-party), cross-platform.
+        \item \textbf{Cursor:} AI-native fork of VS Code, built-in copilots, powerful context navigation, advanced AI plans (paid).
+        \item \textbf{JetBrains Suite:} (IntelliJ, PyCharm, etc.) Paid, advanced refactoring, deep language support, enterprise features, strong static analysis, AI assistant (paid add-on).
+        \item \textbf{Vim/Neovim:} Free, highly customizable, keyboard-driven, used by power users and on servers; AI plugin ecosystem.
     \end{itemize}
     \vspace{0.5em}
-    {\small\color{TuebingenGray} Always monitor usage and optimize for your workload.}
+    {\small\color{TuebingenAnthrazit}
+    \textit{Select the editor based on project needs, team skills, and security policy.}
+    }
+\end{frame}
+
+% --- Slide 2: Capabilities of AI Coding Assistants ---
+\begin{frame}{AI Coding Assistant Capabilities}
+    \framesubtitle{How AI accelerates software engineering}
+    \begin{itemize}
+        \setlength\itemsep{0.6em}
+        \item \textbf{Code completion} (lines or entire blocks)
+        \item \textbf{Refactoring suggestions}
+        \item \textbf{Test case and documentation generation}
+        \item \textbf{Code search and explanation}
+        \item \textbf{Automated bug fixing}
+        \item \textbf{Agentic workflows:} Multi-step code changes
+    \end{itemize}
+    \vspace{0.9em}
+    {\small\color{TuebingenGray}
+    \textit{Copilots are your co-engineers—but still need oversight.}
+    }
+\end{frame}
+
+% --- Slide 3: Governance & Risk Implications for AI-Assisted Coding ---
+\begin{frame}{Governance for AI Coding Tools}
+    \framesubtitle{Critical issues for leadership and IT security}
+    \begin{theorembox}{Governance Implications}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{Secrets} — Prevent AI from leaking credentials or API keys
+            \item \textbf{IP/Licensing} — Know what's in AI training data; clarify code ownership
+            \item \textbf{Security} — Beware of insecure or vulnerable AI-generated code
+            \item \textbf{Auditability} — Maintain records: Who authored and reviewed code?
+            \item \textbf{Data residency} — Ensure compliance: Is company code/data sent to outside servers?
+        \end{itemize}
+    \end{theorembox}
+    \vspace{0.4em}
+    {\small\color{TuebingenRot} \textit{Productivity gains can be 20--40\%, but governance is non-negotiable.}}
+\end{frame}
+
+% --- Slide 4: Editor Comparison Table ---
+\begin{frame}{Editor Comparison: Key Features and Pricing}
+    \framesubtitle{Weighing options for your organization}
+    \begin{center}
+    \renewcommand{\arraystretch}{1.13}
+    \setlength{\tabcolsep}{6pt}
+    \begin{tabular}{@{}l c c c@{}}
+        \toprule
+        \textbf{Editor} & \textbf{Key Features} & \textbf{AI Integration} & \textbf{Pricing} \\
+        \midrule
+        \textbf{VS Code}       & Extensible, cross-platform        & Copilot, 3rd-party  & Free \\
+        \textbf{Cursor}        & AI-native, deep context tools     & Built-in (advanced) & Free Basic,\\
+                              &                                  &                     & {\footnotesize Paid Pro (\euro20+/mo)} \\
+        \textbf{JetBrains}     & Refactoring, static analysis      & AI Assistant (add-on) & \euro20--50/mo/user \\
+        \textbf{Vim/Neovim}    & Lightweight, scriptable           & Plugins (Copilot, etc.) & Free \\
+        \bottomrule
+    \end{tabular}
+    \end{center}
+    \vspace{0.6em}
+    {\tiny\color{TuebingenGray} Prices as of 2026. Check vendors for updates; enterprise plans may differ.}
 \end{frame}
 
 % ==============================================================================
-% 0.8 Software Engineering Roles and Compensation (3 slides)
+% 0.6 Database Systems Overview (8 slides)
 % ==============================================================================
 
-\begin{frame}{Software Engineering Roles: The Talent Landscape}
-    \framesubtitle{Understanding who builds what and what they cost}
+% --- Slide 1: Database Overview ---
+\begin{frame}{Database Systems: The Foundation of Data-Driven Business}
+    \framesubtitle{Why database choice determines your AI success}
     
-    {\color{TuebingenGray} Different roles have different skill sets, capabilities, and market rates. Understanding this helps with hiring, budgeting, and project scoping.}
+    {\color{TuebingenGray} Your database architecture is the foundation that enables or constrains every AI initiative.}
+    
+    \vspace{0.7em}
+    \begin{itemize}
+        \item Databases store and organize data essential for all modern software and AI applications
+        \item The right database enables scalability, reliability, and efficient data access
+        \item Poor database choices can severely limit future AI initiatives and analytics
+        \item Evaluate based on your needs: access speed, consistency, scalability, and security
+    \end{itemize}
     
     \vspace{0.5em}
-    \begin{center}
-        \begin{tikzpicture}[
-            role/.style={draw=TuebingenAnthrazit, rounded corners=3pt, minimum width=2.2cm, minimum height=0.8cm, align=center, font=\small},
-            arrow/.style={->, thick, TuebingenGold}
-        ]
-            % Core roles arranged in a circle
-            \node[role, fill=TuebingenCyan!30] (frontend) at (0,2.5) {Frontend\\Developer};
-            \node[role, fill=TuebingenGreen!30] (backend) at (2.5,1.5) {Backend\\Developer};
-            \node[role, fill=TuebingenGold!30] (fullstack) at (2.5,-1.5) {Full Stack\\Developer};
-            \node[role, fill=TuebingenRot!30] (ai) at (0,-2.5) {AI/ML\\Engineer};
-            \node[role, fill=TuebingenAnthrazit!20] (data) at (-2.5,-1.5) {Data\\Scientist};
-            \node[role, fill=TuebingenBeige, draw=TuebingenRot] (devops) at (-2.5,1.5) {DevOps/SRE\\Engineer};
-            
-            % Central concept
-            \node[align=center, font=\footnotesize, color=TuebingenAnthrazit] at (0,0) {Software\\Development\\Team};
-            
-            % Connecting lines
-            \draw[thick, TuebingenGray, opacity=0.3] (frontend) -- (0,0);
-            \draw[thick, TuebingenGray, opacity=0.3] (backend) -- (0,0);
-            \draw[thick, TuebingenGray, opacity=0.3] (fullstack) -- (0,0);
-            \draw[thick, TuebingenGray, opacity=0.3] (ai) -- (0,0);
-            \draw[thick, TuebingenGray, opacity=0.3] (data) -- (0,0);
-            \draw[thick, TuebingenGray, opacity=0.3] (devops) -- (0,0);
-        \end{tikzpicture}
-    \end{center}
-    
-    \vspace{0.3em}
-    \begin{center}
-        \small\color{TuebingenRot} \textbf{Key insight:} Each role has distinct skills, capabilities, and market rates. Mismatched expectations lead to project failures.
-    \end{center}
-\end{frame}
-
-\begin{frame}{Role Breakdown: Frontend, Backend, Full Stack}
-    \framesubtitle{Traditional web development roles}
-    
-    \vspace{0.3em}
-    \begin{columns}[T]
-        \column{0.32\textwidth}
-        \begin{center}
-            {\large \color{TuebingenCyan} \textbf{Frontend Developer}}
-        \end{center}
-        \vspace{0.2em}
-        \textbf{Skills:}
-        \begin{itemize}
-            \setlength\itemsep{0.1em}
-            \item HTML, CSS, JavaScript
-            \item React, Vue, Angular
-            \item UI/UX design principles
-            \item Browser compatibility
-        \end{itemize}
-        \textbf{Can do:}
-        \begin{itemize}
-            \setlength\itemsep{0.1em}
-            \item User interfaces
-            \item Web applications
-            \item Mobile apps (React Native)
-        \end{itemize}
-        \textbf{Cannot do:}
-        \begin{itemize}
-            \setlength\itemsep{0.1em}
-            \item Server logic
-            \item Database design
-            \item AI model development
-        \end{itemize}
-        \textbf{Salary (2026):}
-        \begin{itemize}
-            \setlength\itemsep{0.1em}
-            \item Junior: \euro45-65K
-            \item Senior: \euro70-95K
-            \item Lead: \euro100-130K
-        \end{itemize}
-        
-        \column{0.32\textwidth}
-        \begin{center}
-            {\large \color{TuebingenGreen} \textbf{Backend Developer}}
-        \end{center}
-        \vspace{0.2em}
-        \textbf{Skills:}
-        \begin{itemize}
-            \setlength\itemsep{0.1em}
-            \item Java, Python, Go, C\#
-            \item Databases, APIs
-            \item System architecture
-            \item Performance optimization
-        \end{itemize}
-        \textbf{Can do:}
-        \begin{itemize}
-            \setlength\itemsep{0.1em}
-            \item Server applications
-            \item API development
-            \item Database integration
-            \item Microservices
-        \end{itemize}
-        \textbf{Cannot do:}
-        \begin{itemize}
-            \setlength\itemsep{0.1em}
-            \item UI design
-            \item Complex ML algorithms
-            \item Infrastructure automation
-        \end{itemize}
-        \textbf{Salary (2026):}
-        \begin{itemize}
-            \setlength\itemsep{0.1em}
-            \item Junior: \euro50-70K
-            \item Senior: \euro75-105K
-            \item Lead: \euro110-140K
-        \end{itemize}
-        
-        \column{0.32\textwidth}
-        \begin{center}
-            {\large \color{TuebingenGold} \textbf{Full Stack Developer}}
-        \end{center}
-        \vspace{0.2em}
-        \textbf{Skills:}
-        \begin{itemize}
-            \setlength\itemsep{0.1em}
-            \item Frontend + Backend
-            \item System integration
-            \item DevOps basics
-            \item Product mindset
-        \end{itemize}
-        \textbf{Can do:}
-        \begin{itemize}
-            \setlength\itemsep{0.1em}
-            \item End-to-end features
-            \item Rapid prototyping
-            \item Small-medium applications
-            \item Technical architecture
-        \end{itemize}
-        \textbf{Cannot do:}
-        \begin{itemize}
-            \setlength\itemsep{0.1em}
-            \item Deep specialization
-            \item Complex ML models
-            \item Large-scale optimization
-        \end{itemize}
-        \textbf{Salary (2026):}
-        \begin{itemize}
-            \setlength\itemsep{0.1em}
-            \item Junior: \euro55-75K
-            \item Senior: \euro80-110K
-            \item Lead: \euro115-150K
-        \end{itemize}
-    \end{columns}
-\end{frame}
-
-\begin{frame}{Role Breakdown: AI/ML, Data Science, DevOps}
-    \framesubtitle{Specialized and infrastructure roles}
-    
-    \vspace{0.3em}
-    \begin{columns}[T]
-        \column{0.32\textwidth}
-        \begin{center}
-            {\large \color{TuebingenRot} \textbf{AI/ML Engineer}}
-        \end{center}
-        \vspace{0.2em}
-        \textbf{Skills:}
-        \begin{itemize}
-            \setlength\itemsep{0.1em}
-            \item Python, TensorFlow, PyTorch
-            \item Statistics, linear algebra
-            \item Model deployment
-            \item MLOps practices
-        \end{itemize}
-        \textbf{Can do:}
-        \begin{itemize}
-            \setlength\itemsep{0.1em}
-            \item Train ML models
-            \item Deploy AI systems
-            \item Optimize inference
-            \item Build ML pipelines
-        \end{itemize}
-        \textbf{Cannot do:}
-        \begin{itemize}
-            \setlength\itemsep{0.1em}
-            \item Complex UI development
-            \item Enterprise architecture
-            \item Advanced statistics research
-        \end{itemize}
-        \textbf{Salary (2026):}
-        \begin{itemize}
-            \setlength\itemsep{0.1em}
-            \item Junior: \euro70-90K
-            \item Senior: \euro100-140K
-            \item Lead: \euro150-200K+
-        \end{itemize}
-        
-        \column{0.32\textwidth}
-        \begin{center}
-            {\large \color{TuebingenAnthrazit} \textbf{Data Scientist}}
-        \end{center}
-        \vspace{0.2em}
-        \textbf{Skills:}
-        \begin{itemize}
-            \setlength\itemsep{0.1em}
-            \item Python, R, SQL
-            \item Statistics, experimentation
-            \item Data visualization
-            \item Business analysis
-        \end{itemize}
-        \textbf{Can do:}
-        \begin{itemize}
-            \setlength\itemsep{0.1em}
-            \item Exploratory analysis
-            \item Statistical modeling
-            \item A/B testing
-            \item Business insights
-        \end{itemize}
-        \textbf{Cannot do:}
-        \begin{itemize}
-            \setlength\itemsep{0.1em}
-            \item Production software
-            \item Complex ML engineering
-            \item System architecture
-        \end{itemize}
-        \textbf{Salary (2026):}
-        \begin{itemize}
-            \setlength\itemsep{0.1em}
-            \item Junior: \euro60-80K
-            \item Senior: \euro85-120K
-            \item Lead: \euro125-160K
-        \end{itemize}
-        
-        \column{0.32\textwidth}
-        \begin{center}
-            {\large \color{TuebingenBeige!50!black} \textbf{DevOps/SRE Engineer}}
-        \end{center}
-        \vspace{0.2em}
-        \textbf{Skills:}
-        \begin{itemize}
-            \setlength\itemsep{0.1em}
-            \item AWS, Docker, Kubernetes
-            \item CI/CD pipelines
-            \item Infrastructure as Code
-            \item Monitoring, alerting
-        \end{itemize}
-        \textbf{Can do:}
-        \begin{itemize}
-            \setlength\itemsep{0.1em}
-            \item Deploy applications
-            \item Manage infrastructure
-            \item Automate workflows
-            \item Ensure reliability
-        \end{itemize}
-        \textbf{Cannot do:}
-        \begin{itemize}
-            \setlength\itemsep{0.1em}
-            \item Feature development
-            \item ML model training
-            \item Business analysis
-        \end{itemize}
-        \textbf{Salary (2026):}
-        \begin{itemize}
-            \setlength\itemsep{0.1em}
-            \item Junior: \euro60-85K
-            \item Senior: \euro90-125K
-            \item Lead: \euro130-170K
-        \end{itemize}
-    \end{columns}
-\end{frame}
-
-\begin{frame}{Role Selection: Executive Decision Framework}
-    \framesubtitle{Matching roles to project needs}
-    
-    \vspace{0.3em}
-    \begin{theorembox}{Hiring Strategy}
-        Role selection depends on \textbf{project phase}, \textbf{technical complexity}, and \textbf{business context}. Mismatched skills = project delays and budget overruns.
+    \begin{theorembox}{Executive Reality}
+        Database decisions made today will impact your organization for 5-10 years. Choose based on \textbf{access patterns}, \textbf{consistency requirements}, and \textbf{scale projections}—not vendor relationships.
     \end{theorembox}
+\end{frame}
+
+% --- Slide 2: Relational Databases (SQL) ---
+\begin{frame}{Relational Databases: The Enterprise Backbone}
+    \framesubtitle{PostgreSQL, MySQL, Oracle, SQL Server}
+    
+    \vspace{0.1em}
+    \begin{columns}[T]
+        \column{0.45\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.95]
+                % Table representation
+                \draw[thick, TuebingenAnthrazit] (0,0) rectangle (3.5,2.5);
+                \draw[thick, TuebingenAnthrazit] (0,2) -- (3.5,2);
+                \draw[thick, TuebingenAnthrazit] (0,1.5) -- (3.5,1.5);
+                \draw[thick, TuebingenAnthrazit] (0,1) -- (3.5,1);
+                \draw[thick, TuebingenAnthrazit] (0,0.5) -- (3.5,0.5);
+                \draw[thick, TuebingenAnthrazit] (1.2,0) -- (1.2,2.5);
+                \draw[thick, TuebingenAnthrazit] (2.4,0) -- (2.4,2.5);
+                
+                % Headers
+                \node[font=\tiny\bfseries] at (0.6,2.25) {ID};
+                \node[font=\tiny\bfseries] at (1.8,2.25) {Name};
+                \node[font=\tiny\bfseries] at (2.95,2.25) {Email};
+                
+                % Data rows
+                \node[font=\tiny] at (0.6,1.75) {1};
+                \node[font=\tiny] at (1.8,1.75) {Alice};
+                \node[font=\tiny] at (2.95,1.75) {a@co.com};
+                
+                \node[font=\tiny] at (0.6,1.25) {2};
+                \node[font=\tiny] at (1.8,1.25) {Bob};
+                \node[font=\tiny] at (2.95,1.25) {b@co.com};
+                
+                \node[font=\tiny] at (0.6,0.75) {3};
+                \node[font=\tiny] at (1.8,0.75) {Carol};
+                \node[font=\tiny] at (2.95,0.75) {c@co.com};
+                
+                % Title
+                \node[above, font=\scriptsize\bfseries, color=TuebingenRot] at (1.75,2.5) {Structured Tables};
+            \end{tikzpicture}
+        \end{center}
+        
+        \column{0.52\textwidth}
+        \textbf{\color{TuebingenRot}Key Characteristics:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{ACID Transactions} — Guaranteed consistency
+            \item \textbf{SQL Query Language} — Standardized, powerful
+            \item \textbf{Referential Integrity} — Enforced relationships
+            \item \textbf{Mature Ecosystem} — Tools, expertise, support
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.4em}
+    \textbf{\color{TuebingenGold}Best For:}
+    \begin{itemize}
+        \setlength\itemsep{0.2em}
+        \item Financial transactions, customer records, inventory
+        \item Complex reporting and business intelligence
+        \item Applications requiring strong consistency
+        \item Most traditional enterprise workloads
+    \end{itemize}
+    
+    \vspace{0.3em}
+    {\small\color{TuebingenGray} \textit{Rule of thumb: Start with PostgreSQL unless you have specific reasons not to.}}
+\end{frame}
+
+% --- Slide 3: Document Databases ---
+\begin{frame}{Document Databases: Flexible Schema for Modern Apps}
+    \framesubtitle{MongoDB, CouchDB, Amazon DocumentDB}
+    
+    \begin{columns}[T]
+        \column{0.45\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[scale=1]
+                % Document representation (bigger, centered in column
+                % JSON-like structure (bigger font, properly aligned within rectangle)
+                \node[font=\normalsize\ttfamily, align=left, anchor=north west] at (0.34,5.0) {
+                    \textcolor{TuebingenRot}{\{} \\
+                    \quad "id": "user123", \\
+                    \quad "name": "Alice", \\
+                    \quad "email": "a@co.com", \\
+                    \quad "preferences": \{ \\
+                    \quad\quad "theme": "dark", \\
+                    \quad\quad "notifications": true \\
+                    \quad \}, \\
+                    \quad "tags": ["premium", "beta"] \\
+                    \textcolor{TuebingenRot}{\}}
+                };
+
+                % Title above the document (bigger and centered above rectangle)
+                \node[above, font=\large\bfseries, color=TuebingenGold] at (2.65,5.45) {JSON Documents};
+            \end{tikzpicture}
+        \end{center}
+        
+        \column{0.52\textwidth}
+        \textbf{\color{TuebingenGold}Key Characteristics:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{Schema Flexibility} — Add fields without migration
+            \item \textbf{Nested Data} — Complex objects in single document
+            \item \textbf{Horizontal Scaling} — Distribute across servers
+            \item \textbf{Developer Friendly} — Maps to application objects
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.3em}
+    {\small\color{TuebingenGray} \textit{Trade-off: Flexibility vs. consistency guarantees. Great for read-heavy workloads.}}
+\end{frame}
+
+% --- Slide 5: Columnar/Data Warehouses ---
+\begin{frame}{Data Warehouses: Analytics at Enterprise Scale}
+    \framesubtitle{Snowflake, BigQuery, Redshift, ClickHouse}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.45\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.7]
+                % Columnar storage visualization
+                \draw[thick, TuebingenAnthrazit] (0,0) rectangle (4,2.5);
+                
+                % Column divisions
+                \draw[thick, TuebingenAnthrazit] (1,0) -- (1,2.5);
+                \draw[thick, TuebingenAnthrazit] (2,0) -- (2,2.5);
+                \draw[thick, TuebingenAnthrazit] (3,0) -- (3,2.5);
+                
+                % Column headers
+                \node[font=\tiny\bfseries, color=TuebingenCyan] at (0.5,2.25) {Date};
+                \node[font=\tiny\bfseries, color=TuebingenCyan] at (1.5,2.25) {Product};
+                \node[font=\tiny\bfseries, color=TuebingenCyan] at (2.5,2.25) {Sales};
+                \node[font=\tiny\bfseries, color=TuebingenCyan] at (3.5,2.25) {Region};
+                
+                % Data (compressed columns)
+                \foreach \i in {0,1,2,3,4} {
+                    \fill[TuebingenCyan!30] (0,1.8-\i*0.3) rectangle (1,1.5-\i*0.3);
+                    \fill[TuebingenGold!30] (1,1.8-\i*0.3) rectangle (2,1.5-\i*0.3);
+                    \fill[TuebingenGreen!30] (2,1.8-\i*0.3) rectangle (3,1.5-\i*0.3);
+                    \fill[TuebingenRot!30] (3,1.8-\i*0.3) rectangle (4,1.5-\i*0.3);
+                }
+                
+                % Compression indicator
+                \node[font=\tiny, color=TuebingenGray] at (2,-0.3) {Compressed Columns};
+                
+                % Title
+                \node[above, font=\scriptsize\bfseries, color=TuebingenCyan] at (2,2.8) {Columnar Storage};
+            \end{tikzpicture}
+        \end{center}
+        
+        \column{0.52\textwidth}
+        \textbf{\color{TuebingenCyan}Key Characteristics:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{Columnar Storage} — Optimized for analytics
+            \item \textbf{Massive Parallelism} — Query across clusters
+            \item \textbf{Compression} — 10x+ storage efficiency
+            \item \textbf{SQL Interface} — Familiar query language
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.4em}
+    \textbf{\color{TuebingenCyan}Best For:}
+    \begin{itemize}
+        \setlength\itemsep{0.2em}
+        \item Business intelligence and reporting
+        \item Data science and ML feature engineering
+        \item Regulatory compliance and auditing
+    \end{itemize}
+    
+    \vspace{0.3em}
+    {\small\color{TuebingenGray} \textit{Essential for AI: Most ML features come from aggregating historical data.}}
+\end{frame}
+
+% --- Slide 6: Graph Databases ---
+\begin{frame}{Graph Databases: Relationships as First-Class Citizens}
+    \framesubtitle{Neo4j, Amazon Neptune, ArangoDB}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.45\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.8]
+                % Nodes
+                \node[circle, draw=TuebingenAnthrazit, fill=TuebingenRot!20, minimum size=0.8cm, font=\tiny] (alice) at (0,2) {Alice};
+                \node[circle, draw=TuebingenAnthrazit, fill=TuebingenGold!20, minimum size=0.8cm, font=\tiny] (bob) at (2,2) {Bob};
+                \node[circle, draw=TuebingenAnthrazit, fill=TuebingenGreen!20, minimum size=0.8cm, font=\tiny] (carol) at (1,0.5) {Carol};
+                \node[circle, draw=TuebingenAnthrazit, fill=TuebingenCyan!20, minimum size=0.8cm, font=\tiny] (dave) at (3,0.5) {Dave};
+                
+                % Relationships
+                \draw[->, thick, TuebingenAnthrazit] (alice) -- (bob) node[midway, above, font=\tiny] {KNOWS};
+                \draw[->, thick, TuebingenAnthrazit] (bob) -- (carol) node[midway, right, font=\tiny] {WORKS\_WITH};
+                \draw[->, thick, TuebingenAnthrazit] (carol) -- (dave) node[midway, below, font=\tiny] {MANAGES};
+                \draw[->, thick, TuebingenAnthrazit] (alice) -- (carol) node[midway, left, font=\tiny] {REPORTS\_TO};
+                \draw[->, thick, TuebingenAnthrazit] (bob) -- (dave) node[midway, above right, font=\tiny] {COLLABORATES};
+                
+                % Title
+                \node[above, font=\scriptsize\bfseries, color=TuebingenAnthrazit] at (1.5,2.8) {Connected Data};
+            \end{tikzpicture}
+        \end{center}
+        
+        \column{0.52\textwidth}
+        \textbf{\color{TuebingenAnthrazit}Key Characteristics:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{Native Relationships} — Connections are data
+            \item \textbf{Graph Traversal} — Follow paths efficiently
+            \item \textbf{Pattern Matching} — Find complex relationships
+            \item \textbf{Real-time Queries} — Interactive exploration
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.4em}
+    \textbf{\color{TuebingenAnthrazit}Best For:}
+    \begin{itemize}
+        \setlength\itemsep{0.2em}
+        \item Social networks and recommendation engines
+        \item Knowledge graphs and semantic search
+        \item Supply chain and network analysis
+    \end{itemize}
+    
+    \vspace{0.3em}
+    {\small\color{TuebingenGray} \textit{When relationships are as important as the entities themselves.}}
+\end{frame}
+
+% --- Slide 7: Vector Databases ---
+\begin{frame}{Vector Databases: The AI-Native Data Store}
+    \framesubtitle{Pinecone, Weaviate, Qdrant, Chroma}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.45\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.8]
+                % Vector space representation
+                \draw[->] (0,0) -- (3.5,0) node[right] {\tiny dim 1};
+                \draw[->] (0,0) -- (0,3) node[above] {\tiny dim 2};
+                
+                % Vector points
+                \fill[TuebingenRot] (1,1.5) circle (2pt);
+                \fill[TuebingenGold] (2.5,2) circle (2pt);
+                \fill[TuebingenGreen] (1.8,0.8) circle (2pt);
+                \fill[TuebingenCyan] (0.8,2.2) circle (2pt);
+                
+                % Labels
+                \node[font=\tiny, right] at (1,1.5) {doc1};
+                \node[font=\tiny, right] at (2.5,2) {doc2};
+                \node[font=\tiny, right] at (1.8,0.8) {doc3};
+                \node[font=\tiny, right] at (0.8,2.2) {query};
+                
+                % Similarity circle
+                \draw[dashed, TuebingenCyan] (0.8,2.2) circle (0.7);
+                \node[font=\tiny, color=TuebingenCyan] at (0.2,2.8) {similar};
+                
+                % Title
+                \node[above, font=\scriptsize\bfseries, color=TuebingenRot] at (1.75,3.3) {Embedding Space};
+            \end{tikzpicture}
+        \end{center}
+        
+        \column{0.52\textwidth}
+        \textbf{\color{TuebingenRot}Key Characteristics:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{High-Dimensional Vectors} — 100s to 1000s of dimensions
+            \item \textbf{Similarity Search} — Find "nearest neighbors"
+            \item \textbf{AI-Native} — Built for embeddings
+            \item \textbf{Hybrid Search} — Combine with metadata filtering
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.4em}
+    \textbf{\color{TuebingenRot}Best For:}
+    \begin{itemize}
+        \setlength\itemsep{0.2em}
+        \item \textbf{RAG Systems} — Retrieval-Augmented Generation
+        \item Semantic search and document retrieval
+        \item Image and video similarity search
+    \end{itemize}
+    
+    \vspace{0.3em}
+    {\small\color{TuebingenGray} \textit{Critical for modern AI: Where your LLM's context comes from.}}
+\end{frame}
+
+% --- Slide 8: Multi-Database Reality (Executive Summary) ---
+\begin{frame}{Multi-Database Reality}
+    \framesubtitle{Modern enterprises use \textbf{multiple databases} working together}
+    
+    \begin{theorembox}{Multi-Database Reality}
+        Modern organizations rarely use a single type of database. Instead, they combine several specialized databases in one architecture:
+        \begin{itemize}
+            \item \textbf{Operational:} PostgreSQL or MySQL for core business data and transactions
+            \item \textbf{Analytics:} Snowflake or BigQuery for large-scale business intelligence
+            \item \textbf{Caching:} Redis for speed and responsiveness
+            \item \textbf{AI:} Vector DBs (like Pinecone) for embeddings and search in RAG systems
+        \end{itemize}
+        \textbf{Key point:} There is no single "best" database. Use the right tool for each job, and design your stack to integrate these smoothly.
+    \end{theorembox}
+\end{frame}
+
+% ==============================================================================
+% 0.7 Compute Basics (4 slides)
+% ------------------------------------------------------------------------------
+
+% --- Slide 1: CPUs: Versatile Workhorse of Computing ---
+\begin{frame}{CPUs: The Versatile Workhorse}
+    \framesubtitle{What are CPUs good for?}
+    \begin{itemize}
+        \item The central processor in almost every computer (laptops, servers, phones)
+        \item Designed to handle a wide variety of tasks, often switching rapidly between them
+        \item Great at running business software, web servers, databases, and orchestrating complex workflows
+        \item Ubiquitous, reliable, and affordable
+        \item \textbf{Example workloads:}\\
+        \quad -- Traditional web backends \\
+        \quad -- Office applications and business logic\\
+        \quad -- Light machine learning inference (small models)\\
+        \quad -- Scientific codes with lots of branching
+    \end{itemize}
+    \vspace{0.5em}
+    {\small\color{TuebingenGray} \textit{Use CPUs for most software and orchestration — backbone of IT and engineering.}}
+\end{frame}
+
+% --- Slide 2: GPUs: Parallel Power for Simulations and AI ---
+\begin{frame}{GPUs: Parallel Power for Simulations and AI}
+    \framesubtitle{Why GPUs matter and where they shine}
+    \begin{itemize}
+        \item Originally built for graphics/cards for games and 3D rendering
+        \item Excel at parallel processing: thousands of small cores run the same instruction on lots of data
+        \item \textbf{Game-changer for AI and scientific computing}\\
+        \item Much faster than CPUs for highly parallel problems
+        \item Often accessed via cloud due to high cost
+        \item \textbf{Example workloads:}\\
+        \quad -- Large Language Models (LLMs), deep learning\\
+        \quad -- Molecular dynamics (MD) simulation\\
+        \quad -- Finite Element Method (FEM) for engineering\\
+        \quad -- Video rendering, image recognition, big-data analytics
+    \end{itemize}
+    \vspace{0.5em}
+    {\small\color{TuebingenGray} \textit{Use GPUs for modern ML, simulations, and number-crunching.}}
+\end{frame}
+
+% --- Slide 3: TPUs, NPUs, and Specialized AI Chips ---
+\begin{frame}{TPUs, NPUs, and AI-Specific Hardware}
+    \framesubtitle{Purpose-built for high-efficiency machine learning}
+    \begin{itemize}
+        \item \textbf{TPU}: "Tensor Processing Unit" (Google) — optimized for deep learning, especially in their cloud
+        \item \textbf{NPU}: "Neural Processing Unit" — found in mobile devices for on-device AI
+        \item Highly efficient for specific AI models (e.g., transformer inference, image recognition)
+        \item Often less flexible than GPU, but faster for certain model types; cost can be lower per operation
+        \item \textbf{Example workloads:}\\
+        \quad -- Image classification on smartphones\\
+        \quad -- “Smart” camera features (object detection, AR)\\
+        \quad -- Large model inference (TPU for LLM deployment)
+    \end{itemize}
+    \vspace{0.5em}
+    {\small\color{TuebingenGray}\textit{Choose TPUs/NPUs when you want high-volume, low-cost inference (edge or cloud).}}
+\end{frame}
+
+% --- Slide 4: Quantum Computing ---
+\begin{frame}{Quantum Computing: Hype vs. Reality}
+    \framesubtitle{What is quantum really good for?}
+    {\textbf{\color{TuebingenRot}Quantum Computing:}}
+    \begin{itemize}
+        \setlength\itemsep{0.3em}
+        \item \textbf{Still experimental for most applications}
+        \item Hype is high, but most business and AI workloads (LLMs, MD, FEM) \textbf{run on classical hardware}
+        \item Quantum may eventually help: 
+        \begin{itemize}
+            \item Breaking cryptography 
+            \item Simulating quantum chemistry/materials
+            \item Special classes of optimization
+        \end{itemize}
+        \item No real impact on practical ML/AI/LLMs yet
+        \item Interesting for research, not for production workloads
+    \end{itemize}
+    \vspace{0.7em}
+    {\small\color{TuebingenGray} \textit{Summary: Quantum is promising, but not directly relevant to applied AI/ML engineering today.}}
+\end{frame}
+
+% --- Slide 5: Modern Compute Hardware & Cost Cheat Sheet ---
+\begin{frame}{Compute Hardware \& Cost Cheat Sheet}
+    \framesubtitle{Capabilities, Example Costs, and Use Cases}
+    \begin{center}
+    {\begingroup
+    \renewcommand{\arraystretch}{1.0} % 80% of original 1.45
+    \setlength{\tabcolsep}{9pt} % Make columns wider (from 4.5pt)
+    \scalebox{0.9}{
+    {\small % <-- Make font smaller for the table content
+    \begin{tabular}{>{\raggedright\arraybackslash}p{3.1cm} >{\raggedright\arraybackslash}p{3.7cm} >{\raggedright\arraybackslash}p{3.7cm} >{\raggedright\arraybackslash}p{3.2cm}}
+        \rowcolor{TuebingenBeige}
+        \textbf{Hardware} & \textbf{Strengths} & \textbf{Example Uses} & \textbf{\color{TuebingenRot}Typical Cost\textsuperscript{*}} \\
+        \hline
+        \rowcolor{white}
+        \textbf{CPU} & General-purpose, flexible, orchestrates most workloads & Web servers, business apps, small ML inference, scientific codes & \$0.05--0.20/hr \\
+        \rowcolor{TuebingenGold!10}
+        \textbf{GPU (A100/H100)} & Massively parallel, fast for AI/simulations, deep learning & LLM/AI training \& inference, scientific computing, analytics, 3D graphics & \$2--\$10/hr (A100)\\
+        & & & \$25--\$50/hr (H100, cloud) \\
+        \rowcolor{white}
+        \textbf{TPU / NPU} & Specialized for ML, efficient on large inference or edge AI & Large model inference (cloud), on-device AI (phones, cameras) & \$10--\$30/hr (TPU v4) \\
+        \rowcolor{TuebingenGold!10}
+        \hline
+        \multicolumn{4}{l}{\footnotesize \textsuperscript{*}\textcolor{TuebingenGray}{Cloud (on-demand, June 2024). Enterprise deals, preemptible, or low-priority compute can be cheaper.}} \\
+        \multicolumn{4}{l}{\footnotesize \textcolor{TuebingenRot}{LLM Training (GPT-4 scale):} \$50--100M+} \\
+    \end{tabular}
+    } % end small
+    }
+    \endgroup}
+    \end{center}
+    \vspace{0.48em}
+    {\small\color{TuebingenGold} \textit{Takeaway: Always match workload to the right hardware for performance \& cost.}}
+\end{frame}
+
+
+% ==============================================================================
+% 0.8 Software Engineering Roles and Compensation (now split into concise slides)
+% ==============================================================================
+
+% --- Slide 1: The Software Engineering Talent Landscape ---
+\begin{frame}{Software Engineering Roles: Overview}
+    \framesubtitle{Who builds what?}
+    
+    {\color{TuebingenGray} Different roles bring different skills, capabilities, and costs. The right mix is key for project success, hiring, and budgeting.}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.5\textwidth}
+        \centering
+        \begin{tikzpicture}[
+            role/.style={draw=TuebingenAnthrazit, rounded corners=3pt, minimum width=2.2cm, minimum height=0.7cm, align=center, font=\scriptsize\bfseries},
+            node distance=1.8cm
+        ]
+            \node[role, fill=TuebingenCyan!30] (frontend) {Frontend};
+            \node[role, fill=TuebingenGreen!30, right of=frontend] (backend) {Backend};
+            \node[role, fill=TuebingenGold!30, right of=backend] (fullstack) {Full Stack};
+            \node[role, fill=TuebingenRot!30, below of=backend] (ai) {AI/ML};
+            \node[role, fill=TuebingenAnthrazit!20, left of=ai] (data) {Data\\Science};
+            \node[role, fill=TuebingenBeige, right of=ai] (devops) {DevOps/SRE};
+        \end{tikzpicture}
+        
+        \column{0.47\textwidth}
+        \vspace{0.2em}
+        \textbf{\color{TuebingenRot}Role Categories:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{Product Engineering:} Frontend, Backend, Full Stack
+            \item \textbf{AI \& Data:} AI/ML Engineers, Data Scientists
+            \item \textbf{Infrastructure:} DevOps, SRE, Platform Engineers
+        \end{itemize}
+        
+        \vspace{0.5em}
+        \small\color{TuebingenGold} \textbf{Key Insight:} Each role commands different market rates based on scarcity, complexity, and business impact.
+    \end{columns}
+\end{frame}
+
+% --- Slide 1b: Junior, Senior, Lead: What Do These Levels Mean? ---
+\begin{frame}{What is Junior, Senior, Lead?}
+    \framesubtitle{Understanding experience levels in engineering}
     
     \vspace{0.3em}
     \begin{columns}[T]
         \column{0.48\textwidth}
-        \textbf{When to hire what:}
+        \begin{theorembox}{Junior (0--2 years)}
+            \footnotesize
+            \begin{itemize}
+                \setlength\itemsep{0.2em}
+                \item May have internships, needs mentoring
+                \item Works on defined tasks
+                \item Learning core skills and tech stack
+            \end{itemize}
+        \end{theorembox}
+        
+        \vspace{0.4em}
+        \begin{theorembox}{Mid-Level (2--4 years)}
+            \footnotesize
+            \begin{itemize}
+                \setlength\itemsep{0.2em}
+                \item Gaining independence
+                \item Owns small features
+                \item Begins mentoring juniors
+            \end{itemize}
+        \end{theorembox}
+        
+        \column{0.48\textwidth}
+        \begin{theorembox}{Senior (4+ years)}
+            \footnotesize
+            \begin{itemize}
+                \setlength\itemsep{0.2em}
+                \item Proven delivery on complex projects
+                \item Works independently, designs systems
+                \item Technical "go-to", code reviewer
+            \end{itemize}
+        \end{theorembox}
+        
+        \vspace{0.4em}
+        \begin{theorembox}{Lead (6+ years)}
+            \footnotesize
+            \begin{itemize}
+                \setlength\itemsep{0.2em}
+                \item Guides technical direction
+                \item Makes architectural decisions
+                \item Balances coding with leadership
+            \end{itemize}
+        \end{theorembox}
+    \end{columns}
+    
+\end{frame}
+
+% --- Slide 2: Web Development Roles ---
+\begin{frame}{Frontend, Backend, Full Stack}
+    \framesubtitle{Web/Product Engineers (2026 compensation, Euro)}
+    
+    \vspace{0.2em}
+    \begin{center}
+    \renewcommand{\arraystretch}{1.2}
+    \setlength{\tabcolsep}{7pt}
+    \footnotesize
+    \begin{tabular}{@{}>{\color{TuebingenAnthrazit}\bfseries}l p{2.8cm} p{2.8cm} p{2.5cm}@{}}
+        \toprule
+        \rowcolor{TuebingenBeige}
+        \textbf{Role} & \textbf{Main Skills} & \textbf{Capabilities} & \textbf{Salary Range} \\
+        \midrule
+        \rowcolor{TuebingenCyan!10}
+        \textbf{Frontend} & HTML, CSS, JS, React, Vue & Web/mobile UIs, user experience & \textbf{Jr:} 45--65K \\
+        & & & \textbf{Sr:} 70--95K \\
+        & & & \textbf{Lead:} 100--130K \\
+        \midrule
+        \rowcolor{TuebingenGreen!10}
+        \textbf{Backend} & Java, Python, Go, Databases & APIs, server logic, data layer & \textbf{Jr:} 50--70K \\
+        & & & \textbf{Sr:} 75--105K \\
+        & & & \textbf{Lead:} 110--140K \\
+        \midrule
+        \rowcolor{TuebingenGold!10}
+        \textbf{Full Stack} & Frontend + Backend, Integration & End-to-end features, MVPs & \textbf{Jr:} 55--75K \\
+        & & & \textbf{Sr:} 80--110K \\
+        & & & \textbf{Lead:} 115--150K \\
+        \bottomrule
+    \end{tabular}
+    \end{center}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.5\textwidth}
+        \small\color{TuebingenGray} \textit{Full stack offers versatility but less deep specialization.}
+        \column{0.5\textwidth}
+        \small\color{TuebingenGray} \textit{Backend/Frontend provide domain expertise.}
+    \end{columns}
+\end{frame}
+
+% --- Slide 3: AI/ML, Data Science, DevOps/SRE ---
+\begin{frame}{AI/ML, Data Science, DevOps/SRE}
+    \framesubtitle{Specialized roles (2026 compensation, Euro)}
+    
+    \vspace{0.2em}
+    \begin{center}
+    \renewcommand{\arraystretch}{1.2}
+    \setlength{\tabcolsep}{7pt}
+    \footnotesize
+    \begin{tabular}{@{}>{\color{TuebingenAnthrazit}\bfseries}l p{2.8cm} p{2.8cm} p{2.5cm}@{}}
+        \toprule
+        \rowcolor{TuebingenBeige}
+        \textbf{Role} & \textbf{Main Skills} & \textbf{Capabilities} & \textbf{Salary Range} \\
+        \midrule
+        \rowcolor{TuebingenRot!15}
+        \textbf{AI/ML Engineer} & Python, PyTorch, Statistics, MLOps & Train/deploy models, AI systems & \textbf{Jr:} 70--90K \\
+        & & & \textbf{Sr:} 100--140K \\
+        & & & \textbf{Lead:} 150--200K+ \\
+        \midrule
+        \rowcolor{TuebingenAnthrazit!10}
+        \textbf{Data Scientist} & Python, R, SQL, Visualization, Stats & Analysis, business insights, ML features & \textbf{Jr:} 60--80K \\
+        & & & \textbf{Sr:} 85--120K \\
+        & & & \textbf{Lead:} 125--160K \\
+        \midrule
+        \rowcolor{TuebingenBeige}
+        \textbf{DevOps/SRE} & AWS, Kubernetes, CI/CD, Infrastructure & Deploy, automate, scale, reliability & \textbf{Jr:} 60--85K \\
+        & & & \textbf{Sr:} 90--125K \\
+        & & & \textbf{Lead:} 130--170K \\
+        \bottomrule
+    \end{tabular}
+    \end{center}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.5\textwidth}
+        \small\color{TuebingenRot} \textbf{Premium:} AI/ML commands highest salaries due to scarcity.
+        \column{0.5\textwidth}
+        \small\color{TuebingenGold} \textbf{Critical:} DevOps essential for scale and reliability.
+    \end{columns}
+\end{frame}
+
+% --- Slide 3b: Why are AI/ML Engineer Salaries so High? (Key Reasons) ---
+\begin{frame}{Why do AI/ML Engineers Earn So Much?}
+    \framesubtitle{Four Core Reasons}
+
+    \vspace{0.5em}
+    \begin{description}[align=left]
+        \item[\color{TuebingenRot}\textbf{1.~Scarcity \& Demand}]
+            \vspace{0.3em}
+            \begin{itemize}
+                \item Demand for AI/ML engineers exceeds supply globally.
+                \item Highly qualified talent (AI theory + scalable systems) is rare.
+            \end{itemize}
+        \item[\color{TuebingenGold}\textbf{2.~Business Value}]
+            \vspace{0.3em}
+            \begin{itemize}
+                \item AI/ML enables major advances: ChatGPT, fraud detection, hyper-personalization.
+                \item Drives product innovation, automation, and defensible company advantage.
+            \end{itemize}
+        \item[\color{TuebingenGreen}\textbf{3.~High Skill Bar}]
+            \vspace{0.3em}
+            \begin{itemize}
+                \item Requires math, statistics, software engineering, and MLOps/infrastructure.
+                \item Talent must handle complexity at large scale.
+            \end{itemize}
+        \item[\color{TuebingenCyan}\textbf{4.~Impact \& Evolution}]
+            \vspace{0.3em}
+            \begin{itemize}
+                \item Field evolves rapidly (LLMs, new architectures).
+                \item One top engineer can replace/amplify dozens, but requires constant upskilling.
+            \end{itemize}
+    \end{description}
+\end{frame}
+
+% --- Slide 3c: Executive Perspective: The Leverage of the Best ---
+\begin{frame}{Executive Reality: The Leverage of Elite AI Talent}
+    \framesubtitle{Why organizations pay a premium}
+
+    \vspace{0.4em}
+    \begin{theorembox}{Executive Reality}
+        In many organizations, \textbf{just a handful of exceptional AI/ML engineers} drive transformative business outcomes across entire product lines. A single great engineer can:
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item Automate what previously required dozens of traditional roles
+            \item Unlock new products or revenue streams through AI innovation
+            \item Enable massive cost savings, new features, and company-wide differentiation
+            \item Continuously adapt to fast-evolving technology landscapes (e.g., LLMs, generative AI)
+        \end{itemize}
+        \textbf{This leverage is why top AI/ML engineers are so highly compensated---they can literally change the trajectory of entire businesses.}
+    \end{theorembox}
+\end{frame}
+
+% --- Slide 4: When to Hire What? ---
+\begin{frame}{Role Selection: Who and When?}
+    \framesubtitle{Quick guidelines for hiring decisions}
+    
+    \vspace{0.2em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{\color{TuebingenRot}When to Hire:}
         \begin{itemize}
             \setlength\itemsep{0.3em}
-            \item \textbf{Frontend Dev:} User-facing applications, web interfaces, mobile apps
-            \item \textbf{Backend Dev:} APIs, databases, business logic, integrations
-            \item \textbf{Full Stack:} MVPs, small teams, rapid prototyping, startup phases
-            \item \textbf{AI/ML Engineer:} Model development, AI feature implementation, MLOps
-            \item \textbf{Data Scientist:} Analysis, insights, experimentation, business intelligence
-            \item \textbf{DevOps/SRE:} Infrastructure, deployment, scaling, reliability
+            \item \textbf{Frontend:} User interfaces, web/mobile apps
+            \item \textbf{Backend:} APIs, databases, business logic
+            \item \textbf{Full Stack:} Startups, MVPs, rapid prototypes
+            \item \textbf{AI/ML:} Model development, AI features, MLOps
+            \item \textbf{Data Scientist:} Analysis, business insights, ML features
+            \item \textbf{DevOps/SRE:} Deployment, infrastructure, scaling, reliability
         \end{itemize}
         
         \column{0.48\textwidth}
-        \textbf{Team composition patterns:}
+        \textbf{\color{TuebingenGold}Team Size Patterns:}
         \begin{itemize}
             \setlength\itemsep{0.3em}
-            \item \textbf{Startup (5-10 people):} 2-3 full stack, 1 AI/ML, 1 DevOps
-            \item \textbf{Scale-up (20-50):} Specialized frontend/backend, 2-3 AI/ML, data scientists
-            \item \textbf{Enterprise (100+):} Full specialization, lead roles, architects
+            \item \textbf{Startup:} 2--3 full stack, 1 AI/ML, 1 DevOps
+            \item \textbf{Scale-up:} Split front/back, +AI/ML, +data science
+            \item \textbf{Enterprise:} Full specialization, dedicated teams per domain
         \end{itemize}
         
-        \vspace{0.3em}
-        \textbf{Cost considerations:}
-        \begin{itemize}
-            \setlength\itemsep{0.2em}
-            \item AI/ML engineers command premium (scarcity)
-            \item Full stack offers versatility but less depth
-            \item DevOps crucial for scaling (often overlooked early)
-            \item Location affects salaries (Silicon Valley +40-60\%)
-        \end{itemize}
+        \vspace{0.5em}
+        \begin{theorembox}{Rule of Thumb}
+            Start lean, specialize as you scale. Full stack for speed, specialists for depth.
+        \end{theorembox}
     \end{columns}
 \end{frame}
+
+% --- Slide 5: Cost Considerations ---
+\begin{frame}{Engineering Compensation: Cost Factors}
+    \framesubtitle{What drives salaries and total cost?}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{\color{TuebingenRot}Role Premiums:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item AI/ML: Highest due to scarcity
+            \item DevOps/SRE: Critical for scale
+            \item Full stack: Versatility, less depth
+        \end{itemize}
+        
+        \vspace{0.6em}
+        \textbf{\color{TuebingenGold}Location Impact:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Silicon Valley, NYC: +40--60\% cash
+            \item Remote: Varies by company policy
+            \item Europe: Generally lower base, better benefits
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{\color{TuebingenGreen}Other Factors:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Scarcity of specific skills
+            \item Project complexity and scale
+            \item Company stage (startup vs. enterprise)
+            \item Equity/stock compensation
+        \end{itemize}
+        
+        \vspace{0.6em}
+        \begin{theorembox}{Hidden Costs}
+            \footnotesize
+            Mismatched skills $\rightarrow$ delays, rework, and blown budgets.\\
+            Right talent = faster delivery, lower total cost.
+        \end{theorembox}
+    \end{columns}
+\end{frame}
+
+
