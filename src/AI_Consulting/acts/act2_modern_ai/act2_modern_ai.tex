@@ -1,0 +1,2923 @@
+% Act II — How Modern AI Works (2 hours deep dive)
+\section{How Modern AI Works}
+
+% ==============================================================================
+% PART II-A: ML TAXONOMY AND CLASSICAL METHODS (30 minutes)
+% ==============================================================================
+
+% ------------------------------------------------------------------------------
+% II-A.1 Types of ML: supervised, unsupervised, RL (3 slides)
+% ------------------------------------------------------------------------------
+
+\begin{frame}{The Three Paradigms of Machine Learning}
+    \framesubtitle{How machines learn from data}
+    
+    {\color{TuebingenGray} All ML methods fall into three fundamental learning paradigms—each suited to different business problems.}
+    
+    \vspace{0.8em}
+    \begin{columns}[T]
+        \column{0.32\textwidth}
+        \begin{center}
+            {\Large \color{TuebingenRot} \textbf{Supervised}}\\[0.3em]
+            {\small Learning from labeled examples}
+        \end{center}
+        \vspace{0.3em}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Input → Known output
+            \item Learn the mapping
+            \item Predict on new data
+        \end{itemize}
+        \vspace{0.3em}
+        {\scriptsize\color{TuebingenGray} Classification, regression, forecasting}
+        
+        \column{0.32\textwidth}
+        \begin{center}
+            {\Large \color{TuebingenGold} \textbf{Unsupervised}}\\[0.3em]
+            {\small Finding structure in data}
+        \end{center}
+        \vspace{0.3em}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item No labels provided
+            \item Discover patterns
+            \item Group similar items
+        \end{itemize}
+        \vspace{0.3em}
+        {\scriptsize\color{TuebingenGray} Clustering, anomaly detection, compression}
+        
+        \column{0.32\textwidth}
+        \begin{center}
+            {\Large \color{TuebingenGreen} \textbf{Reinfortic Learning}}\\[0.3em]
+            {\small Learning from rewards}
+        \end{center}
+        \vspace{0.3em}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Sequential decisions
+            \item Trial and error
+            \item Maximize long-term reward
+        \end{itemize}
+        \vspace{0.3em}
+        {\scriptsize\color{TuebingenGray} Games, robotics, recommendations}
+    \end{columns}
+    
+    \vspace{0.8em}
+    \begin{center}
+        \small\color{TuebingenRot} \textbf{Executive insight:} 90\%+ of enterprise ML is supervised learning on structured data.
+    \end{center}
+\end{frame}
+
+\begin{frame}{Supervised Learning: The Workhorse of Enterprise AI}
+    \framesubtitle{Classification and regression}
+    
+    {\color{TuebingenGray} Most business AI problems are supervised: you have historical data with known outcomes.}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        {\color{TuebingenRot}\textbf{Classification} — Discrete categories}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Will this customer churn? {\scriptsize (Yes/No)}
+            \item Is this transaction fraud? {\scriptsize (Yes/No)}
+            \item What topic is this email? {\scriptsize (Sales/Support/Spam)}
+            \item Which product to recommend? {\scriptsize (A/B/C/...)}
+        \end{itemize}
+        
+        \vspace{0.5em}
+        {\small\color{TuebingenGray} Output: probabilities across categories}
+        
+        \column{0.48\textwidth}
+        {\color{TuebingenGold}\textbf{Regression} — Continuous values}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item What will revenue be next quarter?
+            \item How long until this machine fails?
+            \item What price maximizes profit?
+            \item How many units will we sell?
+        \end{itemize}
+        
+        \vspace{0.5em}
+        {\small\color{TuebingenGray} Output: a number (with uncertainty)}
+    \end{columns}
+    
+    \vspace{0.8em}
+    \begin{theorembox}{The Supervised Learning Recipe}
+        \textbf{1.} Collect historical data with known outcomes (labels) \\
+        \textbf{2.} Train model to find patterns connecting inputs to outputs \\
+        \textbf{3.} Validate on held-out data to estimate real-world performance \\
+        \textbf{4.} Deploy and monitor for drift
+    \end{theorembox}
+\end{frame}
+
+\begin{frame}{Unsupervised \& Reinforcement Learning}
+    \framesubtitle{When labels are unavailable or actions matter}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        {\color{TuebingenGold}\textbf{Unsupervised Learning}}
+        
+        \vspace{0.3em}
+        {\small No labels—find structure in data itself}
+        
+        \vspace{0.3em}
+        \textbf{Key techniques:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{Clustering} — group similar customers, documents, behaviors
+            \item \textbf{Dimensionality reduction} — compress features, visualize high-dim data (PCA, t-SNE)
+            \item \textbf{Anomaly detection} — find outliers without labeled fraud cases
+        \end{itemize}
+        
+        \vspace{0.3em}
+        {\scriptsize\color{TuebingenGray} \textbf{Use when:} You don't have labels, or want to discover unknown patterns}
+        
+        \column{0.48\textwidth}
+        {\color{TuebingenGreen}\textbf{Reinforcement Learning (RL)}}
+        
+        \vspace{0.3em}
+        {\small Learn optimal actions through trial and error}
+        
+        \vspace{0.3em}
+        \textbf{Key characteristics:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{Sequential decisions} — actions affect future states
+            \item \textbf{Delayed rewards} — outcome known only later
+            \item \textbf{Exploration vs exploitation} — try new vs use known
+        \end{itemize}
+        
+        \vspace{0.3em}
+        {\scriptsize\color{TuebingenGray} \textbf{Use when:} Optimizing multi-step processes (pricing, routing, control)}
+    \end{columns}
+    
+    \vspace{0.5em}
+    \begin{center}
+        \small\color{TuebingenRot} \textbf{Note:} RL is powerful but harder to productize. Start with supervised if you have labels.
+    \end{center}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% II-A.2 MLPs: the baseline neural network (2 slides + example)
+% ------------------------------------------------------------------------------
+
+\begin{frame}{Multi-Layer Perceptrons (MLPs): The Foundation}
+    \framesubtitle{The simplest neural network architecture}
+    
+    {\color{TuebingenGray} An MLP is a stack of layers that learn to transform inputs into outputs through nonlinear functions.}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.45\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[
+                neuron/.style={circle, draw=TuebingenAnthrazit, minimum size=0.5cm, fill=TuebingenBeige},
+                input/.style={neuron, fill=TuebingenRot!20},
+                hidden/.style={neuron, fill=TuebingenGold!20},
+                output/.style={neuron, fill=TuebingenGreen!20},
+                conn/.style={->, TuebingenGray, thin}
+            ]
+                % Input layer
+                \foreach \i in {1,2,3} {
+                    \node[input] (i\i) at (0, -\i*0.8+1.6) {};
+                }
+                \node[below=0.1cm of i3, font=\tiny] {Input};
+                
+                % Hidden layer 1
+                \foreach \i in {1,2,3,4} {
+                    \node[hidden] (h1\i) at (1.5, -\i*0.7+1.75) {};
+                }
+                \node[below=0.1cm of h14, font=\tiny] {Hidden};
+                
+                % Hidden layer 2
+                \foreach \i in {1,2,3} {
+                    \node[hidden] (h2\i) at (3, -\i*0.8+1.6) {};
+                }
+                
+                % Output layer
+                \foreach \i in {1,2} {
+                    \node[output] (o\i) at (4.5, -\i*0.8+1.2) {};
+                }
+                \node[below=0.1cm of o2, font=\tiny] {Output};
+                
+                % Connections (simplified)
+                \foreach \i in {1,2,3} {
+                    \foreach \j in {1,2,3,4} {
+                        \draw[conn] (i\i) -- (h1\j);
+                    }
+                }
+                \foreach \i in {1,2,3,4} {
+                    \foreach \j in {1,2,3} {
+                        \draw[conn] (h1\i) -- (h2\j);
+                    }
+                }
+                \foreach \i in {1,2,3} {
+                    \foreach \j in {1,2} {
+                        \draw[conn] (h2\i) -- (o\j);
+                    }
+                }
+            \end{tikzpicture}
+        \end{center}
+        
+        \column{0.52\textwidth}
+        \textbf{How it works:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Each connection has a learnable \textbf{weight}
+            \item Each layer applies: $\text{output} = \sigma(Wx + b)$
+            \item $\sigma$ is a nonlinearity (ReLU, sigmoid)
+            \item \textbf{Training:} adjust weights to minimize prediction error
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Key insight:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Can approximate \textit{any} function (universal approximation)
+            \item More layers = more expressive power
+            \item But: needs lots of data to avoid overfitting
+        \end{itemize}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{MLPs in Practice: When to Use Them}
+    \framesubtitle{Strengths, weaknesses, and enterprise applications}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        {\color{TuebingenGreen}\textbf{Strengths:}}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Flexible function approximation
+            \item Works on \textbf{tabular data} (structured)
+            \item Easy to implement and train
+            \item Foundation for all deep learning
+        \end{itemize}
+        
+        \vspace{0.5em}
+        {\color{TuebingenRot}\textbf{Weaknesses:}}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Often \textbf{outperformed by tree-based methods} on tabular data (XGBoost, Random Forest)
+            \item No built-in structure for images, text, sequences
+            \item Can overfit without regularization
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Enterprise Use Cases:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{Churn prediction} — customer features → churn probability
+            \item \textbf{Credit scoring} — financial data → risk score
+            \item \textbf{Demand forecasting} — historical features → units sold
+            \item \textbf{Fraud detection} — transaction features → fraud probability
+        \end{itemize}
+        
+        \vspace{0.5em}
+        \begin{center}
+            \small\color{TuebingenGray}
+            \fbox{\parbox{0.9\linewidth}{\centering
+                \textbf{Executive rule:}\\
+                For tabular data, try gradient-boosted trees (XGBoost) first—often better with less tuning.
+            }}
+        \end{center}
+    \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% II-A.3 PCA: dimensionality reduction (2 slides + example)
+% ------------------------------------------------------------------------------
+
+\begin{frame}{PCA: Dimensionality Reduction}
+    \framesubtitle{Compressing data while preserving information}
+    
+    {\color{TuebingenGray} Principal Component Analysis (PCA) finds the directions of maximum variance in your data.}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.45\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.9]
+                % Data points (scattered)
+                \foreach \i in {1,...,20} {
+                    \pgfmathsetmacro{\x}{0.8*rand + 0.5*rand}
+                    \pgfmathsetmacro{\y}{0.6*\x + 0.3*rand}
+                    \fill[TuebingenGray!60] (\x, \y) circle (2pt);
+                }
+                
+                % Principal components
+                \draw[->, very thick, TuebingenRot] (0,0) -- (2.2, 1.5) node[right, font=\scriptsize] {PC1 (most variance)};
+                \draw[->, thick, TuebingenGold] (0,0) -- (-0.6, 0.9) node[left, font=\scriptsize] {PC2};
+                
+                % Axes
+                \draw[->] (-1.5,0) -- (3,0) node[right, font=\tiny] {Feature 1};
+                \draw[->] (0,-0.5) -- (0,2.5) node[above, font=\tiny] {Feature 2};
+            \end{tikzpicture}
+        \end{center}
+        {\small\centering Original: 2 dimensions\\PCA finds directions of spread}
+        
+        \column{0.52\textwidth}
+        \textbf{What PCA Does:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Finds \textbf{orthogonal axes} (principal components)
+            \item Ranked by \textbf{variance explained}
+            \item Project data onto top $k$ components
+            \item \textbf{Lossy compression}: keep signal, reduce noise
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Use Cases:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Reduce 1000 features to 50 for faster training
+            \item Visualize high-dimensional data in 2D/3D
+            \item Remove noise from sensor data
+            \item Feature engineering before ML
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.3em}
+    \begin{center}
+        \small\color{TuebingenRot} \textbf{Limitation:} PCA only captures \textit{linear} relationships.
+    \end{center}
+\end{frame}
+
+\begin{frame}{PCA Example: Customer Behavior Analysis}
+    \framesubtitle{From 50 metrics to actionable segments}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{The Scenario:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Marketing has 50 customer metrics
+            \item Purchase frequency, recency, categories, channel preferences, engagement scores...
+            \item Too many dimensions to visualize or interpret
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{PCA Reveals:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{PC1} (40\% variance): "Overall engagement"
+            \item \textbf{PC2} (15\% variance): "Price sensitivity"
+            \item \textbf{PC3} (10\% variance): "Channel preference"
+            \item First 3 components capture 65\% of information
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.85]
+                % Simulated customer clusters in 2D PCA space
+                % Cluster 1: High value
+                \foreach \i in {1,...,8} {
+                    \pgfmathsetmacro{\x}{2.5 + 0.4*rand}
+                    \pgfmathsetmacro{\y}{2 + 0.4*rand}
+                    \fill[TuebingenGreen] (\x, \y) circle (3pt);
+                }
+                % Cluster 2: Price sensitive
+                \foreach \i in {1,...,10} {
+                    \pgfmathsetmacro{\x}{0.5 + 0.5*rand}
+                    \pgfmathsetmacro{\y}{2.2 + 0.4*rand}
+                    \fill[TuebingenGold] (\x, \y) circle (3pt);
+                }
+                % Cluster 3: Low engagement
+                \foreach \i in {1,...,12} {
+                    \pgfmathsetmacro{\x}{1 + 0.6*rand}
+                    \pgfmathsetmacro{\y}{0.5 + 0.4*rand}
+                    \fill[TuebingenGray] (\x, \y) circle (3pt);
+                }
+                
+                % Axes
+                \draw[->] (-0.2,0) -- (3.5,0) node[right, font=\scriptsize] {PC1: Engagement};
+                \draw[->] (0,-0.2) -- (0,3.2) node[above, font=\scriptsize] {PC2: Price Sens.};
+                
+                % Labels
+                \node[font=\tiny, TuebingenGreen] at (2.8, 1.3) {High value};
+                \node[font=\tiny, TuebingenGold] at (0.2, 1.5) {Bargain seekers};
+                \node[font=\tiny, TuebingenGray] at (1.8, 0.2) {Dormant};
+            \end{tikzpicture}
+        \end{center}
+        
+        \vspace{0.3em}
+        {\small\color{TuebingenGray} \textbf{Result:} Clear segments emerge from compressed representation}
+    \end{columns}
+    
+    \vspace{0.3em}
+    \begin{center}
+        \small\color{TuebingenRot} \textbf{Caveat:} Components are interpretable only if you examine the loadings (which original features contribute).
+    \end{center}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% II-A.4 t-SNE: local neighborhood visualization (2 slides + example)
+% ------------------------------------------------------------------------------
+
+\begin{frame}{t-SNE: Visualizing Complex Data}
+    \framesubtitle{Nonlinear dimensionality reduction for exploration}
+    
+    {\color{TuebingenGray} t-SNE (t-distributed Stochastic Neighbor Embedding) preserves \textit{local neighborhoods} when projecting to 2D.}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{How t-SNE Differs from PCA:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{PCA:} Linear projection, preserves global variance
+            \item \textbf{t-SNE:} Nonlinear, preserves \textit{local similarity}
+            \item Points that are similar stay close
+            \item Reveals \textbf{clusters} that PCA might miss
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Use Cases:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Visualizing embeddings (words, documents, images)
+            \item Exploring customer segments
+            \item Quality check on clustering results
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.75]
+                % Simulated t-SNE clusters (more separated than PCA)
+                % Cluster 1
+                \foreach \i in {1,...,12} {
+                    \pgfmathsetmacro{\x}{0.5 + 0.3*rand}
+                    \pgfmathsetmacro{\y}{2.5 + 0.3*rand}
+                    \fill[TuebingenRot] (\x, \y) circle (2.5pt);
+                }
+                % Cluster 2
+                \foreach \i in {1,...,10} {
+                    \pgfmathsetmacro{\x}{2.5 + 0.35*rand}
+                    \pgfmathsetmacro{\y}{2.8 + 0.25*rand}
+                    \fill[TuebingenGold] (\x, \y) circle (2.5pt);
+                }
+                % Cluster 3
+                \foreach \i in {1,...,14} {
+                    \pgfmathsetmacro{\x}{1.5 + 0.4*rand}
+                    \pgfmathsetmacro{\y}{0.8 + 0.35*rand}
+                    \fill[TuebingenGreen] (\x, \y) circle (2.5pt);
+                }
+                % Cluster 4
+                \foreach \i in {1,...,8} {
+                    \pgfmathsetmacro{\x}{3.2 + 0.25*rand}
+                    \pgfmathsetmacro{\y}{1 + 0.3*rand}
+                    \fill[TuebingenCyan] (\x, \y) circle (2.5pt);
+                }
+                
+                % Frame
+                \draw[TuebingenGray, thin] (-0.2,-0.2) rectangle (4,3.5);
+                \node[font=\scriptsize, TuebingenAnthrazit] at (2, -0.5) {t-SNE projection of 100-dim data};
+            \end{tikzpicture}
+        \end{center}
+        {\small\centering Clusters clearly separated}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{t-SNE: Critical Warnings for Executives}
+    \framesubtitle{What t-SNE cannot tell you}
+    \framesource{van der Maaten \& Hinton, 2008}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.55\textwidth}
+        {\color{TuebingenRot}\textbf{t-SNE is NOT:}}
+        \begin{itemize}
+            \setlength\itemsep{0.5em}
+            \item \textbf{Distance-preserving} — distances between clusters are meaningless
+            \item \textbf{Deterministic} — different runs give different layouts
+            \item \textbf{A clustering algorithm} — it only visualizes, doesn't assign labels
+            \item \textbf{Suitable for quantitative analysis} — don't measure cluster sizes/gaps
+        \end{itemize}
+        
+        \vspace{0.5em}
+        {\color{TuebingenGreen}\textbf{t-SNE IS:}}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Great for \textbf{exploration} and hypothesis generation
+            \item Useful to \textbf{sanity-check} other analyses
+            \item A way to \textbf{communicate} structure visually
+        \end{itemize}
+        
+        \column{0.42\textwidth}
+        \begin{theorembox}{Executive Rule}
+            Use t-SNE for \textbf{qualitative exploration only}.
+            
+            \vspace{0.3em}
+            
+            {\small Never make business decisions based on:}
+            \begin{itemize}
+                \item Cluster sizes in t-SNE plots
+                \item Distances between clusters
+                \item Apparent "gaps" in the data
+            \end{itemize}
+            
+            \vspace{0.3em}
+            
+            {\small Always validate with quantitative methods.}
+        \end{theorembox}
+    \end{columns}
+    
+    \vspace{0.3em}
+    \begin{center}
+        \small\color{TuebingenGray} \textbf{Modern alternative:} UMAP—faster and better preserves global structure, but same caveats apply.
+    \end{center}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% II-A.5 CNNs: why they mattered and where they still matter (2 slides + example)
+% ------------------------------------------------------------------------------
+
+\begin{frame}{Convolutional Neural Networks (CNNs)}
+    \framesubtitle{The architecture that conquered computer vision}
+    
+    {\color{TuebingenGray} CNNs revolutionized image processing by learning spatial hierarchies of features.}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.50\textwidth}
+        \textbf{Key Innovation:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{Local receptive fields} — each neuron sees only a small patch
+            \item \textbf{Weight sharing} — same filter applied everywhere
+            \item \textbf{Hierarchical features} — edges → shapes → objects
+            \item Far fewer parameters than fully connected
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{The AlexNet Moment (2012)} \cite{krizhevsky2012alexnet}:
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item ImageNet error: 26\% → 15\%
+            \item Discontinuous improvement
+            \item CNN + GPU + Big Data = breakthrough
+        \end{itemize}
+        
+        \column{0.47\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.7]
+                % Input image
+                \draw[fill=TuebingenBeige, draw=TuebingenAnthrazit] (0,0) rectangle (1.5,1.5);
+                \node[font=\tiny] at (0.75, 0.75) {Image};
+                \node[font=\tiny, below] at (0.75, 0) {Input};
+                
+                % Conv layers (progressively smaller, deeper)
+                \draw[fill=TuebingenRot!30, draw=TuebingenAnthrazit] (2,0.2) rectangle (2.8,1.3);
+                \draw[fill=TuebingenRot!30, draw=TuebingenAnthrazit] (2.15,0.35) rectangle (2.95,1.45);
+                \node[font=\tiny, below] at (2.5, 0.2) {Conv};
+                
+                \draw[fill=TuebingenGold!30, draw=TuebingenAnthrazit] (3.5,0.3) rectangle (4.1,1.2);
+                \draw[fill=TuebingenGold!30, draw=TuebingenAnthrazit] (3.65,0.45) rectangle (4.25,1.35);
+                \draw[fill=TuebingenGold!30, draw=TuebingenAnthrazit] (3.8,0.6) rectangle (4.4,1.5);
+                \node[font=\tiny, below] at (3.9, 0.3) {Conv};
+                
+                % Fully connected
+                \draw[fill=TuebingenGreen!30, draw=TuebingenAnthrazit] (5,0.4) rectangle (5.4,1.1);
+                \node[font=\tiny, below] at (5.2, 0.4) {FC};
+                
+                % Output
+                \draw[fill=TuebingenCyan!30, draw=TuebingenAnthrazit] (6,0.5) rectangle (6.3,1);
+                \node[font=\tiny, below] at (6.15, 0.5) {Out};
+                
+                % Arrows
+                \draw[->, TuebingenGray] (1.5, 0.75) -- (2, 0.75);
+                \draw[->, TuebingenGray] (2.95, 0.85) -- (3.5, 0.85);
+                \draw[->, TuebingenGray] (4.4, 0.95) -- (5, 0.75);
+                \draw[->, TuebingenGray] (5.4, 0.75) -- (6, 0.75);
+                
+                % Labels
+                \node[font=\tiny, TuebingenGray] at (2.5, 1.8) {Edges};
+                \node[font=\tiny, TuebingenGray] at (4, 1.8) {Shapes};
+                \node[font=\tiny, TuebingenGray] at (5.2, 1.4) {Objects};
+            \end{tikzpicture}
+        \end{center}
+        
+        \vspace{0.3em}
+        {\small\color{TuebingenGray} \textbf{Insight:} CNN layers learn increasingly abstract features automatically.}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{CNNs in Enterprise: Where They Still Dominate}
+    \framesubtitle{Practical applications beyond research}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{Manufacturing \& Quality:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{Defect detection} — visual inspection at scale
+            \item \textbf{Quality control} — surface anomalies, assembly verification
+            \item \textbf{Predictive maintenance} — analyze equipment images
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Document Processing:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{OCR} — text extraction from images
+            \item \textbf{Document classification} — invoices, receipts, forms
+            \item \textbf{Signature verification}
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Healthcare \& Medical:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{Medical imaging} — X-rays, MRIs, pathology slides
+            \item \textbf{Diagnostic assistance} — detect anomalies, measure features
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Retail \& Security:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{Visual search} — find similar products
+            \item \textbf{Inventory tracking} — shelf monitoring
+            \item \textbf{Access control} — facial recognition
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.5em}
+    \begin{theorembox}{Executive Lesson from CNNs}
+        The AlexNet breakthrough taught us: when \textbf{architecture} + \textbf{data} + \textbf{compute} align, progress can be \textbf{sudden and dramatic}. This pattern repeated with Transformers in 2017.
+    \end{theorembox}
+\end{frame}
+
+% ==============================================================================
+% PART II-B: DEEP LEARNING BUILDING BLOCKS (30 minutes)
+% ==============================================================================
+
+% ------------------------------------------------------------------------------
+% II-B.1 Representations: what the network "learns" (1 slide)
+% ------------------------------------------------------------------------------
+
+\begin{frame}{What Neural Networks Actually Learn}
+    \framesubtitle{Representations are the key insight}
+    
+    {\color{TuebingenGray} The magic of deep learning: networks learn to \textit{represent} data, not just classify it.}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{Traditional ML:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item Humans engineer features
+            \item "Age, income, purchase count..."
+            \item Model learns \textit{weights} on fixed features
+            \item Quality depends on feature design
+        \end{itemize}
+        
+        \vspace{0.5em}
+        {\color{TuebingenGray}\small Feature engineering is manual and domain-specific}
+        
+        \column{0.48\textwidth}
+        \textbf{Deep Learning:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item Network learns features automatically
+            \item Hidden layers = learned representations
+            \item "Embedding" = useful compressed form
+            \item Transfers across tasks
+        \end{itemize}
+        
+        \vspace{0.5em}
+        {\color{TuebingenGreen}\small Representation learning scales with data}
+    \end{columns}
+    
+    \vspace{0.8em}
+    \begin{theorembox}{Key Insight}
+        The \textbf{representation layer} (embeddings) is often more valuable than the final output. \\
+        A good representation can be reused for many downstream tasks.
+    \end{theorembox}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% II-B.2 Autoencoders: encoder/decoder explained (3 slides + example)
+% ------------------------------------------------------------------------------
+
+\begin{frame}{Autoencoders: Learning to Compress}
+    \framesubtitle{The encoder-decoder architecture}
+    
+    {\color{TuebingenGray} An autoencoder learns to compress data into a small representation, then reconstruct it.}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.50\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.85]
+                % Input
+                \draw[fill=TuebingenBeige, draw=TuebingenAnthrazit] (0,0) rectangle (1,2.5);
+                \node[font=\scriptsize, rotate=90] at (0.5, 1.25) {Input (high-dim)};
+                
+                % Encoder arrow
+                \draw[->, very thick, TuebingenRot] (1.2, 1.25) -- (2.3, 1.25);
+                \node[font=\tiny, above] at (1.75, 1.35) {Encoder};
+                
+                % Latent (bottleneck)
+                \draw[fill=TuebingenGold!40, draw=TuebingenGold, thick] (2.5,0.7) rectangle (3,1.8);
+                \node[font=\scriptsize, rotate=90] at (2.75, 1.25) {Latent};
+                
+                % Decoder arrow
+                \draw[->, very thick, TuebingenGreen] (3.2, 1.25) -- (4.3, 1.25);
+                \node[font=\tiny, above] at (3.75, 1.35) {Decoder};
+                
+                % Output
+                \draw[fill=TuebingenBeige, draw=TuebingenAnthrazit] (4.5,0) rectangle (5.5,2.5);
+                \node[font=\scriptsize, rotate=90] at (5, 1.25) {Output (reconstruction)};
+                
+                % Loss
+                \draw[<->, dashed, TuebingenRot] (0.5, -0.3) -- (5, -0.3);
+                \node[font=\tiny, below] at (2.75, -0.4) {Minimize reconstruction error};
+            \end{tikzpicture}
+        \end{center}
+        
+        \column{0.47\textwidth}
+        \textbf{How It Works:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{Encoder:} Compress input to small "latent" vector
+            \item \textbf{Bottleneck:} Forces network to learn essential features
+            \item \textbf{Decoder:} Reconstruct original from latent
+            \item \textbf{Training:} Minimize reconstruction error
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{The Insight:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item If it can reconstruct, latent must capture meaning
+            \item Latent = compressed representation
+        \end{itemize}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Autoencoder Applications}
+    \framesubtitle{Compression, denoising, and anomaly detection}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.32\textwidth}
+        \begin{center}
+            {\color{TuebingenRot}\textbf{Compression}}
+        \end{center}
+        \vspace{0.2em}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Reduce data dimensionality
+            \item Store latent vectors instead of raw data
+            \item Faster downstream processing
+        \end{itemize}
+        \vspace{0.3em}
+        {\scriptsize\color{TuebingenGray} Example: Compress 1000 features to 50}
+        
+        \column{0.32\textwidth}
+        \begin{center}
+            {\color{TuebingenGold}\textbf{Denoising}}
+        \end{center}
+        \vspace{0.2em}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Train on noisy → clean pairs
+            \item Network learns to remove noise
+            \item Extracts underlying signal
+        \end{itemize}
+        \vspace{0.3em}
+        {\scriptsize\color{TuebingenGray} Example: Clean sensor data, audio}
+        
+        \column{0.32\textwidth}
+        \begin{center}
+            {\color{TuebingenGreen}\textbf{Anomaly Detection}}
+        \end{center}
+        \vspace{0.2em}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Train only on "normal" data
+            \item Anomalies = high reconstruction error
+            \item No labeled anomalies needed!
+        \end{itemize}
+        \vspace{0.3em}
+        {\scriptsize\color{TuebingenGray} Example: Fraud, equipment failure}
+    \end{columns}
+    
+    \vspace{0.8em}
+    \begin{theorembox}{Anomaly Detection Pattern}
+        \textbf{1.} Train autoencoder on normal operations only \\
+        \textbf{2.} In production: if reconstruction error > threshold → flag as anomaly \\
+        \textbf{3.} \textit{Key advantage:} Works without labeled fraud/failure cases
+    \end{theorembox}
+\end{frame}
+
+\begin{frame}{Autoencoder Example: Industrial Anomaly Detection}
+    \framesubtitle{Detecting equipment failures without labeled failure data}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{The Scenario:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Manufacturing equipment with 100 sensors
+            \item Failures are rare (good!)
+            \item But: no labeled failure data to train on
+            \item Need: early warning system
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Autoencoder Solution:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Train on months of \textit{normal} operation
+            \item Network learns "what normal looks like"
+            \item Pre-failure: sensors drift from normal
+            \item Autoencoder can't reconstruct abnormal patterns
+            \item High error = early warning
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.8]
+                % Time series plot
+                \draw[->] (0,0) -- (5.5,0) node[right, font=\tiny] {Time};
+                \draw[->] (0,0) -- (0,3) node[above, font=\tiny] {Recon. Error};
+                
+                % Normal region
+                \draw[TuebingenGreen, thick] (0.2, 0.5) -- (0.5, 0.6) -- (0.8, 0.4) -- (1.1, 0.5) -- (1.4, 0.55) -- (1.7, 0.45) -- (2, 0.5) -- (2.3, 0.6);
+                
+                % Anomaly buildup
+                \draw[TuebingenGold, thick] (2.3, 0.6) -- (2.6, 0.7) -- (2.9, 0.9) -- (3.2, 1.2) -- (3.5, 1.5);
+                
+                % Alert region
+                \draw[TuebingenRot, very thick] (3.5, 1.5) -- (3.8, 1.9) -- (4.1, 2.3) -- (4.4, 2.5);
+                
+                % Threshold line
+                \draw[dashed, TuebingenRot] (0, 1.3) -- (5.2, 1.3);
+                \node[font=\tiny, TuebingenRot, right] at (5.2, 1.3) {Threshold};
+                
+                % Labels
+                \node[font=\tiny, TuebingenGreen] at (1.2, 1) {Normal};
+                \node[font=\tiny, TuebingenRot] at (4, 2.8) {Alert!};
+                
+                % Failure marker
+                \draw[TuebingenRot, very thick] (4.8, 0) -- (4.8, 2.7);
+                \node[font=\tiny, TuebingenRot] at (4.8, -0.3) {Failure};
+            \end{tikzpicture}
+        \end{center}
+        
+        \vspace{0.3em}
+        {\small\color{TuebingenGray} \textbf{Result:} Days of early warning before failure, enabling preventive maintenance.}
+    \end{columns}
+    
+    \vspace{0.3em}
+    \begin{center}
+        \small\color{TuebingenGold} \textbf{Bridge:} This encoder→latent→decoder pattern is fundamental to modern generative AI.
+    \end{center}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% II-B.3 From autoencoders to modern generative models (1–2 slides)
+% ------------------------------------------------------------------------------
+
+\begin{frame}{From Autoencoders to Generative AI}
+    \framesubtitle{The conceptual bridge to LLMs and diffusion models}
+    
+    {\color{TuebingenGray} Modern generative models build on the encoder-decoder concept.}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{Autoencoder Paradigm:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{Encoder:} Input → compressed representation
+            \item \textbf{Decoder:} Representation → reconstruct input
+            \item Goal: faithful reconstruction
+        \end{itemize}
+        
+        \vspace{0.5em}
+        \textbf{Generative Insight:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item What if we only use the \textbf{decoder}?
+            \item Feed it a representation → generate output
+            \item Don't reconstruct—\textit{create} something new
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Modern Architectures:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{VAEs:} Learn a structured latent space, sample to generate
+            \item \textbf{Transformers (decoder-only):} Generate text token by token \cite{vaswani2017attention}
+            \item \textbf{Diffusion models:} Learn to denoise, generate by iterative denoising
+        \end{itemize}
+        
+        \vspace{0.3em}
+        {\small\color{TuebingenGreen} All share the concept: \textit{learned representations enable generation}}
+    \end{columns}
+    
+    \vspace{0.5em}
+    \begin{theorembox}{Conceptual Link}
+        \textbf{Encoder} produces embeddings (representations) \\
+        \textbf{Decoder} generates outputs conditioned on representations \\[0.3em]
+        LLMs are essentially very large decoders that generate text conditioned on the prompt.
+    \end{theorembox}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% II-B.4 Optimization, generalization, and failure modes (2–3 slides)
+% ------------------------------------------------------------------------------
+
+\begin{frame}{Training Neural Networks: The Optimization Challenge}
+    \framesubtitle{How models learn from data}
+    
+    {\color{TuebingenGray} Training = finding weights that minimize prediction error on training data.}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.45\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.75]
+                % Loss landscape
+                \draw[thick, TuebingenAnthrazit] plot[smooth, tension=0.7] coordinates {
+                    (0, 2.5) (0.5, 2.2) (1, 1.8) (1.5, 2) (2, 1.5) (2.5, 1.2) (3, 0.8) (3.5, 0.5) (4, 0.6) (4.5, 0.9)
+                };
+                
+                % Gradient descent path
+                \fill[TuebingenRot] (0.3, 2.35) circle (3pt);
+                \draw[->, TuebingenRot, thick] (0.3, 2.35) -- (0.8, 2);
+                \fill[TuebingenRot] (0.8, 2) circle (2pt);
+                \draw[->, TuebingenRot, thick] (0.8, 2) -- (1.5, 1.7);
+                \fill[TuebingenRot] (1.5, 1.7) circle (2pt);
+                \draw[->, TuebingenRot, thick] (1.5, 1.7) -- (2.5, 1.2);
+                \fill[TuebingenRot] (2.5, 1.2) circle (2pt);
+                \draw[->, TuebingenRot, thick] (2.5, 1.2) -- (3.5, 0.5);
+                \fill[TuebingenGreen] (3.5, 0.5) circle (4pt);
+                
+                % Axes
+                \draw[->] (-0.2, 0) -- (5, 0) node[right, font=\tiny] {Weights};
+                \draw[->] (0, 0) -- (0, 3) node[above, font=\tiny] {Loss};
+                
+                % Labels
+                \node[font=\tiny, TuebingenRot] at (0.3, 2.7) {Start};
+                \node[font=\tiny, TuebingenGreen] at (3.5, 0.2) {Minimum};
+            \end{tikzpicture}
+        \end{center}
+        {\small\centering Gradient descent: follow the slope downhill}
+        
+        \column{0.52\textwidth}
+        \textbf{Gradient Descent} \cite{rumelhart1986backprop}:
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Compute error (loss) on batch of data
+            \item Calculate gradient: which direction reduces loss?
+            \item Update weights: small step in that direction
+            \item Repeat millions of times
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Key Hyperparameters:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item \textbf{Learning rate:} Step size (too big = overshoot, too small = slow)
+            \item \textbf{Batch size:} Samples per gradient update
+            \item \textbf{Epochs:} Passes through full dataset
+        \end{itemize}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Overfitting vs Underfitting}
+    \framesubtitle{The fundamental tradeoff in machine learning}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.32\textwidth}
+        \begin{center}
+            {\Large \color{TuebingenCyan} \textbf{Underfitting}}\\[0.3em]
+            \begin{tikzpicture}[scale=0.6]
+                \foreach \i in {1,...,12} {
+                    \pgfmathsetmacro{\x}{0.3*\i}
+                    \pgfmathsetmacro{\y}{0.5 + 0.3*\x + 0.8*rand}
+                    \fill[TuebingenGray] (\x, \y) circle (2pt);
+                }
+                \draw[TuebingenCyan, very thick] (0.3, 1.2) -- (3.6, 1.2);
+                \draw[->] (0,0) -- (4,0);
+                \draw[->] (0,0) -- (0,2.5);
+            \end{tikzpicture}
+        \end{center}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Model too simple
+            \item Misses patterns in data
+            \item High error on \textit{both} train \& test
+        \end{itemize}
+        {\scriptsize\color{TuebingenGray} Fix: more capacity, features, training}
+        
+        \column{0.32\textwidth}
+        \begin{center}
+            {\Large \color{TuebingenGreen} \textbf{Good Fit}}\\[0.3em]
+            \begin{tikzpicture}[scale=0.6]
+                \foreach \i in {1,...,12} {
+                    \pgfmathsetmacro{\x}{0.3*\i}
+                    \pgfmathsetmacro{\y}{0.5 + 0.3*\x + 0.8*rand}
+                    \fill[TuebingenGray] (\x, \y) circle (2pt);
+                }
+                \draw[TuebingenGreen, very thick] (0.3, 0.8) -- (3.6, 1.8);
+                \draw[->] (0,0) -- (4,0);
+                \draw[->] (0,0) -- (0,2.5);
+            \end{tikzpicture}
+        \end{center}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Captures true pattern
+            \item Ignores noise
+            \item Generalizes to new data
+        \end{itemize}
+        {\scriptsize\color{TuebingenGreen} Goal: this is what we want}
+        
+        \column{0.32\textwidth}
+        \begin{center}
+            {\Large \color{TuebingenRot} \textbf{Overfitting}}\\[0.3em]
+            \begin{tikzpicture}[scale=0.6]
+                \foreach \i in {1,...,12} {
+                    \pgfmathsetmacro{\x}{0.3*\i}
+                    \pgfmathsetmacro{\y}{0.5 + 0.3*\x + 0.8*rand}
+                    \fill[TuebingenGray] (\x, \y) circle (2pt);
+                }
+                \draw[TuebingenRot, very thick] plot[smooth, tension=1] coordinates {
+                    (0.3, 0.9) (0.9, 1.5) (1.2, 0.8) (1.8, 1.8) (2.4, 1.2) (3, 1.9) (3.6, 1.4)
+                };
+                \draw[->] (0,0) -- (4,0);
+                \draw[->] (0,0) -- (0,2.5);
+            \end{tikzpicture}
+        \end{center}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Model memorizes training data
+            \item Fits noise, not signal
+            \item Fails on new data
+        \end{itemize}
+        {\scriptsize\color{TuebingenRot} The silent killer of ML projects}
+    \end{columns}
+    
+    \vspace{0.5em}
+    \begin{center}
+        \small\color{TuebingenRot} \textbf{Executive insight:} A model that looks perfect on training data may be worthless in production. Always evaluate on held-out test data.
+    \end{center}
+\end{frame}
+
+\begin{frame}{ML Failure Modes Executives Must Know}
+    \framesubtitle{What causes AI projects to fail in production}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        {\color{TuebingenRot}\textbf{Data Leakage}} — The Silent Killer
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Information from future/test leaks into training
+            \item Model appears perfect but fails in production
+            \item \textbf{Examples:}
+            \begin{itemize}
+                \item Using outcome data as input feature
+                \item Time-series split done wrong
+                \item Same customer in train and test
+            \end{itemize}
+        \end{itemize}
+        
+        \vspace{0.3em}
+        {\color{TuebingenGold}\textbf{Distribution Shift}}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Production data differs from training data
+            \item Model degrades over time
+            \item \textbf{Causes:} Seasonality, market changes, new user segments
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        {\color{TuebingenCyan}\textbf{Label Quality Issues}}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Garbage in = garbage out
+            \item Inconsistent labeling
+            \item Missing or delayed labels
+        \end{itemize}
+        
+        \vspace{0.3em}
+        {\color{TuebingenGreen}\textbf{Evaluation Leakage}}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Test set used repeatedly for tuning
+            \item Overfitting to evaluation benchmark
+            \item "Teaching to the test"
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.5em}
+    \begin{theorembox}{Governance Requirement}
+        Mandate \textbf{evaluation governance}: separate teams for model development and final evaluation, strict hold-out sets, documented data lineage, and drift monitoring in production.
+    \end{theorembox}
+\end{frame}
+
+% ==============================================================================
+% PART II-C: TRANSFORMERS, EMBEDDINGS, CONTEXT WINDOWS (25 minutes)
+% ==============================================================================
+
+% ------------------------------------------------------------------------------
+% II-C.1 Embeddings: what they are and why they matter (3 slides + example)
+% ------------------------------------------------------------------------------
+
+\begin{frame}{Embeddings: The Foundation of Modern AI}
+    \framesubtitle{Mapping discrete objects to meaningful vectors}
+    
+    {\color{TuebingenGray} An embedding maps discrete items (words, products, users) to vectors where \textit{geometry encodes meaning}.}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{The Core Idea:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item Words/items → vectors of numbers
+            \item Similar items → nearby vectors
+            \item Relationships preserved geometrically
+            \item Enables math on concepts
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Classic Example} \cite{mikolov2013word2vec}:
+        \begin{center}
+            \small
+            $\vec{\text{king}} - \vec{\text{man}} + \vec{\text{woman}} \approx \vec{\text{queen}}$
+        \end{center}
+        {\scriptsize\color{TuebingenGray} Vector arithmetic captures semantic relationships}
+        
+        \column{0.48\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.8]
+                % 2D embedding space visualization
+                \fill[TuebingenRot] (0.5, 2.5) circle (3pt) node[right, font=\scriptsize] {king};
+                \fill[TuebingenRot] (0.3, 1.5) circle (3pt) node[right, font=\scriptsize] {man};
+                \fill[TuebingenGold] (2.5, 2.7) circle (3pt) node[right, font=\scriptsize] {queen};
+                \fill[TuebingenGold] (2.3, 1.7) circle (3pt) node[right, font=\scriptsize] {woman};
+                
+                % Relationship arrows
+                \draw[->, TuebingenGray, dashed] (0.5, 2.5) -- (2.5, 2.7);
+                \draw[->, TuebingenGray, dashed] (0.3, 1.5) -- (2.3, 1.7);
+                
+                % More words
+                \fill[TuebingenGreen] (3.5, 0.8) circle (3pt) node[right, font=\scriptsize] {apple};
+                \fill[TuebingenGreen] (3.8, 1.2) circle (3pt) node[right, font=\scriptsize] {orange};
+                \fill[TuebingenGreen] (3.3, 1.0) circle (3pt) node[right, font=\scriptsize] {banana};
+                
+                % Axes
+                \draw[->] (0,0) -- (5,0) node[right, font=\tiny] {Dim 1};
+                \draw[->] (0,0) -- (0,3.5) node[above, font=\tiny] {Dim 2};
+                
+                % Annotation
+                \node[font=\tiny, TuebingenGray] at (2.5, 0.3) {Similar items cluster};
+            \end{tikzpicture}
+        \end{center}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{What Can Be Embedded?}
+    \framesubtitle{Embeddings work for almost any discrete data}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{Text Embeddings:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Words, sentences, documents
+            \item Enable semantic search
+            \item Power RAG systems
+            \item Compare meaning, not keywords
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Image Embeddings:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Images → vectors via CNN/ViT
+            \item Visual similarity search
+            \item Reverse image search
+            \item Content moderation
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{User/Product Embeddings:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Collaborative filtering
+            \item "Users like you bought..."
+            \item Personalized recommendations
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Code Embeddings:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Functions → vectors
+            \item Find similar code
+            \item Semantic code search
+            \item Duplicate detection
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.5em}
+    \begin{center}
+        \small\color{TuebingenRot} \textbf{Key insight:} Embeddings are the universal interface. Text, images, users, products—all become vectors that can be compared, clustered, and retrieved.
+    \end{center}
+\end{frame}
+
+\begin{frame}{Embeddings Example: Semantic Search}
+    \framesubtitle{Finding relevant documents by meaning, not keywords}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{Traditional Keyword Search:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Query: "vacation policy"
+            \item Matches: documents containing "vacation" AND "policy"
+            \item \textcolor{TuebingenRot}{Misses:} "PTO guidelines", "time off procedures", "leave entitlement"
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Semantic Search with Embeddings:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Query → embedding vector
+            \item Find documents with similar vectors
+            \item \textcolor{TuebingenGreen}{Finds:} All semantically related docs, regardless of exact wording
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.75]
+                % Query point
+                \fill[TuebingenRot] (2, 2) circle (5pt);
+                \node[font=\scriptsize, TuebingenRot, above] at (2, 2.2) {Query};
+                
+                % Relevant docs (nearby)
+                \fill[TuebingenGreen] (2.3, 1.6) circle (3pt);
+                \fill[TuebingenGreen] (1.7, 2.3) circle (3pt);
+                \fill[TuebingenGreen] (2.5, 2.2) circle (3pt);
+                \fill[TuebingenGreen] (1.5, 1.8) circle (3pt);
+                
+                % Circle showing retrieval radius
+                \draw[TuebingenGreen, dashed] (2, 2) circle (0.8);
+                
+                % Irrelevant docs (far)
+                \fill[TuebingenGray!50] (0.5, 0.5) circle (2pt);
+                \fill[TuebingenGray!50] (3.8, 0.8) circle (2pt);
+                \fill[TuebingenGray!50] (0.8, 3.2) circle (2pt);
+                \fill[TuebingenGray!50] (3.5, 3) circle (2pt);
+                \fill[TuebingenGray!50] (4, 1.5) circle (2pt);
+                
+                % Frame
+                \draw[TuebingenGray] (0,0) rectangle (4.5, 3.5);
+                \node[font=\tiny, TuebingenGray] at (2.25, -0.3) {Embedding space};
+            \end{tikzpicture}
+        \end{center}
+        
+        {\small\color{TuebingenGray} Retrieve $k$ nearest neighbors}
+    \end{columns}
+    
+    \vspace{0.3em}
+    \begin{theorembox}{Enterprise Value}
+        Embedding-based search is the backbone of \textbf{RAG systems}. \\
+        It enables AI assistants to find relevant internal documents even when users don't know the exact terminology.
+    \end{theorembox}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% II-C.2 Transformer architecture: the minimal correct explanation (4 slides)
+% ------------------------------------------------------------------------------
+
+\begin{frame}{Transformers: The Architecture Behind LLMs}
+    \framesubtitle{Why "Attention Is All You Need"}
+    
+    {\color{TuebingenGray} The Transformer architecture \cite{vaswani2017attention} revolutionized NLP and enabled today's large language models.}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{Before Transformers (RNNs/LSTMs):}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Process text \textit{sequentially}, word by word
+            \item Hard to parallelize → slow training
+            \item Long-range dependencies get "forgotten"
+            \item Limited context window
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{The Transformer Innovation:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Process all tokens \textit{in parallel}
+            \item \textbf{Attention:} Each token can "look at" all others
+            \item No sequential bottleneck
+            \item Scales to massive models
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.7]
+                % Tokens
+                \node[draw, fill=TuebingenBeige, minimum width=0.8cm, font=\scriptsize] (t1) at (0, 0) {The};
+                \node[draw, fill=TuebingenBeige, minimum width=0.8cm, font=\scriptsize] (t2) at (1.2, 0) {cat};
+                \node[draw, fill=TuebingenBeige, minimum width=0.8cm, font=\scriptsize] (t3) at (2.4, 0) {sat};
+                \node[draw, fill=TuebingenBeige, minimum width=0.8cm, font=\scriptsize] (t4) at (3.6, 0) {on};
+                
+                % Attention arrows (all-to-all)
+                \foreach \i in {t1, t2, t3, t4} {
+                    \foreach \j in {t1, t2, t3, t4} {
+                        \draw[->, TuebingenGold!60, thin] (\i.north) to[bend left=40] (\j.north);
+                    }
+                }
+                
+                % Label
+                \node[font=\tiny, TuebingenGold] at (1.8, 1.5) {Self-Attention};
+                \node[font=\tiny, TuebingenGray] at (1.8, -0.7) {Every token attends to every token};
+            \end{tikzpicture}
+        \end{center}
+    \end{columns}
+    
+    \vspace{0.3em}
+    \begin{center}
+        \small\color{TuebingenGreen} \textbf{Result:} Training that took weeks now takes hours. Models can be 1000× larger.
+    \end{center}
+\end{frame}
+
+\begin{frame}{The Attention Mechanism}
+    \framesubtitle{Content-addressable retrieval within the input}
+    
+    {\color{TuebingenGray} Attention lets the model dynamically decide which parts of the input are relevant to each output.}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.50\textwidth}
+        \textbf{Intuition:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item For each token, ask: "What should I pay attention to?"
+            \item Compute relevance scores to all other tokens
+            \item Weight information by relevance
+            \item Aggregate: weighted sum of values
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{The Q-K-V Framework:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{Query (Q):} "What am I looking for?"
+            \item \textbf{Key (K):} "What do I contain?"
+            \item \textbf{Value (V):} "What information do I provide?"
+            \item Score = Query · Key (dot product)
+        \end{itemize}
+        
+        \column{0.47\textwidth}
+        \textbf{Example — Resolving "it":}
+        
+        \vspace{0.3em}
+        {\small "The \textcolor{TuebingenGold}{cat} sat on the mat because \textcolor{TuebingenRot}{it} was tired."}
+        
+        \vspace{0.5em}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.8]
+                \node[font=\small, TuebingenRot] (it) at (2, 2) {it};
+                \node[font=\small, TuebingenGold] (cat) at (0, 0.5) {cat};
+                \node[font=\small, TuebingenGray] (mat) at (2, 0.5) {mat};
+                \node[font=\small, TuebingenGray] (sat) at (4, 0.5) {sat};
+                
+                % Attention weights
+                \draw[->, very thick, TuebingenGold] (it) -- (cat) node[midway, left, font=\tiny] {0.8};
+                \draw[->, thin, TuebingenGray] (it) -- (mat) node[midway, right, font=\tiny] {0.1};
+                \draw[->, thin, TuebingenGray] (it) -- (sat) node[midway, right, font=\tiny] {0.1};
+            \end{tikzpicture}
+        \end{center}
+        
+        {\small\color{TuebingenGray} Attention learns that "it" refers to "cat" with high probability}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Transformer Variants: Encoder, Decoder, and Both}
+    \framesubtitle{Different architectures for different tasks}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.32\textwidth}
+        \begin{center}
+            {\color{TuebingenRot}\textbf{Encoder-Only}}\\[0.2em]
+            {\small (BERT-style)} \cite{devlin2019bert}
+        \end{center}
+        \vspace{0.3em}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Bidirectional attention
+            \item Sees full input at once
+            \item Best for: understanding
+        \end{itemize}
+        \vspace{0.3em}
+        {\scriptsize\color{TuebingenGray} 
+            \textbf{Tasks:} Classification, NER, embeddings, similarity
+        }
+        
+        \column{0.32\textwidth}
+        \begin{center}
+            {\color{TuebingenGold}\textbf{Decoder-Only}}\\[0.2em]
+            {\small (GPT-style)} \cite{brown2020gpt3}
+        \end{center}
+        \vspace{0.3em}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Causal attention (left-to-right)
+            \item Generates token by token
+            \item Best for: generation
+        \end{itemize}
+        \vspace{0.3em}
+        {\scriptsize\color{TuebingenGray} 
+            \textbf{Tasks:} Text generation, chat, code, reasoning
+        }
+        
+        \column{0.32\textwidth}
+        \begin{center}
+            {\color{TuebingenGreen}\textbf{Encoder-Decoder}}\\[0.2em]
+            {\small (T5-style)}
+        \end{center}
+        \vspace{0.3em}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Encoder reads input
+            \item Decoder generates output
+            \item Best for: transformation
+        \end{itemize}
+        \vspace{0.3em}
+        {\scriptsize\color{TuebingenGray} 
+            \textbf{Tasks:} Translation, summarization, Q\&A
+        }
+    \end{columns}
+    
+    \vspace{0.5em}
+    \begin{theorembox}{What You're Using Today}
+        ChatGPT, Claude, Gemini, Llama = \textbf{Decoder-only} transformers \\
+        They generate text left-to-right, predicting the next token given all previous tokens.
+    \end{theorembox}
+\end{frame}
+
+\begin{frame}{How LLMs Generate Text}
+    \framesubtitle{From prompt to completion}
+    
+    {\color{TuebingenGray} Text generation is iterative: predict next token, append, repeat.}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.55\textwidth}
+        \textbf{The Generation Loop:}
+        \begin{enumerate}
+            \setlength\itemsep{0.3em}
+            \item \textbf{Encode prompt} into token IDs
+            \item \textbf{Forward pass}: compute probability distribution over vocabulary
+            \item \textbf{Sample} next token (with temperature)
+            \item \textbf{Append} token to sequence
+            \item \textbf{Repeat} until stop token or max length
+        \end{enumerate}
+        
+        \vspace{0.3em}
+        \textbf{Temperature Controls Randomness:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item $T \rightarrow 0$: Always pick most likely (deterministic)
+            \item $T = 1$: Sample from learned distribution
+            \item $T > 1$: More random/creative
+        \end{itemize}
+        
+        \column{0.42\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.7]
+                % Steps
+                \node[draw, fill=TuebingenBeige, font=\scriptsize, minimum width=3cm] (p) at (0, 3) {Prompt: "The sky is"};
+                
+                \node[draw, fill=TuebingenGold!20, font=\scriptsize, minimum width=3cm] (s1) at (0, 2) {"The sky is \textbf{blue}"};
+                
+                \node[draw, fill=TuebingenGold!20, font=\scriptsize, minimum width=3cm] (s2) at (0, 1) {"The sky is blue \textbf{and}"};
+                
+                \node[draw, fill=TuebingenGold!20, font=\scriptsize, minimum width=3cm] (s3) at (0, 0) {"The sky is blue and \textbf{clear}"};
+                
+                % Arrows
+                \draw[->, TuebingenRot] (p) -- (s1);
+                \draw[->, TuebingenRot] (s1) -- (s2);
+                \draw[->, TuebingenRot] (s2) -- (s3);
+                
+                % Labels
+                \node[font=\tiny, TuebingenGray, right] at (1.8, 2.5) {predict};
+                \node[font=\tiny, TuebingenGray, right] at (1.8, 1.5) {predict};
+                \node[font=\tiny, TuebingenGray, right] at (1.8, 0.5) {predict};
+            \end{tikzpicture}
+        \end{center}
+    \end{columns}
+    
+    \vspace{0.3em}
+    \begin{center}
+        \small\color{TuebingenRot} \textbf{Key insight:} LLMs don't "understand"—they predict statistically likely continuations based on training data patterns.
+    \end{center}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% II-C.3 Context windows: capability, cost, and risk (2 slides + example)
+% ------------------------------------------------------------------------------
+
+\begin{frame}{Context Windows: The Memory Limit}
+    \framesubtitle{What the model can "see" at once}
+    
+    {\color{TuebingenGray} The context window is the maximum number of tokens (prompt + response) the model can process.}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{Context Window Evolution:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item GPT-3 (2020): 4K tokens
+            \item GPT-4 (2023): 8K–128K tokens
+            \item Claude 3 (2024): 200K tokens
+            \item Gemini 1.5 (2024): 1M+ tokens
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{What's a Token?}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Roughly 0.75 words in English
+            \item 4K tokens ≈ 3,000 words ≈ 6 pages
+            \item 128K tokens ≈ a short book
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Why It Matters:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item Larger context = more information available
+            \item Can include more documents, longer conversations
+            \item \textcolor{TuebingenRot}{But:} Compute and cost scale with context
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{The Trade-offs:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{Cost:} Proportional to tokens processed
+            \item \textbf{Latency:} Longer context = slower response
+            \item \textbf{Quality:} "Lost in the middle" problem
+        \end{itemize}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Context Window Strategy: Less Is Often More}
+    \framesubtitle{Smart retrieval beats context stuffing}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        {\color{TuebingenRot}\textbf{Naive Approach:}}\\[0.3em]
+        "Dump everything into context"
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Include all potentially relevant docs
+            \item Max out the context window
+            \item Let the model figure it out
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Problems:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item High cost (pay per token)
+            \item Slower responses
+            \item Model gets distracted by irrelevant info
+            \item "Lost in the middle" — info in middle gets ignored
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        {\color{TuebingenGreen}\textbf{Smart Approach:}}\\[0.3em]
+        "Retrieve only what's relevant"
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Use embeddings to find relevant passages
+            \item Include only top-$k$ most relevant
+            \item Keep context focused and concise
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Benefits:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Lower cost
+            \item Faster responses
+            \item Better answer quality
+            \item Clearer citation/attribution
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.5em}
+    \begin{theorembox}{Design Principle}
+        \textbf{RAG + small context} often outperforms \textbf{no RAG + huge context}. \\
+        Relevance filtering is not just cost optimization—it improves quality.
+    \end{theorembox}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% II-C.4 Tool use and agentic patterns (optional 2 slides)
+% ------------------------------------------------------------------------------
+
+\begin{frame}{Tool Use: Extending LLM Capabilities}
+    \framesubtitle{When generation isn't enough}
+    
+    {\color{TuebingenGray} LLMs can learn to call external tools—calculators, APIs, databases—to overcome their limitations.}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{Why Tool Use?}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item LLMs are bad at math → \textbf{call calculator}
+            \item LLMs have stale knowledge → \textbf{call search API}
+            \item LLMs can't access your data → \textbf{call database}
+            \item LLMs can't take actions → \textbf{call business APIs}
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{How It Works:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Model outputs structured tool call
+            \item System executes tool, returns result
+            \item Model continues with result in context
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Example Flow:}
+        \begin{enumerate}
+            \setlength\itemsep{0.2em}
+            \item User: "What's our Q3 revenue?"
+            \item Model decides: \texttt{query\_database("Q3 revenue")}
+            \item System executes query → returns "\$4.2M"
+            \item Model responds: "Your Q3 revenue was \$4.2M"
+        \end{enumerate}
+        
+        \vspace{0.3em}
+        \textbf{Common Tools:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Code execution (Python interpreter)
+            \item Web search
+            \item Database queries
+            \item API calls (CRM, ERP, etc.)
+        \end{itemize}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Agentic Patterns: Bounded Autonomy}
+    \framesubtitle{Multi-step reasoning with guardrails}
+    
+    {\color{TuebingenGray} Agents combine LLMs + tools + planning to accomplish complex tasks autonomously.}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{What Makes an Agent:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{Planning:} Break task into steps
+            \item \textbf{Tool use:} Execute actions
+            \item \textbf{Memory:} Track progress and context
+            \item \textbf{Reflection:} Evaluate and adjust
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Example — Research Agent:}
+        \begin{enumerate}
+            \setlength\itemsep{0.2em}
+            \item Plan: "Need 3 competitor analyses"
+            \item Search: Query web for each competitor
+            \item Analyze: Extract key info
+            \item Synthesize: Compile report
+            \item Reflect: "Is this complete?"
+        \end{enumerate}
+        
+        \column{0.48\textwidth}
+        {\color{TuebingenRot}\textbf{Governance Requirements:}}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{Permissions:} What can the agent access?
+            \item \textbf{Audit:} Log all tool calls and decisions
+            \item \textbf{Limits:} Max steps, cost caps, time bounds
+            \item \textbf{Human-in-loop:} Approval for sensitive actions
+            \item \textbf{Fail-safes:} What if agent goes off-track?
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.5em}
+    \begin{theorembox}{Executive Caution}
+        Agentic systems are powerful but harder to control. \\
+        Start with \textbf{narrow, well-defined tasks} and \textbf{explicit guardrails}. \\
+        Expand autonomy gradually as you build trust and monitoring capability.
+    \end{theorembox}
+\end{frame}
+
+% ==============================================================================
+% PART II-D: RAG SYSTEMS IN DETAIL (25 minutes)
+% ==============================================================================
+
+\begin{frame}{Part II-D: RAG Systems in Detail}
+    \framesubtitle{25 minutes — The primary lever for enterprise value}
+    
+    \vspace{1em}
+    \begin{center}
+        {\Large\color{TuebingenRot} Retrieval-Augmented Generation}
+        
+        \vspace{0.5em}
+        {\color{TuebingenGray} The architecture pattern that makes LLMs useful for enterprise knowledge}
+    \end{center}
+    
+    \vspace{1em}
+    \textbf{What We'll Cover:}
+    \begin{enumerate}
+        \setlength\itemsep{0.5em}
+        \item Why RAG exists — the parametric memory problem
+        \item The canonical RAG pipeline — 9 stages
+        \item RAG variants — from naive to enterprise-grade
+        \item Evaluation — measuring what matters
+        \item Example walkthrough — a realistic enterprise query
+    \end{enumerate}
+    
+    \vspace{0.5em}
+    \begin{theorembox}{Why This Matters}
+        RAG is how enterprises get \textbf{accurate, grounded, auditable} answers \\
+        from LLMs about their \textbf{own} data. Get this right → unlock value. Get it wrong → liability.
+    \end{theorembox}
+\end{frame}
+
+\begin{frame}{Why RAG Exists: The Parametric Memory Problem}
+    \framesubtitle{Models are not databases}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{The Problem with "Parametric Memory":}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item LLMs store knowledge \textbf{in weights}
+            \item Training data has a \textbf{cutoff date}
+            \item Can't reliably recall \textbf{specific facts}
+            \item No access to \textbf{your proprietary data}
+            \item Can't cite \textbf{authoritative sources}
+        \end{itemize}
+        
+        \vspace{0.5em}
+        \textbf{What Happens Without RAG:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item "Who is our CFO?" → \textcolor{TuebingenRot}{Hallucination}
+            \item "What's our refund policy?" → \textcolor{TuebingenRot}{Outdated info}
+            \item "Show me Q3 numbers" → \textcolor{TuebingenRot}{Made up}
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{RAG = Retrieval + Generation + Citations}
+        
+        \vspace{0.5em}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.75]
+                % Query
+                \node[draw, fill=TuebingenBeige, rounded corners, minimum width=2cm, minimum height=0.6cm] (query) at (0,3) {\footnotesize Query};
+                
+                % Retriever
+                \node[draw, fill=TuebingenCyan!30, rounded corners, minimum width=2cm, minimum height=0.6cm] (retriever) at (0,2) {\footnotesize Retriever};
+                
+                % Documents
+                \node[draw, fill=TuebingenGold!30, rounded corners, minimum width=2cm, minimum height=0.6cm] (docs) at (0,1) {\footnotesize Documents};
+                
+                % LLM
+                \node[draw, fill=TuebingenGreen!30, rounded corners, minimum width=2cm, minimum height=0.6cm] (llm) at (0,0) {\footnotesize LLM};
+                
+                % Answer
+                \node[draw, fill=TuebingenRot!20, rounded corners, minimum width=2cm, minimum height=0.6cm] (answer) at (0,-1) {\footnotesize Answer + Citations};
+                
+                % Arrows
+                \draw[->, thick, TuebingenAnthrazit] (query) -- (retriever);
+                \draw[->, thick, TuebingenAnthrazit] (retriever) -- (docs);
+                \draw[->, thick, TuebingenAnthrazit] (docs) -- (llm);
+                \draw[->, thick, TuebingenAnthrazit] (llm) -- (answer);
+                
+                % Knowledge base
+                \node[draw, fill=TuebingenGray!20, rounded corners, minimum width=1.5cm, minimum height=0.5cm] (kb) at (2.5,1.5) {\footnotesize Knowledge Base};
+                \draw[->, dashed, TuebingenGray] (kb) -- (retriever);
+            \end{tikzpicture}
+        \end{center}
+        
+        \vspace{0.3em}
+        {\small\color{TuebingenGreen}\textbf{Key insight:} Retrieve relevant context at query time, don't rely on model's memory.}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{The Canonical RAG Pipeline: Overview}
+    \framesubtitle{Nine stages from document to answer}
+    
+    \vspace{0.3em}
+    \begin{center}
+        \begin{tikzpicture}[scale=0.8, every node/.style={font=\footnotesize}]
+            % Pipeline stages
+            \node[draw, fill=TuebingenRot!20, rounded corners, minimum width=1.4cm, minimum height=0.7cm] (ingest) at (0,0) {1. Ingest};
+            \node[draw, fill=TuebingenGold!20, rounded corners, minimum width=1.4cm, minimum height=0.7cm] (chunk) at (2,0) {2. Chunk};
+            \node[draw, fill=TuebingenGreen!20, rounded corners, minimum width=1.4cm, minimum height=0.7cm] (embed) at (4,0) {3. Embed};
+            \node[draw, fill=TuebingenCyan!20, rounded corners, minimum width=1.4cm, minimum height=0.7cm] (retrieve) at (6,0) {4. Retrieve};
+            \node[draw, fill=TuebingenRot!30, rounded corners, minimum width=1.4cm, minimum height=0.7cm] (rerank) at (8,0) {5. Rerank};
+            
+            \node[draw, fill=TuebingenGold!30, rounded corners, minimum width=1.4cm, minimum height=0.7cm] (prompt) at (2,-1.5) {6. Prompt};
+            \node[draw, fill=TuebingenGreen!30, rounded corners, minimum width=1.4cm, minimum height=0.7cm] (generate) at (4,-1.5) {7. Generate};
+            \node[draw, fill=TuebingenCyan!30, rounded corners, minimum width=1.4cm, minimum height=0.7cm] (post) at (6,-1.5) {8. Post-proc};
+            \node[draw, fill=TuebingenAnthrazit!20, rounded corners, minimum width=1.4cm, minimum height=0.7cm] (feedback) at (8,-1.5) {9. Feedback};
+            
+            % Arrows
+            \draw[->, thick] (ingest) -- (chunk);
+            \draw[->, thick] (chunk) -- (embed);
+            \draw[->, thick] (embed) -- (retrieve);
+            \draw[->, thick] (retrieve) -- (rerank);
+            \draw[->, thick] (rerank) -- (8, -0.75) -- (prompt);
+            \draw[->, thick] (prompt) -- (generate);
+            \draw[->, thick] (generate) -- (post);
+            \draw[->, thick] (post) -- (feedback);
+            
+            % Feedback loop
+            \draw[->, dashed, TuebingenGray] (feedback) -- (8, -2.5) -- (0, -2.5) -- (ingest);
+        \end{tikzpicture}
+    \end{center}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{Offline (Indexing):}
+        \begin{enumerate}
+            \setlength\itemsep{0.2em}
+            \item \textbf{Ingest:} Parse docs, extract metadata
+            \item \textbf{Chunk:} Split into retrievable units
+            \item \textbf{Embed:} Convert to vectors, index
+        \end{enumerate}
+        
+        \column{0.48\textwidth}
+        \textbf{Online (Query):}
+        \begin{enumerate}
+            \setlength\itemsep{0.2em}
+            \setcounter{enumi}{3}
+            \item \textbf{Retrieve:} Find similar chunks
+            \item \textbf{Rerank:} Improve precision
+            \item \textbf{Prompt:} Assemble context
+            \item \textbf{Generate:} LLM produces answer
+            \item \textbf{Post-process:} Validate, format
+            \item \textbf{Feedback:} Log, evaluate, improve
+        \end{enumerate}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{RAG Pipeline: Ingestion \& Chunking}
+    \framesubtitle{The foundation that determines success or failure}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{1. Ingestion — What to capture:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{Content:} Text, tables, images
+            \item \textbf{Metadata:} Owner, date, source, version
+            \item \textbf{Permissions:} ACLs, classification level
+            \item \textbf{Structure:} Headers, sections, hierarchy
+        \end{itemize}
+        
+        \vspace{0.3em}
+        {\color{TuebingenRot}\textbf{Common Failures:}}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Tables rendered as gibberish
+            \item PDFs with OCR errors
+            \item Missing permission metadata
+            \item Stale documents not removed
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{2. Chunking — Strategy matters:}
+        
+        \vspace{0.3em}
+        \begin{tabular}{@{}ll@{}}
+            \toprule
+            \textbf{Strategy} & \textbf{Best For} \\
+            \midrule
+            Fixed-size & Simple, predictable \\
+            Sentence-based & Natural boundaries \\
+            Paragraph-based & Coherent units \\
+            Section-based & Structured docs \\
+            Semantic & Topic coherence \\
+            Overlapping & Context preservation \\
+            \bottomrule
+        \end{tabular}
+        
+        \vspace{0.5em}
+        {\small\color{TuebingenGray} \textbf{Rule of thumb:} Chunk size should match typical query scope. Too small → missing context. Too large → noise + cost.}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{RAG Pipeline: Embedding, Retrieval, Reranking}
+    \framesubtitle{Finding the needle in the haystack}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.32\textwidth}
+        \textbf{3. Embedding + Indexing:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Convert chunks to vectors
+            \item Store in vector index
+            \item Enable similarity search
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Index Options:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Dedicated vector DB
+            \item Vector extension in existing DB
+            \item Hybrid with keyword index
+        \end{itemize}
+        
+        \column{0.32\textwidth}
+        \textbf{4. Retrieval:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Query → embedding
+            \item Find top-k similar chunks
+            \item Apply filters (permissions, date, source)
+        \end{itemize}
+        
+        \vspace{0.3em}
+        {\color{TuebingenRot}\textbf{Recall vs Precision:}}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item High k → more recall, more noise
+            \item Low k → might miss relevant info
+            \item Balance via reranking
+        \end{itemize}
+        
+        \column{0.32\textwidth}
+        \textbf{5. Reranking:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Take top-N candidates
+            \item Score with cross-encoder
+            \item Return top-K highest
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Why Rerank?}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Embeddings = fast but approximate
+            \item Reranker = slower but precise
+            \item Retrieve 50 → Rerank to 5
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.5em}
+    \begin{theorembox}{Hybrid Retrieval}
+        Combine \textbf{vector search} (semantic similarity) with \textbf{keyword search} (exact terms). \\
+        Essential for: product IDs, legal terms, compliance language, proper nouns.
+    \end{theorembox}
+\end{frame}
+
+\begin{frame}{RAG Pipeline: Generation \& Post-Processing}
+    \framesubtitle{From context to trustworthy answer}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{6. Prompt Assembly:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item System instructions (persona, constraints)
+            \item Retrieved context (with source markers)
+            \item User query
+            \item Output format specification
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{7. Generation:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item LLM produces answer using context
+            \item \textbf{Key instruction:} "Only use provided context"
+            \item Citation markers: [Source 1], [Doc A]
+            \item Refusal when uncertain or no relevant context
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{8. Post-Processing:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{Format validation:} JSON schema, required fields
+            \item \textbf{Citation verification:} Do citations match sources?
+            \item \textbf{PII scrubbing:} Remove leaked sensitive data
+            \item \textbf{Safety checks:} Content policy compliance
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{9. Feedback Loop:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Log query, retrieval, response
+            \item Capture user feedback (thumbs up/down)
+            \item Build evaluation dataset
+            \item Identify retrieval failures
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.5em}
+    {\color{TuebingenGray}\textbf{Executive insight:} The feedback loop is how RAG systems \textbf{improve over time}. Without it, you're flying blind.}
+\end{frame}
+
+\begin{frame}{RAG Variant A: Naive RAG}
+    \framesubtitle{Simple but limited}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.55\textwidth}
+        \textbf{How It Works:}
+        \begin{enumerate}
+            \setlength\itemsep{0.4em}
+            \item Embed query
+            \item Vector search → top-k chunks
+            \item Stuff all chunks into prompt
+            \item Generate answer
+        \end{enumerate}
+        
+        \vspace{0.5em}
+        \textbf{When It's Sufficient:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Small, homogeneous document set
+            \item Simple factual queries
+            \item Low-stakes use cases
+            \item Proof of concept / demos
+        \end{itemize}
+        
+        \column{0.42\textwidth}
+        {\color{TuebingenRot}\textbf{Failure Modes:}}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{Irrelevant retrieval:} Semantic similarity ≠ relevance
+            \item \textbf{Hallucination despite context:} Model ignores or misinterprets
+            \item \textbf{Poor chunking:} Context split across chunks
+            \item \textbf{No ranking:} Garbage in first position
+            \item \textbf{No permissions:} Returns unauthorized content
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.5em}
+    \begin{theorembox}{Executive Guidance}
+        Naive RAG is a \textbf{starting point}, not a production architecture. \\
+        Fine for demos, but enterprise deployment requires the variants that follow.
+    \end{theorembox}
+\end{frame}
+
+\begin{frame}{RAG Variant B: Hybrid Retrieval}
+    \framesubtitle{Keyword + Vector = Best of both}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{The Problem:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Vector search: great for \textbf{semantic} similarity
+            \item But fails on: \textbf{exact terms}, IDs, codes, names
+            \item "Find policy ABC-123" → vector search returns wrong policy
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{The Solution:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Run \textbf{both} keyword (BM25) and vector search
+            \item Combine results with reciprocal rank fusion
+            \item Rerank the combined set
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{When to Use Hybrid:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{Legal/compliance:} Exact clause references
+            \item \textbf{Technical docs:} Error codes, product IDs
+            \item \textbf{Financial:} Account numbers, ticker symbols
+            \item \textbf{HR:} Policy numbers, form names
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Implementation:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Elasticsearch + vector plugin
+            \item PostgreSQL + pgvector + FTS
+            \item Dedicated hybrid search services
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.5em}
+    {\color{TuebingenGray}\textbf{Rule of thumb:} If your corpus has important exact-match terms, hybrid is not optional.}
+\end{frame}
+
+\begin{frame}{RAG Variant C: Hierarchical RAG}
+    \framesubtitle{Coarse-to-fine retrieval}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{The Problem:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Flat retrieval loses document structure
+            \item Similar passages from different docs get mixed
+            \item Hard to trace "which document said this"
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Hierarchical Approach:}
+        \begin{enumerate}
+            \setlength\itemsep{0.3em}
+            \item \textbf{Level 1:} Retrieve relevant \textbf{documents}
+            \item \textbf{Level 2:} Within docs, retrieve \textbf{sections}
+            \item \textbf{Level 3:} Within sections, retrieve \textbf{passages}
+        \end{enumerate}
+        
+        \column{0.48\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.7]
+                % Documents level
+                \node[draw, fill=TuebingenRot!20, rounded corners] (docs) at (0,2.5) {\footnotesize Documents};
+                \draw[fill=TuebingenGray!10] (-1.5,1.8) rectangle (-0.5,2.2);
+                \draw[fill=TuebingenGold!30] (-0.3,1.8) rectangle (0.7,2.2);
+                \draw[fill=TuebingenGray!10] (0.9,1.8) rectangle (1.9,2.2);
+                
+                % Sections level
+                \node[draw, fill=TuebingenGold!30, rounded corners] (secs) at (0,1) {\footnotesize Sections};
+                \draw[fill=TuebingenGray!10] (-1,0.3) rectangle (-0.3,0.7);
+                \draw[fill=TuebingenGreen!30] (0,0.3) rectangle (0.7,0.7);
+                \draw[fill=TuebingenGray!10] (1,0.3) rectangle (1.7,0.7);
+                
+                % Passages level
+                \node[draw, fill=TuebingenGreen!30, rounded corners] (pass) at (0,-0.5) {\footnotesize Passages};
+                
+                % Arrows
+                \draw[->, thick] (0,2.5) -- (0,1.4);
+                \draw[->, thick] (0,0.9) -- (0,0);
+            \end{tikzpicture}
+        \end{center}
+        
+        \vspace{0.3em}
+        \textbf{Benefits:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Better traceability
+            \item Reduces context noise
+            \item Respects document boundaries
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.3em}
+    {\color{TuebingenGray}\textbf{Best for:} Large document collections with clear structure (manuals, policies, legal).}
+\end{frame}
+
+\begin{frame}{RAG Variant D: Multi-Query RAG}
+    \framesubtitle{Multiple perspectives, better recall}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{The Problem:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item User query may be ambiguous
+            \item Single embedding may miss relevant docs
+            \item Different phrasings match different content
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Multi-Query Approach:}
+        \begin{enumerate}
+            \setlength\itemsep{0.3em}
+            \item LLM generates 3-5 query variations
+            \item Run retrieval for each variation
+            \item Merge and deduplicate results
+            \item Rerank combined set
+        \end{enumerate}
+        
+        \column{0.48\textwidth}
+        \textbf{Example:}
+        
+        \vspace{0.3em}
+        \textbf{Original:} "How do I get reimbursed?"
+        
+        \vspace{0.2em}
+        \textbf{Generated variations:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item "expense reimbursement process"
+            \item "submit expenses for payment"
+            \item "travel expense policy"
+            \item "reimbursement form submission"
+        \end{itemize}
+        
+        \vspace{0.3em}
+        {\color{TuebingenRot}\textbf{Trade-offs:}}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Higher latency (multiple retrievals)
+            \item Higher cost (LLM for query gen)
+            \item Risk of query drift
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.3em}
+    {\color{TuebingenGray}\textbf{Best for:} Ambiguous queries, diverse document language, high-stakes answers where recall matters.}
+\end{frame}
+
+\begin{frame}{RAG Variant E: GraphRAG / Knowledge Graph}
+    \framesubtitle{Beyond embedding similarity}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{The Problem:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Embeddings capture similarity, not relationships
+            \item "Who reports to whom?" needs structure
+            \item Multi-hop reasoning across entities
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{GraphRAG Approach:}
+        \begin{enumerate}
+            \setlength\itemsep{0.3em}
+            \item Extract \textbf{entities} from documents
+            \item Build \textbf{relationships} (owns, reports-to, depends-on)
+            \item Query combines graph traversal + vector search
+            \item Context includes entity relationships
+        \end{enumerate}
+        
+        \column{0.48\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.65]
+                % Nodes
+                \node[draw, circle, fill=TuebingenRot!30, minimum size=0.8cm, font=\tiny] (a) at (0,2) {Policy A};
+                \node[draw, circle, fill=TuebingenGold!30, minimum size=0.8cm, font=\tiny] (b) at (2,2) {Dept X};
+                \node[draw, circle, fill=TuebingenGreen!30, minimum size=0.8cm, font=\tiny] (c) at (1,0.5) {Person Y};
+                \node[draw, circle, fill=TuebingenCyan!30, minimum size=0.8cm, font=\tiny] (d) at (3,0.5) {System Z};
+                
+                % Edges
+                \draw[->, thick] (a) -- node[above, font=\tiny] {governs} (b);
+                \draw[->, thick] (b) -- node[left, font=\tiny] {owns} (c);
+                \draw[->, thick] (c) -- node[below, font=\tiny] {manages} (d);
+                \draw[->, thick] (a) -- node[left, font=\tiny] {applies-to} (d);
+            \end{tikzpicture}
+        \end{center}
+        
+        \vspace{0.3em}
+        \textbf{Strong For:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Organizational knowledge
+            \item Ownership and accountability
+            \item Dependency tracking
+            \item Compliance traceability
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.3em}
+    {\color{TuebingenRot}\textbf{Investment required:} Entity extraction, schema design, ongoing maintenance. High value but high cost.}
+\end{frame}
+
+\begin{frame}{RAG Variant F: Text-to-SQL / Structured RAG}
+    \framesubtitle{When the answer lives in a database}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{The Problem:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Many enterprise answers are in \textbf{databases}
+            \item "What was Q3 revenue?" needs SQL, not document retrieval
+            \item RAG over documents can't give precise KPIs
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Text-to-SQL Approach:}
+        \begin{enumerate}
+            \setlength\itemsep{0.3em}
+            \item Natural language query
+            \item LLM generates SQL (with schema context)
+            \item Execute SQL against database
+            \item LLM explains results
+        \end{enumerate}
+        
+        \column{0.48\textwidth}
+        \textbf{Example Flow:}
+        
+        \vspace{0.3em}
+        \textbf{User:} "Top 5 customers by revenue this quarter"
+        
+        \vspace{0.2em}
+        \textbf{Generated SQL:}
+        \begin{codebox}
+            SELECT customer, SUM(revenue)\\
+            FROM orders\\
+            WHERE quarter = 'Q3'\\
+            GROUP BY customer\\
+            ORDER BY 2 DESC LIMIT 5;
+        \end{codebox}
+        
+        \vspace{0.2em}
+        {\color{TuebingenRot}\textbf{Critical:}}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item SQL validation before execution
+            \item Permission checks
+            \item Query cost/timeout limits
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.3em}
+    {\color{TuebingenGray}\textbf{Best for:} Analytics, KPIs, operational metrics where \textbf{correctness} matters and data is structured.}
+\end{frame}
+
+\begin{frame}{RAG Variant G: Code/Repository RAG}
+    \framesubtitle{Specialized retrieval for software artifacts}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{The Challenge:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Code has different structure than prose
+            \item Functions, classes, imports, call graphs
+            \item Need to retrieve \textbf{relevant code context}
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{What to Index:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Source code (functions, classes)
+            \item Documentation (docstrings, README)
+            \item Architecture Decision Records (ADRs)
+            \item Issue tickets and PRs
+            \item API specifications
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Chunking Strategies for Code:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{Function-level:} Natural code units
+            \item \textbf{Class-level:} Object context
+            \item \textbf{File-level:} Module context
+            \item \textbf{Dependency-aware:} Include imports
+            \item \textbf{Call-graph aware:} Related functions
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Use Cases:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item "How does authentication work?"
+            \item "Find usages of deprecated API"
+            \item "What does this error mean?"
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.3em}
+    {\color{TuebingenGray}\textbf{Key insight:} Code assistants are RAG systems with specialized indexing and retrieval for software.}
+\end{frame}
+
+\begin{frame}{Enterprise RAG: Permissions \& Audit}
+    \framesubtitle{The governance layer that makes RAG safe}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        {\color{TuebingenRot}\textbf{The Risk:}}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item RAG can expose \textbf{unauthorized data}
+            \item "Summarize all HR docs" → returns confidential info
+            \item UI-level permissions are \textbf{not enough}
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Permission Enforcement:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{At indexing:} Store ACLs with chunks
+            \item \textbf{At retrieval:} Filter by user permissions
+            \item \textbf{At generation:} Don't mix authorization levels
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Audit Requirements:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{What was retrieved?} Source IDs, chunks
+            \item \textbf{What was generated?} Full response
+            \item \textbf{Who asked?} User identity
+            \item \textbf{When?} Timestamp
+            \item \textbf{Why these sources?} Relevance scores
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Enables:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Compliance investigation
+            \item Quality debugging
+            \item Continuous improvement
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.5em}
+    \begin{theorembox}{Executive Mandate}
+        Every RAG deployment must answer: \textbf{"What sources influenced this answer?"} \\
+        If you can't answer that, you're not ready for production.
+    \end{theorembox}
+\end{frame}
+
+\begin{frame}{Evaluating RAG Systems}
+    \framesubtitle{Measuring what matters}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{Retrieval Metrics:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{Recall@k:} Did we retrieve the right docs?
+            \item \textbf{Precision@k:} How much noise in top-k?
+            \item \textbf{MRR:} Where does first relevant doc appear?
+            \item \textbf{nDCG:} Ranking quality
+        \end{itemize}
+        
+        \vspace{0.3em}
+        {\color{TuebingenGray}\textbf{Key insight:} If retrieval fails, generation can't succeed. Measure retrieval separately.}
+        
+        \column{0.48\textwidth}
+        \textbf{End-to-End Metrics:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{Groundedness:} Is answer supported by sources?
+            \item \textbf{Citation accuracy:} Do citations match claims?
+            \item \textbf{Factuality:} Is answer correct?
+            \item \textbf{Completeness:} Did we answer the question?
+            \item \textbf{Refusal behavior:} Does it refuse appropriately?
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.5em}
+    \textbf{Building Your Evaluation Set:}
+    \begin{enumerate}
+        \setlength\itemsep{0.2em}
+        \item Collect realistic queries from users
+        \item Identify authoritative source for each answer
+        \item Create "golden answers" with expert review
+        \item Track which sources should be retrieved
+        \item Run automated + human evaluation regularly
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{RAG Example: Enterprise Policy Query}
+    \framesubtitle{A realistic walkthrough}
+    
+    \vspace{0.3em}
+    \textbf{User Query:} "What is our policy for remote work, and who approves exceptions?"
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{1. Retrieval Results:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item[$\checkmark$] HR-Policy-2024-Remote-Work.pdf (score: 0.92)
+            \item[$\checkmark$] Exception-Approval-Process.docx (score: 0.87)
+            \item[$\times$] Travel-Policy.pdf (score: 0.71, filtered)
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{2. Reranking:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Cross-encoder promotes Exception doc
+            \item Final context: 2 docs, 4 chunks
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{3. Generated Answer:}
+        
+        {\small "Our remote work policy (HR-2024-RW) allows up to 3 days/week remote for eligible roles. \textbf{[Source 1, §2.1]}
+        
+        Exceptions require approval from your department head and HR Business Partner. \textbf{[Source 2, §4.2]}
+        
+        Submit exception requests via ServiceNow."}
+        
+        \vspace{0.3em}
+        \textbf{4. Audit Log:}
+        {\footnotesize Query ID, User, Timestamp, Sources used, Confidence scores}
+    \end{columns}
+    
+    \vspace{0.5em}
+    {\color{TuebingenGreen}\textbf{Key features:} Citations, specific references, actionable answer, traceable to sources.}
+\end{frame}
+
+\begin{frame}{RAG: Executive Summary}
+    \framesubtitle{Key takeaways for decision-makers}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{RAG Is The Enterprise Pattern:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item Grounds LLMs in \textbf{your} knowledge
+            \item Enables \textbf{citations} and \textbf{audit}
+            \item Keeps data \textbf{current} without retraining
+            \item Respects \textbf{permissions} and \textbf{compliance}
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Choose Your Variant:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Start with \textbf{hybrid retrieval}
+            \item Add \textbf{reranking} for precision
+            \item Use \textbf{hierarchical} for large doc sets
+            \item Add \textbf{GraphRAG} for relationships
+            \item Use \textbf{Text-to-SQL} for structured data
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Non-Negotiable Requirements:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item Permission enforcement at retrieval
+            \item Complete audit logging
+            \item Evaluation set and metrics
+            \item Feedback loop for improvement
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Success Criteria:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Can you trace every answer to sources?
+            \item Can you measure retrieval quality?
+            \item Can you prove permission compliance?
+            \item Can you show improvement over time?
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.5em}
+    \begin{theorembox}{The Bottom Line}
+        RAG transforms LLMs from \textbf{impressive demos} into \textbf{trustworthy enterprise tools}. \\
+        The investment is in the \textbf{retrieval infrastructure}, not the model.
+    \end{theorembox}
+\end{frame}
+
+% ==============================================================================
+% PART II-E: BENCHMARKING, TESTING, MONITORING (10 minutes)
+% ==============================================================================
+
+\begin{frame}{Part II-E: Benchmarking, Testing \& Monitoring}
+    \framesubtitle{10 minutes — The discipline that separates production from prototype}
+    
+    \vspace{1em}
+    \begin{center}
+        {\Large\color{TuebingenRot} Evaluation Discipline}
+        
+        \vspace{0.5em}
+        {\color{TuebingenGray} How to know if your AI system actually works}
+    \end{center}
+    
+    \vspace{1em}
+    \textbf{What We'll Cover:}
+    \begin{enumerate}
+        \setlength\itemsep{0.5em}
+        \item Why benchmarks matter — and their limits
+        \item Train/validation/test splits — the foundation of trust
+        \item Production monitoring — because deployment is just the beginning
+    \end{enumerate}
+    
+    \vspace{0.5em}
+    \begin{theorembox}{Why This Matters}
+        Without rigorous evaluation, you can't distinguish a \textbf{working system} from a \textbf{lucky demo}. \\
+        Evaluation governance is as important as model selection.
+    \end{theorembox}
+\end{frame}
+
+\begin{frame}{Why Benchmarks Matter}
+    \framesubtitle{The common language of AI capabilities}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{Benchmarks Drive Decisions:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{Vendor selection:} "Model X scores 90\% on MMLU"
+            \item \textbf{Progress tracking:} "We improved 5\% on our task"
+            \item \textbf{Research direction:} Community focuses on benchmark gaps
+            \item \textbf{Investment:} Benchmark gains attract funding
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Common Benchmarks:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item \textbf{MMLU:} Multi-task language understanding
+            \item \textbf{HumanEval:} Code generation
+            \item \textbf{MATH:} Mathematical reasoning
+            \item \textbf{TruthfulQA:} Factual accuracy
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        {\color{TuebingenRot}\textbf{Critical Caveat:}}
+        
+        \vspace{0.5em}
+        \begin{center}
+            \fbox{\parbox{0.9\linewidth}{\centering Benchmark performance $\neq$ \\ Your business task performance}}
+        \end{center}
+        
+        \vspace{0.5em}
+        \textbf{Why The Gap Exists:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Your data distribution differs
+            \item Your success criteria differ
+            \item Your failure costs differ
+            \item Benchmark contamination in training
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.5em}
+    {\color{TuebingenGray}\textbf{Executive implication:} Use benchmarks for initial screening, but \textbf{build your own evaluation set} for deployment decisions.}
+\end{frame}
+
+\begin{frame}{Train / Validation / Test Splits}
+    \framesubtitle{The foundation of trustworthy evaluation}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.55\textwidth}
+        \textbf{The Three-Way Split:}
+        
+        \vspace{0.3em}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.8]
+                % Data bar
+                \draw[fill=TuebingenCyan!40] (0,0) rectangle (4,0.8);
+                \draw[fill=TuebingenGold!40] (4,0) rectangle (5.5,0.8);
+                \draw[fill=TuebingenRot!40] (5.5,0) rectangle (7,0.8);
+                
+                % Labels
+                \node[font=\footnotesize] at (2, 0.4) {Train (70\%)};
+                \node[font=\footnotesize] at (4.75, 0.4) {Val (15\%)};
+                \node[font=\footnotesize] at (6.25, 0.4) {Test (15\%)};
+                
+                % Purposes
+                \node[font=\tiny, align=center] at (2, -0.4) {Fit model\\parameters};
+                \node[font=\tiny, align=center] at (4.75, -0.4) {Tune\\decisions};
+                \node[font=\tiny, align=center] at (6.25, -0.4) {Final\\evaluation};
+            \end{tikzpicture}
+        \end{center}
+        
+        \vspace{0.5em}
+        \textbf{Purpose of Each:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{Training:} Model learns from this data
+            \item \textbf{Validation:} Guide hyperparameter choices, early stopping
+            \item \textbf{Test:} Final, unbiased performance estimate
+        \end{itemize}
+        
+        \column{0.42\textwidth}
+        {\color{TuebingenRot}\textbf{Leakage — The Silent Killer:}}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{Temporal:} Future data in training
+            \item \textbf{Identity:} Same customer in train/test
+            \item \textbf{Duplicate:} Same example appears twice
+            \item \textbf{Feature:} Target encoded in features
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Symptoms of Leakage:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item "Too good to be true" test scores
+            \item Model fails in production
+            \item Performance degrades over time
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.3em}
+    {\color{TuebingenGray}\textbf{Rule:} Test set should \textbf{never} influence any decision during development. Touch it once, at the end.}
+\end{frame}
+
+\begin{frame}{Evaluation Governance}
+    \framesubtitle{Process discipline for trustworthy results}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{Who Can See What, When:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{Training data:} Available to developers
+            \item \textbf{Validation data:} Available during development
+            \item \textbf{Test data:} \textcolor{TuebingenRot}{Restricted access}
+            \item \textbf{Test results:} Run by independent party
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Why Governance Matters:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Repeated test usage → overfitting
+            \item Public leaderboards incentivize gaming
+            \item Business decisions need unbiased estimates
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Practical Process:}
+        \begin{enumerate}
+            \setlength\itemsep{0.4em}
+            \item Create test set at project start
+            \item Lock it away (separate repo/access)
+            \item Develop using train + validation only
+            \item Run test evaluation \textbf{once} for go/no-go
+            \item Document results, don't iterate
+        \end{enumerate}
+        
+        \vspace{0.3em}
+        \textbf{For LLMs/RAG:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item "Golden set" of Q/A pairs
+            \item Expert-validated answers
+            \item Versioned and maintained
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.5em}
+    \begin{theorembox}{Executive Mandate}
+        Require documented evaluation governance for every AI project. \\
+        Ask: "Who has access to test data? How many times has it been used?"
+    \end{theorembox}
+\end{frame}
+
+\begin{frame}{Production Monitoring: Because Deployment Is Just The Beginning}
+    \framesubtitle{Model monitoring is product monitoring}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{What to Monitor:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{Input drift:} Are queries changing?
+            \item \textbf{Output quality:} Hallucination rate, refusals
+            \item \textbf{Retrieval health:} Empty results, low scores
+            \item \textbf{Latency:} Response time percentiles
+            \item \textbf{Cost:} Tokens used, API spend
+            \item \textbf{Security:} Injection attempts, data exposure
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Alert Thresholds:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textcolor{TuebingenGold}{Warning:} 10\% drop in user satisfaction
+            \item \textcolor{TuebingenRot}{Critical:} Retrieval failure rate > 5\%
+            \item \textcolor{TuebingenRot}{Critical:} PII detected in outputs
+            \item \textcolor{TuebingenGold}{Warning:} Latency p95 > 5 seconds
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Feedback Integration:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item User thumbs up/down
+            \item Escalation to human
+            \item Correction submissions
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.5em}
+    \textbf{The Monitoring Stack:}
+    \begin{center}
+        \begin{tikzpicture}[scale=0.8, font=\footnotesize]
+            \node[draw, fill=TuebingenBeige, rounded corners, minimum width=2cm] (logs) at (0,0) {Logs};
+            \node[draw, fill=TuebingenCyan!30, rounded corners, minimum width=2cm] (metrics) at (3,0) {Metrics};
+            \node[draw, fill=TuebingenGold!30, rounded corners, minimum width=2cm] (alerts) at (6,0) {Alerts};
+            \node[draw, fill=TuebingenGreen!30, rounded corners, minimum width=2cm] (dashboard) at (9,0) {Dashboard};
+            
+            \draw[->, thick] (logs) -- (metrics);
+            \draw[->, thick] (metrics) -- (alerts);
+            \draw[->, thick] (alerts) -- (dashboard);
+        \end{tikzpicture}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Act II: Complete Summary}
+    \framesubtitle{What executives now understand about how AI works}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{Part A — ML Foundations:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Supervised/unsupervised/RL taxonomy
+            \item Classical methods still valuable
+            \item Right tool for right problem
+        \end{itemize}
+        
+        \vspace{0.2em}
+        \textbf{Part B — Deep Learning:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Learned representations are key
+            \item Optimization is about generalization
+            \item Failure modes are predictable
+        \end{itemize}
+        
+        \vspace{0.2em}
+        \textbf{Part C — Transformers:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Embeddings enable semantic search
+            \item Attention enables context understanding
+            \item Context windows have trade-offs
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Part D — RAG Systems:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item RAG grounds LLMs in your data
+            \item Multiple variants for different needs
+            \item Permissions and audit are mandatory
+        \end{itemize}
+        
+        \vspace{0.2em}
+        \textbf{Part E — Evaluation:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Benchmarks ≠ your task
+            \item Test set governance prevents self-deception
+            \item Production monitoring is continuous
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.5em}
+    \begin{theorembox}{The Meta-Lesson}
+        Modern AI is \textbf{systems engineering}: model + retrieval + evaluation + monitoring. \\
+        Success requires \textbf{all} components, not just a good model.
+    \end{theorembox}
+    
+    \vspace{0.3em}
+    {\color{TuebingenGray}\textbf{Next:} Act III — How to apply these systems to create business value.}
+\end{frame}

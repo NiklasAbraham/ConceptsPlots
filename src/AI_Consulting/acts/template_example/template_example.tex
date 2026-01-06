@@ -1,0 +1,33 @@
+\providecommand{\framesource}[1]{}
+
+% Fallbacks for environments if not defined (for standalone compile)
+% Template Example for Slide Format
+\section{Template Example}
+
+\begin{frame}{Template: Title Slide}
+    \framesource{Template Example}
+    \begin{itemize}
+        \item This is a sample bullet point
+        \item Use \texttt{theorembox} for key concepts
+        \item Use \texttt{codebox} for code
+        \item Add figures from the figures/ subfolder
+    \end{itemize}
+\end{frame}
+
+\begin{theorembox}{Key Concept}
+This is a theorem box for highlighting important concepts.
+\end{theorembox}
+
+\begin{codebox}
+\begin{lstlisting}[language=Python]
+def example():
+    print("This is a code example")
+\end{lstlisting}
+\end{codebox}
+
+% Example figure usage:
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=0.7\textwidth]{acts/template_example/figures/example_figure.png}
+%     \caption{Example Figure}
+% \end{figure}

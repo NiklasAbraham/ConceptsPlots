@@ -1,0 +1,1312 @@
+% Act III — Business Application Patterns and Value (70 minutes)
+% ==============================================================================
+\section{Business Application Patterns}
+
+% ==============================================================================
+% SECTION 3.1: PATTERN CATALOG
+% ==============================================================================
+
+\begin{frame}{Act III: Business Application Patterns}
+    \framesubtitle{70 minutes — From technical understanding to business value}
+    
+    \vspace{0.5em}
+    \begin{center}
+        {\Large\color{TuebingenRot} Converting AI Capabilities into Business Outcomes}
+        
+        \vspace{0.3em}
+        {\color{TuebingenGray} Six proven patterns for enterprise AI deployment}
+    \end{center}
+    
+    \vspace{0.5em}
+    \textbf{What We'll Cover:}
+    \begin{enumerate}
+        \setlength\itemsep{0.4em}
+        \item Pattern catalog overview
+        \item Pattern 1: Enterprise knowledge assistant (RAG)
+        \item Pattern 2: Customer support augmentation
+        \item Pattern 3: Document \& workflow automation
+        \item Pattern 4: Software engineering acceleration
+        \item Pattern 5: Decision intelligence
+        \item Pattern 6: Operations and quality
+        \item Why pilots fail and what success looks like
+    \end{enumerate}
+    
+    \vspace{0.3em}
+    \begin{theorembox}{Purpose of This Act}
+        Apply Act II's technical foundation to templates executives can \textbf{fund}, \textbf{govern}, and \textbf{scale}.
+    \end{theorembox}
+\end{frame}
+
+\begin{frame}{The Six Enterprise AI Patterns}
+    \framesubtitle{A taxonomy of proven applications}
+    
+    \vspace{0.3em}
+    \begin{center}
+        \begin{tikzpicture}[scale=0.85, every node/.style={font=\small}]
+            % Center node
+            \node[draw, circle, fill=TuebingenRot!20, minimum size=2cm, align=center] (center) at (0,0) {Enterprise\\AI Patterns};
+            
+            % Surrounding nodes
+            \node[draw, rounded corners, fill=TuebingenCyan!30, minimum width=2.8cm, minimum height=0.8cm, align=center] (p1) at (-3.5, 2) {1. Knowledge\\Assistant};
+            \node[draw, rounded corners, fill=TuebingenGold!30, minimum width=2.8cm, minimum height=0.8cm, align=center] (p2) at (0, 3) {2. Customer\\Support};
+            \node[draw, rounded corners, fill=TuebingenGreen!30, minimum width=2.8cm, minimum height=0.8cm, align=center] (p3) at (3.5, 2) {3. Document\\Automation};
+            \node[draw, rounded corners, fill=TuebingenRot!30, minimum width=2.8cm, minimum height=0.8cm, align=center] (p4) at (-3.5, -2) {4. Software\\Engineering};
+            \node[draw, rounded corners, fill=TuebingenAnthrazit!20, minimum width=2.8cm, minimum height=0.8cm, align=center] (p5) at (0, -3) {5. Decision\\Intelligence};
+            \node[draw, rounded corners, fill=TuebingenBeige, minimum width=2.8cm, minimum height=0.8cm, align=center] (p6) at (3.5, -2) {6. Operations\\\& Quality};
+            
+            % Lines
+            \draw[thick, TuebingenGray] (center) -- (p1);
+            \draw[thick, TuebingenGray] (center) -- (p2);
+            \draw[thick, TuebingenGray] (center) -- (p3);
+            \draw[thick, TuebingenGray] (center) -- (p4);
+            \draw[thick, TuebingenGray] (center) -- (p5);
+            \draw[thick, TuebingenGray] (center) -- (p6);
+        \end{tikzpicture}
+    \end{center}
+    
+    \vspace{0.3em}
+    {\color{TuebingenGray}\textbf{Key insight:} Each pattern has distinct architecture, ROI levers, risks, and governance needs. One size does not fit all.}
+\end{frame}
+
+% ==============================================================================
+% SECTION 3.2: PATTERN 1 — ENTERPRISE KNOWLEDGE ASSISTANT
+% ==============================================================================
+
+\begin{frame}{Pattern 1: Enterprise Knowledge Assistant}
+    \framesubtitle{RAG-powered internal knowledge access}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{What It Is:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Natural language Q\&A over internal knowledge
+            \item RAG architecture with citations
+            \item Self-service for employees
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Use Cases:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{HR:} Policies, benefits, procedures
+            \item \textbf{IT:} Troubleshooting, how-to guides
+            \item \textbf{Legal:} Compliance, contract terms
+            \item \textbf{Product:} Specs, documentation
+            \item \textbf{Sales:} Competitive intel, pricing
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Architecture:}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.65, font=\footnotesize]
+                \node[draw, fill=TuebingenBeige, rounded corners] (user) at (0,2.5) {Employee};
+                \node[draw, fill=TuebingenCyan!30, rounded corners] (chat) at (0,1.5) {Chat Interface};
+                \node[draw, fill=TuebingenGreen!30, rounded corners] (rag) at (0,0.5) {RAG System};
+                \node[draw, fill=TuebingenGold!30, rounded corners] (kb) at (-1.5,-0.5) {Knowledge Base};
+                \node[draw, fill=TuebingenRot!30, rounded corners] (acl) at (1.5,-0.5) {ACL/Audit};
+                
+                \draw[->, thick] (user) -- (chat);
+                \draw[->, thick] (chat) -- (rag);
+                \draw[->, thick] (rag) -- (kb);
+                \draw[->, thick] (rag) -- (acl);
+            \end{tikzpicture}
+        \end{center}
+        
+        \vspace{0.3em}
+        \textbf{Key Components:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Document ingestion pipeline
+            \item Vector + keyword search
+            \item Permission-aware retrieval
+            \item Citation generation
+        \end{itemize}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Knowledge Assistant: ROI Levers}
+    \framesubtitle{Where the value comes from}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{Time Savings:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{Time-to-answer:} Minutes → seconds
+            \item \textbf{Search efficiency:} Find vs hunt
+            \item \textbf{Onboarding:} Self-service learning
+            \item \textbf{Expert availability:} Reduce interruptions
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Typical Metrics:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Avg query resolution time
+            \item Ticket deflection rate
+            \item Employee satisfaction (survey)
+            \item Knowledge coverage \%
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Quality Improvements:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{Consistency:} Same answer every time
+            \item \textbf{Accuracy:} Grounded in authoritative sources
+            \item \textbf{Completeness:} Finds across silos
+            \item \textbf{Auditability:} Traceable answers
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Example ROI Calculation:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item 10,000 employees
+            \item 5 policy questions/week each
+            \item 10 min saved per question
+            \item = 43,000 hours/year saved
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.3em}
+    {\color{TuebingenGray}\textbf{Executive insight:} Knowledge assistants have clear, measurable ROI. Start here if you need quick wins.}
+\end{frame}
+
+\begin{frame}{Knowledge Assistant: Risks \& Mitigations}
+    \framesubtitle{What can go wrong and how to prevent it}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        {\color{TuebingenRot}\textbf{Risk 1: Data Exposure}}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Unauthorized access to sensitive docs
+            \item Cross-tenant information leakage
+        \end{itemize}
+        {\color{TuebingenGreen}\textbf{Mitigation:}}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Permission enforcement at retrieval
+            \item Inherit ACLs from source systems
+            \item Audit every query
+        \end{itemize}
+        
+        \vspace{0.3em}
+        {\color{TuebingenRot}\textbf{Risk 2: Hallucination}}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Plausible but wrong answers
+            \item Employees act on bad info
+        \end{itemize}
+        {\color{TuebingenGreen}\textbf{Mitigation:}}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Mandatory citations
+            \item Confidence indicators
+            \item "I don't know" training
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        {\color{TuebingenRot}\textbf{Risk 3: Stale Information}}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Outdated policies returned
+            \item Version confusion
+        \end{itemize}
+        {\color{TuebingenGreen}\textbf{Mitigation:}}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Automated re-ingestion
+            \item Version tracking in metadata
+            \item Freshness indicators in UI
+        \end{itemize}
+        
+        \vspace{0.3em}
+        {\color{TuebingenRot}\textbf{Risk 4: Adoption Failure}}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Employees don't trust/use it
+            \item Falls into disuse
+        \end{itemize}
+        {\color{TuebingenGreen}\textbf{Mitigation:}}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Quality baseline before launch
+            \item Feedback mechanism
+            \item Executive sponsorship
+        \end{itemize}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Knowledge Assistant: Implementation Checklist}
+    \framesubtitle{What you need to get started}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{Prerequisites:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item[$\square$] Identified knowledge sources
+            \item[$\square$] Document access permissions mapped
+            \item[$\square$] Content owners engaged
+            \item[$\square$] Target user group defined
+            \item[$\square$] Success metrics agreed
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Technical Requirements:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item[$\square$] Document parsing capability
+            \item[$\square$] Vector database or search
+            \item[$\square$] LLM access (API or hosted)
+            \item[$\square$] Authentication integration
+            \item[$\square$] Logging infrastructure
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Governance:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item[$\square$] Data classification review
+            \item[$\square$] Security assessment
+            \item[$\square$] Content update process
+            \item[$\square$] Escalation procedures
+            \item[$\square$] Quality review cadence
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Launch Plan:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item[$\square$] Pilot group selected
+            \item[$\square$] Evaluation set created
+            \item[$\square$] Feedback mechanism ready
+            \item[$\square$] Rollback plan documented
+            \item[$\square$] Training materials prepared
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.3em}
+    {\color{TuebingenGray}\textbf{Timeline:} Pilot in 4-8 weeks. Broad rollout in 3-6 months.}
+\end{frame}
+
+% ==============================================================================
+% SECTION 3.3: PATTERN 2 — CUSTOMER SUPPORT AUGMENTATION
+% ==============================================================================
+
+\begin{frame}{Pattern 2: Customer Support Augmentation}
+    \framesubtitle{AI-assisted customer service}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{What It Is:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item AI assists human agents (not replaces)
+            \item Combines customer context + knowledge
+            \item Improves speed and consistency
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Capabilities:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{Triage:} Classify, route, prioritize
+            \item \textbf{Suggested replies:} Draft responses
+            \item \textbf{Summarization:} Ticket history
+            \item \textbf{Next-best-action:} Recommend resolution
+            \item \textbf{Knowledge lookup:} Find relevant docs
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.65, font=\footnotesize]
+                % Flow
+                \node[draw, fill=TuebingenBeige, rounded corners] (customer) at (0,3) {Customer};
+                \node[draw, fill=TuebingenCyan!30, rounded corners] (triage) at (0,2) {AI Triage};
+                \node[draw, fill=TuebingenGold!30, rounded corners] (agent) at (-1.5,0.8) {Human Agent};
+                \node[draw, fill=TuebingenGreen!30, rounded corners] (ai) at (1.5,0.8) {AI Assistant};
+                \node[draw, fill=TuebingenRot!30, rounded corners] (resolve) at (0,-0.3) {Resolution};
+                
+                \draw[->, thick] (customer) -- (triage);
+                \draw[->, thick] (triage) -- (agent);
+                \draw[<->, thick, dashed] (agent) -- (ai);
+                \draw[->, thick] (agent) -- (resolve);
+                
+                % Labels
+                \node[font=\tiny, TuebingenGray] at (0.3, 0.8) {assists};
+            \end{tikzpicture}
+        \end{center}
+        
+        \vspace{0.3em}
+        \textbf{Key Principle:}
+        
+        \vspace{0.2em}
+        {\color{TuebingenGreen} Human in the loop for decisions.}
+        
+        {\color{TuebingenGreen} AI handles information retrieval + drafting.}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Customer Support: Compliance \& Escalation}
+    \framesubtitle{Guardrails for customer-facing AI}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        {\color{TuebingenRot}\textbf{Compliance Constraints:}}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{Regulated industries:} Financial advice, medical, legal — AI suggests, human approves
+            \item \textbf{PII handling:} Don't expose customer data in logs
+            \item \textbf{Promises:} AI cannot commit the company
+            \item \textbf{Disclaimers:} Required in some contexts
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Content Policies:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Tone guidelines
+            \item Prohibited topics
+            \item Brand voice consistency
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Escalation Rules:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{Sentiment:} Angry/frustrated → human
+            \item \textbf{Complexity:} Multi-issue → human
+            \item \textbf{Risk:} Legal threat → human + legal
+            \item \textbf{Value:} High-value customer → human
+            \item \textbf{Uncertainty:} Low confidence → human
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \begin{theorembox}{Golden Rule}
+            When in doubt, escalate. \\
+            The cost of over-escalation < cost of wrong answer.
+        \end{theorembox}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Customer Support: Metrics That Matter}
+    \framesubtitle{How to measure success}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{Efficiency Metrics:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{Average Handle Time (AHT):}
+            \begin{itemize}
+                \item Target: 15-30\% reduction
+                \item Measure: Time from open to close
+            \end{itemize}
+            \item \textbf{First Contact Resolution (FCR):}
+            \begin{itemize}
+                \item Target: 5-10\% improvement
+                \item Measure: Resolved without transfer
+            \end{itemize}
+            \item \textbf{Agent Utilization:}
+            \begin{itemize}
+                \item More tickets per agent
+                \item Less time searching
+            \end{itemize}
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Quality Metrics:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{CSAT:} Customer satisfaction score
+            \item \textbf{QA Score:} Compliance with guidelines
+            \item \textbf{Error Rate:} Wrong answers caught
+            \item \textbf{Escalation Rate:} Should stay stable
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{AI-Specific Metrics:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Suggestion acceptance rate
+            \item Time saved per suggestion
+            \item Retrieval accuracy
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.5em}
+    {\color{TuebingenGray}\textbf{Warning:} Don't optimize AHT at expense of quality. Balance is key.}
+\end{frame}
+
+\begin{frame}{Customer Support: Implementation Approach}
+    \framesubtitle{Phased rollout for risk control}
+    
+    \vspace{0.3em}
+    \textbf{Phase 1: Shadow Mode (4-6 weeks)}
+    \begin{itemize}
+        \setlength\itemsep{0.2em}
+        \item AI generates suggestions, agents see but don't have to use
+        \item Collect feedback: Was this helpful? What was wrong?
+        \item Build evaluation dataset from real interactions
+    \end{itemize}
+    
+    \vspace{0.3em}
+    \textbf{Phase 2: Assisted Mode (6-8 weeks)}
+    \begin{itemize}
+        \setlength\itemsep{0.2em}
+        \item AI suggestions integrated into workflow
+        \item One-click acceptance with edit capability
+        \item Measure adoption and quality metrics
+    \end{itemize}
+    
+    \vspace{0.3em}
+    \textbf{Phase 3: Enhanced Automation (Optional)}
+    \begin{itemize}
+        \setlength\itemsep{0.2em}
+        \item Auto-draft for simple, low-risk queries
+        \item Human review before send (not edit)
+        \item Only for high-confidence, low-risk categories
+    \end{itemize}
+    
+    \vspace{0.3em}
+    \begin{theorembox}{Success Factor}
+        Agent buy-in is critical. Involve agents in design. Position AI as \textbf{tool}, not \textbf{replacement}.
+    \end{theorembox}
+\end{frame}
+
+% ==============================================================================
+% SECTION 3.4: PATTERN 3 — DOCUMENT & WORKFLOW AUTOMATION
+% ==============================================================================
+
+\begin{frame}{Pattern 3: Document \& Workflow Automation}
+    \framesubtitle{Intelligent document processing at scale}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{What It Is:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Extract structured data from documents
+            \item Route and process automatically
+            \item Integrate with business systems
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Use Cases:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{Invoices:} Extract, match, route to AP
+            \item \textbf{Claims:} Parse, validate, adjudicate
+            \item \textbf{Contracts:} Extract terms, flag risks
+            \item \textbf{Procurement:} Process requests
+            \item \textbf{Onboarding:} Document verification
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.65, font=\footnotesize]
+                \node[draw, fill=TuebingenBeige, rounded corners] (doc) at (0,2.5) {Document};
+                \node[draw, fill=TuebingenCyan!30, rounded corners] (ocr) at (0,1.5) {OCR/Parse};
+                \node[draw, fill=TuebingenGold!30, rounded corners] (extract) at (0,0.5) {AI Extract};
+                \node[draw, fill=TuebingenGreen!30, rounded corners] (validate) at (0,-0.5) {Validate};
+                \node[draw, fill=TuebingenRot!30, rounded corners] (system) at (0,-1.5) {ERP/CRM};
+                
+                \draw[->, thick] (doc) -- (ocr);
+                \draw[->, thick] (ocr) -- (extract);
+                \draw[->, thick] (extract) -- (validate);
+                \draw[->, thick] (validate) -- (system);
+                
+                % Exception path
+                \node[draw, fill=TuebingenAnthrazit!20, rounded corners] (human) at (2.5,-0.5) {Human Review};
+                \draw[->, dashed, TuebingenRot] (validate) -- node[above, font=\tiny] {exception} (human);
+            \end{tikzpicture}
+        \end{center}
+        
+        \textbf{Key Principle:}
+        
+        {\small Always validate before system of record. Exceptions to humans.}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Document Automation: Integration is Everything}
+    \framesubtitle{The hard part isn't AI — it's connecting systems}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{System Integration Requirements:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{Input:} Email, portal, scanner, API
+            \item \textbf{Processing:} Workflow engine, queues
+            \item \textbf{Output:} ERP, CRM, data warehouse
+            \item \textbf{Feedback:} Correction interface
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Validation Steps:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Field format checks
+            \item Cross-field consistency
+            \item Master data lookup (vendor, customer)
+            \item Policy rule validation
+            \item Duplicate detection
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Why Integration Matters:}
+        
+        \vspace{0.3em}
+        \begin{center}
+            \begin{tabular}{@{}lc@{}}
+                \toprule
+                \textbf{Activity} & \textbf{\% of Effort} \\
+                \midrule
+                AI/ML model & 20\% \\
+                Integration & 40\% \\
+                Validation logic & 20\% \\
+                Exception handling & 15\% \\
+                Monitoring & 5\% \\
+                \bottomrule
+            \end{tabular}
+        \end{center}
+        
+        \vspace{0.5em}
+        {\color{TuebingenGray}\textbf{Reality:} The AI part is often the easy part. Process redesign and integration are where projects succeed or fail.}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Document Automation: Failure Modes}
+    \framesubtitle{What goes wrong and why}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.32\textwidth}
+        {\color{TuebingenRot}\textbf{OCR Errors:}}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Poor scan quality
+            \item Handwritten text
+            \item Tables misaligned
+            \item Multi-language docs
+        \end{itemize}
+        
+        \vspace{0.2em}
+        {\color{TuebingenGreen}\textbf{Fix:}}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Quality gates on input
+            \item Confidence thresholds
+            \item Human review queue
+        \end{itemize}
+        
+        \column{0.32\textwidth}
+        {\color{TuebingenRot}\textbf{Policy Exceptions:}}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Non-standard terms
+            \item Unusual amounts
+            \item Missing approvals
+            \item Edge cases
+        \end{itemize}
+        
+        \vspace{0.2em}
+        {\color{TuebingenGreen}\textbf{Fix:}}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Rule-based exception routing
+            \item Clear escalation paths
+            \item Learn from exceptions
+        \end{itemize}
+        
+        \column{0.32\textwidth}
+        {\color{TuebingenRot}\textbf{Adversarial Docs:}}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Fraudulent invoices
+            \item Manipulated claims
+            \item Hidden terms
+        \end{itemize}
+        
+        \vspace{0.2em}
+        {\color{TuebingenGreen}\textbf{Fix:}}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Anomaly detection
+            \item Cross-reference checks
+            \item Audit sampling
+            \item Fraud team integration
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.5em}
+    \begin{theorembox}{Design Principle}
+        Assume errors will occur. Design for graceful degradation. \\
+        Automation rate of 80\% with 99\% accuracy beats 95\% with 90\% accuracy.
+    \end{theorembox}
+\end{frame}
+
+\begin{frame}{Document Automation: ROI Model}
+    \framesubtitle{Calculating the business case}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{Cost Drivers (Current State):}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Manual data entry time
+            \item Error correction rework
+            \item Processing delays (float cost)
+            \item Compliance failures (penalties)
+            \item Missed discounts (late payment)
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Example: Invoice Processing}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item 50,000 invoices/year
+            \item \$15 cost per manual invoice
+            \item = \$750,000/year baseline
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Automation Benefits:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item 80\% straight-through processing
+            \item 70\% cost reduction per invoice
+            \item 50\% faster cycle time
+            \item 90\% fewer errors
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{ROI Calculation:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Automated: 40,000 × \$4 = \$160K
+            \item Exceptions: 10,000 × \$18 = \$180K
+            \item New cost: \$340K
+            \item Savings: \$410K/year (55\%)
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.3em}
+    {\color{TuebingenGray}\textbf{Note:} Include implementation cost, maintenance, and ramp-up time in full business case.}
+\end{frame}
+
+% ==============================================================================
+% SECTION 3.5: PATTERN 4 — SOFTWARE ENGINEERING ACCELERATION
+% ==============================================================================
+
+\begin{frame}{Pattern 4: Software Engineering Acceleration}
+    \framesubtitle{AI-augmented development}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{What It Is:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item AI integrated into developer workflow
+            \item Code completion, generation, search
+            \item IDE-native experience
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Capabilities:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{Code completion:} Line/block level
+            \item \textbf{Code generation:} From comments/specs
+            \item \textbf{Test generation:} Unit tests from code
+            \item \textbf{Refactoring:} Suggest improvements
+            \item \textbf{Code search:} Natural language queries
+            \item \textbf{Documentation:} Generate docs
+            \item \textbf{Debugging:} Explain errors
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Tools Landscape:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{GitHub Copilot:} Broad adoption
+            \item \textbf{Cursor:} IDE with AI-first design
+            \item \textbf{Amazon CodeWhisperer:} AWS integration
+            \item \textbf{Codeium:} Free tier option
+            \item \textbf{Internal:} RAG over your codebase
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Key Insight:}
+        
+        \vspace{0.2em}
+        {\color{TuebingenGray} These tools are \textbf{RAG systems} specialized for code. Same architecture, different corpus.}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Software Engineering: Governance Requirements}
+    \framesubtitle{What security and legal need to know}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        {\color{TuebingenRot}\textbf{Security Risks:}}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{Secrets exposure:} API keys, credentials in suggestions
+            \item \textbf{Code exfiltration:} What goes to the API?
+            \item \textbf{Insecure patterns:} AI suggests vulnerable code
+            \item \textbf{Dependency risks:} Unknown packages
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Security Controls:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Secret scanning in IDE
+            \item Allowlist for code sent externally
+            \item Security review of AI suggestions
+            \item SAST/DAST in CI/CD
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        {\color{TuebingenRot}\textbf{IP/Licensing Risks:}}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{License contamination:} GPL code in proprietary
+            \item \textbf{Copyright claims:} Verbatim reproduction
+            \item \textbf{Patent exposure:} Patented algorithms
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Legal Controls:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item License detection tools
+            \item Code similarity scanning
+            \item Vendor indemnification review
+            \item Clear IP policy for AI-assisted code
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.3em}
+    {\color{TuebingenGray}\textbf{Executive action:} Review vendor agreements. Understand what data flows where. Set clear policy.}
+\end{frame}
+
+\begin{frame}{Software Engineering: ROI Measurement}
+    \framesubtitle{Quantifying developer productivity gains}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{Productivity Metrics:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{Cycle time:} Idea → production
+            \item \textbf{Code velocity:} PRs merged/week
+            \item \textbf{Time in flow:} Less context switching
+            \item \textbf{Onboarding:} Time to first commit
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Quality Metrics:}
+        \begin{itemize}
+            \setlength\itemsep={0.3em}
+            \item Defect rate (bugs/KLOC)
+            \item Test coverage improvement
+            \item Code review turnaround
+            \item Technical debt reduction
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Published Results:}
+        \begin{itemize}
+            \setlength\itemsep={0.4em}
+            \item GitHub study: 55\% faster task completion
+            \item Acceptance rate: 30-40\% of suggestions
+            \item Biggest gains: Boilerplate, tests, docs
+            \item Smaller gains: Novel/complex logic
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{ROI Calculation:}
+        \begin{itemize}
+            \setlength\itemsep={0.2em}
+            \item 100 developers
+            \item \$200K avg fully loaded cost
+            \item 10\% productivity gain
+            \item = \$2M value/year
+            \item Tool cost: \$200K/year
+            \item ROI: 10x
+        \end{itemize}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Software Engineering: Adoption Best Practices}
+    \framesubtitle{How to roll out successfully}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{Pilot Design:}
+        \begin{itemize}
+            \setlength\itemsep={0.4em}
+            \item Start with willing early adopters
+            \item Mix of senior and junior developers
+            \item Clear baseline metrics before
+            \item 8-12 week evaluation period
+            \item Regular feedback collection
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Success Factors:}
+        \begin{itemize}
+            \setlength\itemsep={0.3em}
+            \item Developer choice (opt-in)
+            \item Good documentation
+            \item Champions program
+            \item Quick security approval
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Common Pitfalls:}
+        \begin{itemize}
+            \setlength\itemsep={0.4em}
+            \item[$\times$] Mandating tool use
+            \item[$\times$] Measuring only code volume
+            \item[$\times$] Ignoring security review
+            \item[$\times$] No training provided
+            \item[$\times$] Expecting magic
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{What to Expect:}
+        \begin{itemize}
+            \setlength\itemsep={0.3em}
+            \item Week 1-2: Learning curve
+            \item Week 3-6: Productivity dip possible
+            \item Week 7+: Gains materialize
+            \item Month 3+: Becomes habit
+        \end{itemize}
+    \end{columns}
+\end{frame}
+
+% ==============================================================================
+% SECTION 3.6: PATTERN 5 — DECISION INTELLIGENCE
+% ==============================================================================
+
+\begin{frame}{Pattern 5: Decision Intelligence}
+    \framesubtitle{AI-augmented business decisions}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{What It Is:}
+        \begin{itemize}
+            \setlength\itemsep={0.3em}
+            \item AI supports human decision-making
+            \item Combines prediction + explanation + action
+            \item Keeps human accountability
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Capabilities:}
+        \begin{itemize}
+            \setlength\itemsep={0.3em}
+            \item \textbf{Forecasting:} Demand, revenue, risk
+            \item \textbf{Anomaly detection:} Fraud, quality issues
+            \item \textbf{Scenario analysis:} What-if modeling
+            \item \textbf{Recommendation:} Next best action
+            \item \textbf{Explanation:} Why this prediction?
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        {\color{TuebingenRot}\textbf{Critical Warning:}}
+        
+        \vspace{0.3em}
+        \begin{center}
+            \fbox{\parbox{0.9\linewidth}{\centering Don't use LLMs as calculators. \\[0.3em] Use tool-based retrieval for numbers.}}
+        \end{center}
+        
+        \vspace{0.3em}
+        \textbf{Right Architecture:}
+        \begin{itemize}
+            \setlength\itemsep={0.3em}
+            \item LLM understands question
+            \item Tool calls database/model for data
+            \item LLM explains results
+            \item Numbers come from authoritative source
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.3em}
+    {\color{TuebingenGray}\textbf{Key principle:} AI provides \textbf{information} and \textbf{options}. Humans make \textbf{decisions}.}
+\end{frame}
+
+\begin{frame}{Decision Intelligence: Governance \& Accountability}
+    \framesubtitle{Who is responsible when AI recommends?}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{Explainability Requirements:}
+        \begin{itemize}
+            \setlength\itemsep={0.4em}
+            \item \textbf{What:} What is the recommendation?
+            \item \textbf{Why:} What factors drove it?
+            \item \textbf{Confidence:} How certain?
+            \item \textbf{Alternatives:} What else considered?
+            \item \textbf{Data:} What information used?
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Regulatory Context:}
+        \begin{itemize}
+            \setlength\itemsep={0.3em}
+            \item EU AI Act: High-risk categories
+            \item Fair lending: Adverse action reasons
+            \item Insurance: Actuarial justification
+            \item HR: Non-discrimination proof
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Accountability Model:}
+        
+        \vspace{0.3em}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.7, font=\footnotesize]
+                \node[draw, fill=TuebingenCyan!30, rounded corners, align=center] (ai) at (0,2) {AI System\\Recommends};
+                \node[draw, fill=TuebingenGold!30, rounded corners, align=center] (human) at (0,0.5) {Human\\Decides};
+                \node[draw, fill=TuebingenRot!30, rounded corners, align=center] (outcome) at (0,-1) {Business\\Accountable};
+                
+                \draw[->, thick] (ai) -- (human);
+                \draw[->, thick] (human) -- (outcome);
+                
+                \node[font=\tiny, TuebingenGray, align=left] at (2.5, 2) {Audit trail\\of factors};
+                \node[font=\tiny, TuebingenGray, align=left] at (2.5, 0.5) {Documented\\rationale};
+                \node[font=\tiny, TuebingenGray, align=left] at (2.5, -1) {Clear\\ownership};
+            \end{tikzpicture}
+        \end{center}
+        
+        \vspace{0.3em}
+        {\color{TuebingenGray} AI is a tool. Accountability stays with humans.}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Decision Intelligence: Use Case Examples}
+    \framesubtitle{Concrete applications}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{Demand Forecasting:}
+        \begin{itemize}
+            \setlength\itemsep={0.3em}
+            \item Input: Historical sales, seasonality, events
+            \item Model: Time series + external factors
+            \item Output: Forecast + confidence interval
+            \item Action: Inventory planning
+            \item Governance: Track forecast accuracy
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Credit Risk:}
+        \begin{itemize}
+            \setlength\itemsep={0.3em}
+            \item Input: Application + bureau data
+            \item Model: Scoring model (explainable)
+            \item Output: Risk score + factors
+            \item Action: Approve/decline/review
+            \item Governance: Fair lending compliance
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Fraud Detection:}
+        \begin{itemize}
+            \setlength\itemsep={0.3em}
+            \item Input: Transaction stream
+            \item Model: Anomaly detection
+            \item Output: Alert + risk score
+            \item Action: Review queue priority
+            \item Governance: False positive tracking
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Pricing Optimization:}
+        \begin{itemize}
+            \setlength\itemsep={0.3em}
+            \item Input: Market, inventory, demand
+            \item Model: Elasticity + competition
+            \item Output: Price recommendation
+            \item Action: Human approval required
+            \item Governance: Margin guardrails
+        \end{itemize}
+    \end{columns}
+\end{frame}
+
+% ==============================================================================
+% SECTION 3.7: PATTERN 6 — OPERATIONS & QUALITY
+% ==============================================================================
+
+\begin{frame}{Pattern 6: Operations \& Quality}
+    \framesubtitle{AI in physical operations}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{Use Cases:}
+        \begin{itemize}
+            \setlength\itemsep={0.4em}
+            \item \textbf{Predictive maintenance:}
+            \begin{itemize}
+                \item Sensor data → failure prediction
+                \item Schedule maintenance proactively
+            \end{itemize}
+            \item \textbf{Quality inspection:}
+            \begin{itemize}
+                \item Visual inspection (CNNs)
+                \item Defect detection at speed
+            \end{itemize}
+            \item \textbf{Supply chain:}
+            \begin{itemize}
+                \item Demand forecasting
+                \item Logistics optimization
+            \end{itemize}
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{When to Use Deep Learning:}
+        \begin{itemize}
+            \setlength\itemsep={0.4em}
+            \item[$\checkmark$] Unstructured data (images, signals)
+            \item[$\checkmark$] Complex patterns
+            \item[$\checkmark$] Large training data available
+            \item[$\checkmark$] Clear ground truth
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{When Classical Methods Win:}
+        \begin{itemize}
+            \setlength\itemsep={0.4em}
+            \item[$\checkmark$] Structured tabular data
+            \item[$\checkmark$] Need explainability
+            \item[$\checkmark$] Limited training data
+            \item[$\checkmark$] Simpler pattern recognition
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.3em}
+    {\color{TuebingenGray}\textbf{Key insight:} Not every operations problem needs deep learning. Match method to problem.}
+\end{frame}
+
+\begin{frame}{Operations: Implementation Considerations}
+    \framesubtitle{Unique challenges in physical systems}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{Data Challenges:}
+        \begin{itemize}
+            \setlength\itemsep={0.4em}
+            \item \textbf{Sensor quality:} Noise, drift, gaps
+            \item \textbf{Labeling:} Few failures to learn from
+            \item \textbf{Edge deployment:} Limited compute
+            \item \textbf{Latency:} Real-time requirements
+        \end{itemize}
+        
+        \vspace={0.3em}
+        \textbf{Integration Requirements:}
+        \begin{itemize}
+            \setlength\itemsep={0.3em}
+            \item SCADA/PLC connectivity
+            \item MES/ERP integration
+            \item Alert routing to operators
+            \item Maintenance scheduling
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Success Factors:}
+        \begin{itemize}
+            \setlength\itemsep={0.4em}
+            \item \textbf{Domain expertise:} Work with operators
+            \item \textbf{Baseline:} Measure current performance
+            \item \textbf{Pilot scope:} One line, one failure mode
+            \item \textbf{Trust building:} Gradual rollout
+        \end{itemize}
+        
+        \vspace={0.3em}
+        \textbf{ROI Metrics:}
+        \begin{itemize}
+            \setlength\itemsep={0.3em}
+            \item Unplanned downtime reduction
+            \item Defect escape rate
+            \item Maintenance cost savings
+            \item Throughput improvement
+        \end{itemize}
+    \end{columns}
+    
+    \vspace={0.3em}
+    {\color{TuebingenGray}\textbf{Reality check:} Operations AI often has longest implementation time but highest sustained ROI.}
+\end{frame}
+
+% ==============================================================================
+% SECTION 3.8: WHY PILOTS FAIL & WHAT SUCCESS LOOKS LIKE
+% ==============================================================================
+
+\begin{frame}{Why AI Pilots Fail}
+    \framesubtitle{Lessons from the field}
+    
+    \vspace={0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        {\color{TuebingenRot}\textbf{Failure Mode 1: No Process Owner}}
+        \begin{itemize}
+            \setlength\itemsep={0.2em}
+            \item IT builds it, business doesn't adopt
+            \item No one accountable for outcomes
+            \item Dies when champion leaves
+        \end{itemize}
+        
+        \vspace={0.3em}
+        {\color{TuebingenRot}\textbf{Failure Mode 2: Poor Data}}
+        \begin{itemize}
+            \setlength\itemsep={0.2em}
+            \item Garbage in, garbage out
+            \item Data quality discovered too late
+            \item No budget for data remediation
+        \end{itemize}
+        
+        \vspace={0.3em}
+        {\color{TuebingenRot}\textbf{Failure Mode 3: No Integration}}
+        \begin{itemize}
+            \setlength\itemsep={0.2em}
+            \item Standalone demo, not in workflow
+            \item Extra steps vs. current process
+            \item No system of record connection
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        {\color{TuebingenRot}\textbf{Failure Mode 4: No Evaluation}}
+        \begin{itemize}
+            \setlength\itemsep={0.2em}
+            \item Ship and hope
+            \item No baseline metrics
+            \item Can't prove value (or problems)
+        \end{itemize}
+        
+        \vspace={0.3em}
+        {\color{TuebingenRot}\textbf{Failure Mode 5: No Change Management}}
+        \begin{itemize}
+            \setlength\itemsep={0.2em}
+            \item Users not trained
+            \item Resistance not addressed
+            \item Process not redesigned
+        \end{itemize}
+        
+        \vspace={0.3em}
+        {\color{TuebingenRot}\textbf{Failure Mode 6: Wrong Problem}}
+        \begin{itemize}
+            \setlength\itemsep={0.2em}
+            \item Tech looking for problem
+            \item Low value use case
+            \item Unstable process to automate
+        \end{itemize}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{What Success Looks Like}
+    \framesubtitle{Characteristics of AI initiatives that scale}
+    
+    \vspace={0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{Process Characteristics:}
+        \begin{itemize}
+            \setlength\itemsep={0.4em}
+            \item[$\checkmark$] \textbf{Measurable:} Clear KPIs before/after
+            \item[$\checkmark$] \textbf{Stable:} Process doesn't change weekly
+            \item[$\checkmark$] \textbf{High volume:} Worth automating
+            \item[$\checkmark$] \textbf{Clear handoffs:} Defined inputs/outputs
+            \item[$\checkmark$] \textbf{Data available:} Ground truth exists
+        \end{itemize}
+        
+        \vspace={0.3em}
+        \textbf{Organizational Readiness:}
+        \begin{itemize}
+            \setlength\itemsep={0.3em}
+            \item[$\checkmark$] Executive sponsor committed
+            \item[$\checkmark$] Process owner identified
+            \item[$\checkmark$] Users engaged in design
+            \item[$\checkmark$] IT/Security aligned
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Success Indicators:}
+        \begin{itemize}
+            \setlength\itemsep={0.4em}
+            \item Users ask for expansion
+            \item Metrics improve measurably
+            \item Process owner wants more budget
+            \item Other teams request similar
+            \item Feedback loop generates improvements
+        \end{itemize}
+        
+        \vspace={0.3em}
+        \begin{theorembox}{Success Formula}
+            \textbf{Clear problem} + \textbf{Good data} + \\ \textbf{Process owner} + \textbf{Measured outcomes} \\ + \textbf{Change management} = Scale
+        \end{theorembox}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Act III: Summary}
+    \framesubtitle{Business patterns you can fund and govern}
+    
+    \vspace={0.3em}
+    \begin{columns}[T]
+        \column={0.48\textwidth}
+        \textbf{Six Proven Patterns:}
+        \begin{enumerate}
+            \setlength\itemsep={0.3em}
+            \item \textbf{Knowledge Assistant:} Quick wins, clear ROI
+            \item \textbf{Customer Support:} High visibility, compliance needs
+            \item \textbf{Document Automation:} Integration-heavy, high savings
+            \item \textbf{Software Engineering:} Developer productivity
+            \item \textbf{Decision Intelligence:} Explainability critical
+            \item \textbf{Operations:} Longest timeline, sustained ROI
+        \end{enumerate}
+        
+        \column={0.48\textwidth}
+        \textbf{Universal Success Factors:}
+        \begin{itemize}
+            \setlength\itemsep={0.4em}
+            \item Process owner with accountability
+            \item Clear metrics before you start
+            \item Integration into real workflow
+            \item Evaluation and feedback loops
+            \item Change management investment
+        \end{itemize}
+        
+        \vspace={0.3em}
+        {\color{TuebingenGray}\textbf{Pattern selection:} Match to your organization's strengths, data assets, and risk tolerance.}
+    \end{columns}
+    
+    \vspace={0.5em}
+    \begin{theorembox}{Next: Act IV}
+        How to deliver these patterns: lifecycle, governance, economics, and vendor strategy.
+    \end{theorembox}
+\end{frame}

@@ -1,0 +1,386 @@
+\documentclass[aspectratio=169, 10pt]{beamer}
+
+% This is a template by Philipp Hennig for the University of Tuebingen.
+% It was generated using ChatGPT by having it look in a similar style to the slides of Philipp Hennig.
+
+% --- Packages ---
+\usepackage{fontspec}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, positioning, arrows.meta}
+\usepackage{xcolor}
+\usepackage{amsmath, amssymb}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage[most]{tcolorbox} % Powerful box engine
+
+% --- Bibliography ---
+\usepackage[backend=biber, style=authoryear-comp, maxcitenames=2, maxbibnames=99, uniquename=false, uniquelist=false]{biblatex}
+\addbibresource{references.bib}
+% Smaller citation font for slides
+\renewcommand*{\citesetup}{\tiny\color{TuebingenGray}}
+\AtBeginBibliography{\tiny}
+
+% --- Typography ---
+\usefonttheme{professionalfonts}
+\setmainfont{RobotoCondensed-Light}
+\setsansfont{RobotoCondensed-Light}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- COLOR PALETTE (Sampled from Screenshots) ---
+\definecolor{TuebingenAnthrazit}{HTML}{32414B} % Dark Header/Text
+\definecolor{TuebingenRot}{HTML}{A51E37}      % Primary Red
+\definecolor{TuebingenGold}{HTML}{C5913E}      % Bullets / Strings
+\definecolor{TuebingenGray}{HTML}{747D88}      % Footer
+\definecolor{TuebingenGrayDark}{HTML}{5A6570} % Darker gray for theorem text
+\definecolor{TuebingenGreen}{HTML}{4F8128}     % Code Border/Sidebar
+\definecolor{TuebingenCyan}{HTML}{368CBF}      % Code methods (np.min)
+\definecolor{TuebingenBeige}{HTML}{F5F6F6}     % Theorem Body Background
+
+% --- Beamer Base Colors ---
+\setbeamercolor{normal text}{fg=TuebingenAnthrazit}
+\setbeamercolor{frametitle}{bg=TuebingenAnthrazit, fg=white}
+\setbeamercolor{title}{fg=TuebingenRot}
+\setbeamercolor{structure}{fg=TuebingenGold} 
+\setbeamercolor{footline}{fg=TuebingenGray}
+
+% --- Geometry ---
+\setbeamersize{text margin left=0.8cm, text margin right=0.8cm}
+\setbeamertemplate{navigation symbols}{}
+
+% --- Bullets (Gold Triangles) ---
+\setbeamertemplate{itemize item}{\scriptsize\raise1.25pt\hbox{\donotcoloroutermaths$\blacktriangleright$}}
+\setbeamertemplate{itemize subitem}{\tiny\raise1.5pt\hbox{\donotcoloroutermaths$\blacktriangleright$}}
+
+% --- METADATA ---
+\newcommand{\lecturenumber}{01}
+\newcommand{\license}{CC BY-SA 4.0}
+\newcommand{\shortdate}{07/01/2026}
+\newcommand{\longdate}{7 January 2026}
+	itle{AI and Coding for C-Level Executives: Foundations, Methods, and Business Patterns}
+\subtitle{Executive Briefing — Software, AI, and Governance for Decision Makers}
+\author{Niklas Abraham}
+
+% Faculty/Department/Chair for title slide (see template usage)
+\newcommand{\facultyname}{Faculty of Science}
+\newcommand{\departmentname}{Department of Computer Science}
+\newcommand{\chairname}{Chair of Artificial Intelligence}
+
+% --- SOURCE PLACEHOLDER ---
+% Use \framesource{Your source text} in a frame to set the source
+\makeatletter
+\newcommand{\framesource}[1]{\gdef\@framesource{#1}}
+\framesource{} % Initialize as empty
+
+% --- BACKGROUND IMAGE FOR TITLE PAGE ---
+% Use \titlebgimage{filename.jpg} to set a background image for the title page
+\newcommand{\titlebgimage}[1]{\gdef\@titlebgimage{#1}}
+\titlebgimage{} % Initialize as empty
+\makeatother
+
+% ==============================================================================
+%   SPECIAL ELEMENTS
+% ==============================================================================
+
+% 1. THEOREM BOX (Red Header, Beige Body)
+% Matches: image_fcac79.png
+\newtcolorbox{theorembox}[2][]{
+    enhanced,
+    colback=TuebingenBeige,      % Light beige interior
+    colframe=TuebingenRot,       % Red border
+    colbacktitle=TuebingenRot,   % Red Title background
+    coltitle=white,              % White Title text
+    coltext=TuebingenAnthrazit,  % Dark grey text color (#32414b)
+    fonttitle=\bfseries\large,
+    title={#2},
+    arc=4pt, outer arc=4pt,      % Rounded corners
+    boxrule=0.8pt,               % Thin border
+    left=6pt, right=6pt, top=6pt, bottom=6pt,
+    titlerule=0mm,
+    toptitle=0.8mm, bottomtitle=0.8mm,  % Slimmer red title bar
+    width=0.95\textwidth,        % Make theorem block narrower
+    center,                      % Center the narrower box
+    #1
+}
+
+% 2. CODE BOX (Green Border, Green Sidebar)
+% Matches: image_fcac1f.png
+\newtcolorbox{codebox}{
+    enhanced,
+    colback=white,
+    colframe=TuebingenGreen,     % Green Border
+    arc=5pt, outer arc=5pt,      % Rounded corners on all sides
+    boxrule=1.5pt,               % Thicker border
+    left=6mm,                    % Space for sidebar
+    top=0mm, bottom=0mm,
+    overlay={
+        % The Solid Green Sidebar for numbers with rounded left corners
+        \fill[TuebingenGreen, rounded corners=5pt] 
+            (frame.south west) -- 
+            ([xshift=6mm]frame.south west) -- 
+            ([xshift=6mm]frame.north west) -- 
+            (frame.north west) -- 
+            cycle;
+    }
+}
+
+% 3. CODE LISTING STYLE
+\lstdefinestyle{TuebingenStyle}{
+    language=Python,
+    basicstyle=\ttfamily\footnotesize\color{black},
+    keywordstyle=\color{TuebingenRot}\bfseries, % import, as
+    stringstyle=\color{TuebingenGold},          % "strings"
+    commentstyle=\color{TuebingenGreen},        % # comments
+    identifierstyle=\color{black},
+    % Custom highlighting for methods like .min
+    classoffset=1, 
+    morekeywords={min, max, mean, array, choice},
+    keywordstyle=\color{TuebingenCyan}, 
+    classoffset=0,
+    numbers=left,
+    numberstyle=\scriptsize\color{white}\hfill,   % Line number centered in its space
+    numbersep=10pt,
+    breaklines=true,
+    showstringspaces=false,
+    frame=none
+}
+\lstset{style=TuebingenStyle}
+
+% Python style for code comparison
+\lstdefinestyle{pythonstyle}{
+    language=Python,
+    basicstyle=\ttfamily\tiny\color{black},
+    keywordstyle=\color{TuebingenRot}\bfseries,
+    stringstyle=\color{TuebingenGold},
+    commentstyle=\color{TuebingenGreen}\itshape,
+    numbers=left,
+    numberstyle=\tiny\color{white}\hfill,
+    numbersep=8pt,
+    breaklines=true,
+    showstringspaces=false,
+    frame=none,
+    morekeywords={as, with, True, False, None}
+}
+
+% Java style for code comparison
+\lstdefinestyle{javastyle}{
+    language=Java,
+    basicstyle=\ttfamily\tiny\color{black},
+    keywordstyle=\color{TuebingenRot}\bfseries,
+    stringstyle=\color{TuebingenGold},
+    commentstyle=\color{TuebingenGreen}\itshape,
+    numbers=left,
+    numberstyle=\tiny\color{white}\hfill,
+    numbersep=8pt,
+    breaklines=true,
+    showstringspaces=false,
+    frame=none,
+    morekeywords={var, record}
+}
+
+% Go style for code comparison
+\lstdefinestyle{gostyle}{
+    language=C,
+    basicstyle=\ttfamily\tiny\color{black},
+    keywordstyle=\color{TuebingenRot}\bfseries,
+    stringstyle=\color{TuebingenGold},
+    commentstyle=\color{TuebingenGreen}\itshape,
+    numbers=left,
+    numberstyle=\tiny\color{white}\hfill,
+    numbersep=8pt,
+    breaklines=true,
+    showstringspaces=false,
+    frame=none,
+    morekeywords={func, defer, range, nil, error, fmt, os, float64, int}
+}
+
+% ==============================================================================
+%   SLIDE LAYOUTS
+% ==============================================================================
+
+% --- HEADER (Dark Bar + Logo) ---
+\makeatletter
+\setbeamertemplate{frametitle}{
+    \nointerlineskip
+    \begin{beamercolorbox}[wd=\paperwidth, ht=1.2cm, dp=0.3cm]{frametitle}
+        \begin{tikzpicture}
+            \useasboundingbox (0,0) rectangle (\paperwidth,1.2);
+            % Title
+            \node[anchor=north west, white, align=left] at (0.25, 1.05) {\Large \insertframetitle};
+            % Subtitle
+            \node[anchor=north west, color=gray!50, align=left] at (0.25, 0.3) {\small \insertframesubtitle};
+            % Logo (Top Right)
+            \node[anchor=north east] at (\paperwidth-0.2cm, 1.1) {
+                \IfFileExists{logo_white.png}{
+                    \includegraphics[height=0.665cm]{logo_white.png}
+                }{
+                    \tikz\node[draw=white, text=white, inner sep=2pt] {\scriptsize LOGO};
+                }
+            };
+            % Sources Placeholder (Below Logo)
+            \node[anchor=north east, align=right] at (\paperwidth-0.2cm, 0.25) {
+                \small \color{gray!50} 
+                \ifx\@framesource\empty
+                    % then empty
+                    \textcolor{white}{ }
+                \else
+                    \@framesource
+                \fi
+            };
+        \end{tikzpicture}
+    \end{beamercolorbox}
+}
+\makeatother
+
+% --- FOOTER (Standard) ---
+\setbeamertemplate{footline}{
+    \ifnum\thepage>1 % Skip footer on title page (usually)
+    \begin{tikzpicture}[remember picture, overlay]
+        \node[anchor=south west, align=left] at ([xshift=0.5cm, yshift=0.2cm]current page.south west) {
+            \tiny \color{TuebingenGray} Course Name \#\lecturenumber \ -- \ \the\year \ \insertauthor, \license \ -- \ \shortdate
+        };
+        \node[anchor=south east, align=right] at ([xshift=-0.5cm, yshift=0.2cm]current page.south east) {
+            \tiny \color{TuebingenGray} \insertframenumber
+        };
+    \end{tikzpicture}
+    \fi
+}
+
+% --- TITLE PAGE (Complex Layout) ---
+\makeatletter
+\setbeamertemplate{title page}{
+    \begin{tikzpicture}[remember picture, overlay]
+        % Optional Background Image
+        \ifx\@titlebgimage\empty
+            % No background image, use white background
+        \else
+            \node[anchor=center, opacity=0.15] at (current page.center) {
+                \includegraphics[width=\paperwidth, height=\paperheight, keepaspectratio=false]{\@titlebgimage}
+            };
+        \fi
+        
+        % 1. Titles (Top Center) - Smaller now
+        \node[anchor=north, align=center] at ([yshift=-1.5cm]current page.north) {
+            {\LARGE \color{TuebingenRot} \textsc{COURSE NAME}} \\[0.15cm]
+            {\normalsize \color{TuebingenAnthrazit} \textsc{LECTURE \lecturenumber \ -- \ \inserttitle}} \\[0.05cm]
+            {\small \color{TuebingenAnthrazit} \textsc{\insertsubtitle}}
+        };
+
+        % 2. Author and Date (Center)
+        \node[anchor=center, align=center] at ([yshift=0.3cm]current page.center) {
+            {\large \insertauthor} \\[0.3cm]
+            {\normalsize \longdate}
+        };
+
+        % 3. Logos (Lower Third)
+        \node[anchor=south, align=center] at ([yshift=1.5cm]current page.south) {
+            \begin{minipage}{0.9\textwidth}
+                \centering
+                % Left: University Logo Text (Logo a bit smaller)
+                \begin{minipage}{0.35\textwidth}
+                    \raggedright
+                    \IfFileExists{logo_red.png}{
+                        \includegraphics[height=1.5cm]{logo_red.png}
+                    }{
+                        {\large \color{TuebingenRot} \textsc{EBERHARD KARLS}} \\
+                        {\Large \color{TuebingenRot} \textsc{UNIVERSITÄT}} \\
+                        {\Large \color{TuebingenRot} \textsc{TÜBINGEN}}
+                    }
+                \end{minipage}%
+                \hfill
+                % Right: Faculty Text (now left-aligned)
+                \begin{minipage}{0.45\textwidth}
+                    \raggedright
+                    \small \color{TuebingenRot}
+                    	extsc{\facultyname} \\
+                    	extsc{\departmentname} \\
+                    	extsc{\chairname}
+                \end{minipage}
+            \end{minipage}
+        };
+
+    \end{tikzpicture}
+}
+\makeatother
+
+% ==============================================================================
+%   CONTENT
+% ==============================================================================
+
+\begin{document}
+
+
+% --- 1. TITLE SLIDE ---
+\begin{frame}[plain]
+    	itlepage
+\end{frame}
+
+% --- 2. OUTLINE SLIDE ---
+\begin{frame}{Today's Agenda}
+    \framesubtitle{What we will cover in this executive briefing}
+    \begin{itemize}
+        \item \textbf{Act 0: Software Literacy Primer}\\
+        \ \small Programming languages, editors, databases, compute
+        \item \textbf{Act I: AI Foundations and History}\\
+        \ \small What AI is, why now, and the timeline
+        \item \textbf{Act II: Modern AI Methods (Deep Dive)}\\
+        \ \small From classical ML to deep learning, transformers, RAG, evaluation
+        \item \textbf{Act III: Business Patterns}\\
+        \ \small Repeatable templates for AI in business
+        \item \textbf{Act IV: Governance and Economics}\\
+        \ \small Operating models, benchmarking, cost, vendor strategy
+        \item \textbf{Act V: Transition and Q\&A}\\
+        \ \small Tailored analysis and open questions
+    \end{itemize}
+    \vspace{0.5em}
+    {\small\color{TuebingenGray} Breaks and deep-dive sessions are scheduled throughout.}
+\end{frame}
+
+% ==============================================================================
+%   INCLUDE ACT CHAPTERS
+% ==============================================================================
+
+\input{acts/act0_software_primer/act0_software_primer.tex}
+\input{acts/act1_ai_history/act1_ai_history.tex}
+\input{acts/act2_modern_ai/act2_modern_ai.tex}
+\input{acts/act3_business_patterns/act3_business_patterns.tex}
+\input{acts/act4_governance/act4_governance.tex}
+\input{acts/act5_transition/act5_transition.tex}
+
+% --- 5. DARK SUMMARY SLIDE ---
+{ 
+% Local color override for Dark Mode
+\setbeamercolor{background canvas}{bg=TuebingenAnthrazit}
+\setbeamercolor{normal text}{fg=white}
+\setbeamercolor{itemize item}{fg=white}
+\setbeamercolor{structure}{fg=white}
+
+\begin{frame}[plain]
+    \begin{columns}
+        \column{0.6\textwidth}
+            {\color{white}\textbf{\Large Summary}}
+            \vspace{1em}
+            \begin{itemize}
+                \setlength\itemsep{1em}
+                \item {\color{white}Summary point 1}
+                \item {\color{white}Summary point 2}
+                \item {\color{white}Summary point 3}
+                \item {\color{white}Summary point 4}
+            \end{itemize}
+
+        \column{0.4\textwidth}
+            \centering
+            \vspace{1em}
+            {\color{white}Thank you!}
+    \end{columns}
+    
+    % Manual Footer for Dark Slide
+    \vspace{2cm}
+    \begin{tikzpicture}[remember picture, overlay]
+         \node[anchor=south west, white] at ([xshift=0.5cm, yshift=0.2cm]current page.south west) {\tiny Course Name \#\lecturenumber \ -- \ \the\year \ \insertauthor, \license \ -- \ \shortdate};
+         \node[anchor=south east, white] at ([xshift=-0.5cm, yshift=0.2cm]current page.south east) {\tiny \insertframenumber};
+    \end{tikzpicture}
+\end{frame}
+}
+
+\end{document}

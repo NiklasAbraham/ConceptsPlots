@@ -1,0 +1,650 @@
+% Act I — Executive Grounding + AI History Timeline
+\section{Executive Grounding and AI History}
+
+% ==============================================================================
+% 1.1 What do we mean by "AI" today? (2 slides)
+% ==============================================================================
+
+\begin{frame}{What Do We Mean by "AI" Today?}
+    \framesubtitle{AI as an umbrella term}
+    
+    {\color{TuebingenGray} AI is not one thing—it's a spectrum of capabilities built on different techniques.}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{The AI Umbrella Includes:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{Rule-based automation} — explicit logic
+            \item \textbf{Classical ML} — statistical learning from data
+            \item \textbf{Deep learning} — neural networks at scale
+            \item \textbf{Generative models} — content creation
+            \item \textbf{Agentic systems} — autonomous action
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Executive Mental Model:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item Each layer builds on the previous
+            \item More capability = more complexity
+            \item Not all problems need the newest approach
+            \item Match technique to problem
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{1em}
+    \begin{center}
+        \small\color{TuebingenRot} \textbf{Key insight:} "AI" in your organization likely means multiple techniques coexisting.
+    \end{center}
+\end{frame}
+
+\begin{frame}{The AI Capabilities Map}
+    \framesubtitle{Three categories executives should remember}
+    
+    {\color{TuebingenGray} When evaluating AI initiatives, categorize by the type of capability being delivered.}
+    
+    \vspace{1em}
+    \begin{columns}[T]
+        \column{0.32\textwidth}
+        \begin{center}
+            {\Large \color{TuebingenRot} \textbf{Predictive}}
+        \end{center}
+        \vspace{0.3em}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Classification
+            \item Forecasting
+            \item Anomaly detection
+            \item Risk scoring
+        \end{itemize}
+        \vspace{0.5em}
+        {\small\color{TuebingenGray} "What will happen?"}
+        
+        \column{0.32\textwidth}
+        \begin{center}
+            {\Large \color{TuebingenGold} \textbf{Generative}}
+        \end{center}
+        \vspace{0.3em}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Text generation
+            \item Code synthesis
+            \item Image creation
+            \item Document drafting
+        \end{itemize}
+        \vspace{0.5em}
+        {\small\color{TuebingenGray} "Create something new"}
+        
+        \column{0.32\textwidth}
+        \begin{center}
+            {\Large \color{TuebingenGreen} \textbf{Agentic}}
+        \end{center}
+        \vspace{0.3em}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Tool use
+            \item Multi-step reasoning
+            \item Autonomous workflows
+            \item Decision execution
+        \end{itemize}
+        \vspace{0.5em}
+        {\small\color{TuebingenGray} "Act under constraints"}
+    \end{columns}
+    
+    \vspace{1em}
+    \begin{center}
+        \small\color{TuebingenAnthrazit} \textbf{Governance complexity increases left to right →}
+    \end{center}
+\end{frame}
+
+% ==============================================================================
+% 1.2 What AI is not (1 slide)
+% ==============================================================================
+
+\begin{frame}{What AI Is \textit{Not}}
+    \framesubtitle{Clearing misconceptions for better decisions}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        {\color{TuebingenRot}\textbf{AI is NOT:}}
+        \begin{itemize}
+            \setlength\itemsep{0.6em}
+            \item \textbf{Human reasoning} — pattern matching, not understanding
+            \item \textbf{Guaranteed truth} — probabilistic, can hallucinate
+            \item \textbf{Deterministic} — same input can yield different outputs
+            \item \textbf{A strategy substitute} — it's a capability, not a direction
+            \item \textbf{Set-and-forget} — requires monitoring and maintenance
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        {\color{TuebingenGreen}\textbf{AI IS:}}
+        \begin{itemize}
+            \setlength\itemsep{0.6em}
+            \item \textbf{Statistical pattern recognition} at scale
+            \item \textbf{A tool} that amplifies human capability
+            \item \textbf{Data-dependent} — quality in, quality out
+            \item \textbf{An operational system} requiring governance
+            \item \textbf{Rapidly evolving} — capabilities change quarterly
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{1em}
+    \begin{theorembox}{Executive Principle}
+        Treat AI outputs as \textbf{drafts requiring verification}, not as \textbf{authoritative answers}. \\
+        The value is in acceleration, not in abdication of judgment.
+    \end{theorembox}
+\end{frame}
+
+% ==============================================================================
+% 1.3 Why now (1 slide)
+% ==============================================================================
+
+\begin{frame}{Why Now? The Convergence}
+    \framesubtitle{Four forces enabling the current AI moment}
+    
+    {\color{TuebingenGray} AI has had multiple hype cycles. What's different this time?}
+    
+    \vspace{1em}
+    \begin{columns}[T]
+        \column{0.24\textwidth}
+        \begin{center}
+            {\Large \color{TuebingenRot} \textbf{1. Compute}}
+        \end{center}
+        \vspace{0.3em}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item GPU acceleration
+            \item Cloud scale
+            \item 10,000× cheaper than 2012
+        \end{itemize}
+        
+        \column{0.24\textwidth}
+        \begin{center}
+            {\Large \color{TuebingenGold} \textbf{2. Data}}
+        \end{center}
+        \vspace{0.3em}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Internet-scale text
+            \item Digitized operations
+            \item Labeled datasets
+        \end{itemize}
+        
+        \column{0.24\textwidth}
+        \begin{center}
+            {\Large \color{TuebingenGreen} \textbf{3. Algorithms}}
+        \end{center}
+        \vspace{0.3em}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Transformers (2017)
+            \item Transfer learning
+            \item Scaling laws
+        \end{itemize}
+        
+        \column{0.24\textwidth}
+        \begin{center}
+            {\Large \color{TuebingenCyan} \textbf{4. Distribution}}
+        \end{center}
+        \vspace{0.3em}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item API access
+            \item IDE integration
+            \item Consumer adoption
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{1.2em}
+    \begin{center}
+        \begin{tikzpicture}
+            \draw[->, thick, TuebingenRot] (0,0) -- (10,0);
+            \foreach \x/\label in {0/2012, 2.5/2017, 5/2020, 7.5/2023, 10/2026} {
+                \draw[TuebingenAnthrazit] (\x,0.1) -- (\x,-0.1) node[below] {\tiny\label};
+            }
+            \node[above, TuebingenAnthrazit] at (1.25,0.2) {\tiny AlexNet};
+            \node[above, TuebingenAnthrazit] at (3.75,0.2) {\tiny Transformer};
+            \node[above, TuebingenAnthrazit] at (6.25,0.2) {\tiny GPT-3};
+            \node[above, TuebingenAnthrazit] at (8.75,0.2) {\tiny Enterprise AI};
+        \end{tikzpicture}
+    \end{center}
+\end{frame}
+
+% ==============================================================================
+% 1.4 Full AI history timeline (6-8 slides)
+% ==============================================================================
+
+\begin{frame}{AI History: Era A — Foundations (1940s–1960s)}
+    \framesubtitle{The birth of artificial intelligence}
+    
+    {\color{TuebingenGray} The conceptual foundations were laid before computers were widely available.}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.55\textwidth}
+        \textbf{Key Milestones:}
+        \begin{itemize}
+            \setlength\itemsep{0.5em}
+            \item \textbf{1943:} McCulloch \& Pitts — first mathematical model of a neuron \cite{mcculloch1943logical}
+            \item \textbf{1950:} Turing — "Computing Machinery and Intelligence" \cite{turing1950computing}
+            \item \textbf{1956:} Dartmouth Workshop — term "Artificial Intelligence" coined \cite{mccarthy1956dartmouth}
+            \item \textbf{1957–58:} Rosenblatt — Perceptron \cite{rosenblatt1957perceptron}
+        \end{itemize}
+        
+        \column{0.42\textwidth}
+        \textbf{The Mood:}
+        \begin{itemize}
+            \setlength\itemsep{0.5em}
+            \item Unbounded optimism
+            \item "Machines will think within 20 years"
+            \item Heavy government funding
+            \item Symbolic AI dominates
+        \end{itemize}
+        
+        \vspace{0.5em}
+        {\small\color{TuebingenRot} \textit{Lesson: Initial timelines were wildly optimistic.}}
+    \end{columns}
+    
+    \vspace{0.8em}
+    \begin{center}
+        \tikz{\draw[thick, TuebingenGold, ->] (0,0) -- (8,0); 
+              \fill[TuebingenRot] (0,0) circle (3pt) node[above=3pt] {\tiny 1943};
+              \fill[TuebingenRot] (2.3,0) circle (3pt) node[above=3pt] {\tiny 1950};
+              \fill[TuebingenRot] (4.3,0) circle (3pt) node[above=3pt] {\tiny 1956};
+              \fill[TuebingenRot] (6,0) circle (3pt) node[above=3pt] {\tiny 1958};
+              \node[below] at (4,-0.3) {\small\color{TuebingenGray} Era A: Foundations};}
+    \end{center}
+\end{frame}
+
+\begin{frame}{AI History: Era B — Symbolic AI \& Early Limits (1960s–1970s)}
+    \framesubtitle{Logic-based reasoning and its boundaries}
+    
+    {\color{TuebingenGray} The dominant approach tried to encode human knowledge as rules and logic.}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.50\textwidth}
+        \textbf{Symbolic AI Approach:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item Expert systems with hand-coded rules
+            \item Logic-based reasoning
+            \item Knowledge representation
+            \item Natural language via grammar rules
+        \end{itemize}
+        
+        \vspace{0.5em}
+        \textbf{1969 — Minsky \& Papert} \cite{minsky1969perceptrons}\textbf{:}
+        \begin{itemize}
+            \item Published critique of Perceptrons
+            \item Showed fundamental limitations
+            \item Neural network funding collapsed
+        \end{itemize}
+        
+        \column{0.47\textwidth}
+        \textbf{Why It Hit Limits:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{Brittleness} — rules couldn't handle edge cases
+            \item \textbf{Combinatorial explosion} — complexity grew exponentially
+            \item \textbf{Knowledge acquisition bottleneck} — experts couldn't articulate all rules
+            \item \textbf{No learning} — systems couldn't improve from data
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.8em}
+    \begin{theorembox}{Executive Lesson}
+        Rule-based systems work for narrow, well-defined domains. They fail when reality is messy, incomplete, or evolving. This is why \textbf{learning from data} became essential.
+    \end{theorembox}
+\end{frame}
+
+\begin{frame}{AI History: Era C — AI Winters (1970s–1990s)}
+    \framesubtitle{Boom, bust, and the expert systems era}
+    
+    {\color{TuebingenGray} Unmet promises led to funding collapses—twice.}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{First AI Winter (1974–1980):}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item DARPA cut funding after failed promises
+            \item "AI can't deliver" sentiment
+            \item Research continued quietly
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Expert Systems Boom (1980s):}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Commercial success initially
+            \item XCON saved DEC \$40M/year
+            \item Massive corporate investment
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Second AI Winter (1987–1993):}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Expert systems proved \textbf{expensive to maintain}
+            \item Rules became outdated quickly
+            \item Couldn't adapt to changing business
+            \item \$1B+ in failed projects
+        \end{itemize}
+        
+        \vspace{0.3em}
+        {\color{TuebingenRot}\textbf{Pattern Recognition:}}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Hype → Investment → Unmet expectations → Collapse
+            \item \textit{Sound familiar?}
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.5em}
+    \begin{center}
+        \small\color{TuebingenGreen} \textbf{Survivor insight:} The ideas weren't wrong—the compute, data, and algorithms weren't ready.
+    \end{center}
+\end{frame}
+
+\begin{frame}{AI History: Era D — Statistical ML Era (1990s–2000s)}
+    \framesubtitle{Data-driven learning takes over}
+    
+    {\color{TuebingenGray} The shift from "programming knowledge" to "learning from data" transformed the field.}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{Key Methods That Emerged:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{Support Vector Machines} \cite{cortes1995svm}
+            \item \textbf{Random Forests} \cite{breiman2001randomforests}
+            \item \textbf{Boosting} \cite{freund1997adaboost}
+            \item \textbf{Bayesian methods} — principled uncertainty
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Why It Worked:}
+        \begin{itemize}
+            \item Strong mathematical foundations
+            \item Provable guarantees
+            \item Interpretable (relatively)
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{The "Data-Driven" Paradigm Shift:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item Don't encode rules—\textbf{learn patterns}
+            \item More data → better models
+            \item Features still hand-engineered
+            \item Practical: spam filters, fraud detection, recommendations
+        \end{itemize}
+        
+        \vspace{0.3em}
+        {\color{TuebingenGold}\textbf{Still Relevant Today:}}
+        \begin{itemize}
+            \item Many enterprise problems are best solved with these methods
+            \item Interpretability matters for compliance
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.5em}
+    \begin{center}
+        \small\color{TuebingenRot} \textbf{Executive note:} These techniques remain the right choice for many tabular/structured data problems.
+    \end{center}
+\end{frame}
+
+\begin{frame}{AI History: Era E — Deep Learning Revival (2006–2015)}
+    \framesubtitle{Neural networks return with compute and data}
+    
+    {\color{TuebingenGray} The ideas from the 1980s finally had the infrastructure to work.}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{Key Breakthroughs:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{2006:} Hinton — Deep Belief Networks \cite{hinton2006dbn}
+            \item \textbf{2012:} \textcolor{TuebingenRot}{AlexNet} \cite{krizhevsky2012alexnet} — CNNs + GPUs crush competition
+            \item \textbf{2014:} GANs \cite{goodfellow2014gan}
+            \item \textbf{2015:} ResNet \cite{he2016resnet} — very deep networks
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{What Changed:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{GPUs} — 50× faster training
+            \item \textbf{Big data} — ImageNet (14M labeled images)
+            \item \textbf{Better techniques} — dropout, batch norm, ReLU
+            \item \textbf{Open source} — reproducibility
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.8em}
+    \begin{theorembox}{The AlexNet Moment (2012)}
+        AlexNet reduced ImageNet error rate from 26\% to 15\%—a discontinuous leap. \\[0.3em]
+        \textbf{Lesson:} When architecture + data + compute align, progress can be sudden and dramatic.
+    \end{theorembox}
+\end{frame}
+
+\begin{frame}{AI History: Era F — Transformers \& Modern NLP (2017–2020)}
+    \framesubtitle{Attention is all you need}
+    
+    {\color{TuebingenGray} A new architecture unlocked language understanding at scale.}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{2017: The Transformer Paper} \cite{vaswani2017attention}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item "Attention Is All You Need" (Google)
+            \item Replaced sequential processing with parallel attention
+            \item Enabled much larger models
+            \item Better at capturing long-range dependencies
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{What Followed:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{2018:} BERT \cite{devlin2019bert}
+            \item \textbf{2019:} GPT-2 \cite{radford2019gpt2}
+            \item \textbf{2020:} GPT-3 \cite{brown2020gpt3}
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{New Paradigm — Transfer Learning:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item Pretrain on massive text corpora
+            \item Fine-tune for specific tasks
+            \item Don't start from scratch
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Executive Implications:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Language tasks suddenly tractable
+            \item Foundation models as starting point
+            \item Context windows define capability limits
+            \item Cost scales with model size
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.5em}
+    \begin{center}
+        \small\color{TuebingenGreen} \textbf{This is the architecture powering today's LLMs.}
+    \end{center}
+\end{frame}
+
+\begin{frame}{AI History: Era G — Foundation Models \& Enterprise AI (2020–2023)}
+    \framesubtitle{From research to products}
+    
+    {\color{TuebingenGray} AI moved from labs to widespread enterprise and consumer deployment.}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{Technical Advances:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{Instruction tuning} \cite{ouyang2022instructgpt}
+            \item \textbf{RLHF} — alignment with human preferences
+            \item \textbf{Tool use} — models can call APIs, search, calculate
+            \item \textbf{Multimodal} — text + images + code
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Key Releases:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item ChatGPT (Nov 2022) — 100M users in 2 months
+            \item GPT-4 \cite{openai2023gpt4} — multimodal reasoning
+            \item GitHub Copilot — AI in developer workflows
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Enterprise Reality:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{Governance becomes central} — who controls what AI does?
+            \item \textbf{Data privacy concerns} — where does my data go?
+            \item \textbf{Integration challenges} — connecting to existing systems
+            \item \textbf{ROI questions} — beyond demos to measurable value
+        \end{itemize}
+        
+        \vspace{0.3em}
+        {\color{TuebingenRot}\textbf{Gap Emerges:}}
+        \begin{itemize}
+            \item Demo-to-production is hard
+            \item Hallucination is a real problem
+            \item Evaluation is immature
+        \end{itemize}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{AI History: Era H — Efficiency \& Systems (2023–2026)}
+    \framesubtitle{Where we are now}
+    
+    {\color{TuebingenGray} The frontier has shifted from "bigger models" to "better systems."}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{Efficiency Breakthroughs:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{Mixture-of-Experts} \cite{jiang2024mixtral, deepseek2024moe}
+            \item \textbf{Distillation} — smaller models learn from larger ones
+            \item \textbf{Quantization} — reduce precision, maintain quality
+            \item \textbf{Open models} — Llama \cite{touvron2023llama}, Mistral, DeepSeek
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{Cost Control Matters:}
+        \begin{itemize}
+            \item Token costs dropped 100× in 2 years
+            \item Small models often sufficient
+            \item Self-hosting becomes viable
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{Systems Engineering Dominates:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{RAG} \cite{lewis2020rag} — retrieval-augmented generation
+            \item \textbf{Evaluation discipline} — measure before deploy
+            \item \textbf{Workflow integration} — AI in processes, not standalone
+            \item \textbf{Agentic patterns} — bounded autonomy with guardrails
+        \end{itemize}
+        
+        \vspace{0.3em}
+        {\color{TuebingenGreen}\textbf{Executive Implication:}}
+        \begin{itemize}
+            \item Model selection is a cost/capability trade-off
+            \item Architecture > model size
+            \item Evaluation is competitive advantage
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.5em}
+    \begin{center}
+        \small\color{TuebingenRot} \textbf{Today: AI is a systems discipline, not just a model discipline.}
+    \end{center}
+\end{frame}
+
+% ==============================================================================
+% 1.5 Bridge: AI is a systems discipline now (1 slide)
+% ==============================================================================
+
+\begin{frame}{Bridge: AI Is a Systems Discipline Now}
+    \framesubtitle{Setting up the deep dive}
+    
+    {\color{TuebingenGray} A working AI product is much more than a model.}
+    
+    \vspace{1em}
+    \begin{center}
+        \begin{tikzpicture}[
+            box/.style={rectangle, draw=TuebingenAnthrazit, fill=TuebingenBeige, minimum width=2cm, minimum height=0.8cm, align=center, font=\small},
+            arrow/.style={->, thick, TuebingenRot}
+        ]
+            % Boxes
+            \node[box, fill=TuebingenRot!20] (data) at (0,0) {Data};
+            \node[box, fill=TuebingenGold!20] (retrieval) at (2.5,0) {Retrieval};
+            \node[box, fill=TuebingenGreen!20] (model) at (5,0) {Model};
+            \node[box, fill=TuebingenCyan!20] (tools) at (7.5,0) {Tools};
+            \node[box, fill=TuebingenGray!20] (eval) at (10,0) {Evaluation};
+            
+            % Arrows
+            \draw[arrow] (data) -- (retrieval);
+            \draw[arrow] (retrieval) -- (model);
+            \draw[arrow] (model) -- (tools);
+            \draw[arrow] (tools) -- (eval);
+            
+            % Feedback loop
+            \draw[arrow, TuebingenGreen, dashed] (eval.south) -- ++(0,-0.5) -| (data.south);
+            
+            % Label
+            \node[below, TuebingenGreen] at (5,-1) {\small Continuous improvement loop};
+        \end{tikzpicture}
+    \end{center}
+    
+    \vspace{0.8em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{The Full Stack:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Data pipelines \& quality
+            \item Retrieval \& knowledge systems
+            \item Model selection \& prompting
+            \item Tool integration \& guardrails
+            \item Evaluation \& monitoring
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{What This Means for You:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Don't just "buy a model"
+            \item Invest in data \& evaluation
+            \item Architect for iteration
+            \item Govern the whole system
+        \end{itemize}
+    \end{columns}
+    
+    \vspace{0.8em}
+    \begin{center}
+        {\color{TuebingenRot}\textbf{Next: We'll go deep on how these components actually work.}}
+    \end{center}
+\end{frame}

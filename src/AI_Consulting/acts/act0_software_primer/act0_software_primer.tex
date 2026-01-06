@@ -1,0 +1,608 @@
+% Act 0 — Software Literacy Primer
+\section{Orientation: Software Foundations Executives Need}
+
+% ==============================================================================
+% 0.1 The "Stack Map" (1 slide)
+% ==============================================================================
+
+\begin{frame}{The Technology Stack: AI in Context}
+    \framesubtitle{Understanding where AI fits in your organization}
+    
+    {\color{TuebingenGray} AI is not magic—it's software built on data, running on infrastructure, serving business processes.}
+    
+    \vspace{0.8em}
+    \begin{center}
+        \begin{tikzpicture}[
+            box/.style={draw=TuebingenAnthrazit, rounded corners=3pt, minimum width=2.8cm, minimum height=0.9cm, align=center, font=\small},
+            arrow/.style={->, thick, TuebingenGold}
+        ]
+            % Stack layers (bottom to top)
+            \node[box, fill=TuebingenBeige] (infra) at (0,0) {Infrastructure\\{\tiny CPU/GPU, Cloud}};
+            \node[box, fill=TuebingenBeige] (data) at (0,1.3) {Data Systems\\{\tiny Databases, Pipelines}};
+            \node[box, fill=TuebingenBeige] (software) at (0,2.6) {Software Systems\\{\tiny APIs, Services}};
+            \node[box, fill=TuebingenRot!20] (ai) at (0,3.9) {ML/AI Models\\{\tiny Training, Inference}};
+            \node[box, fill=TuebingenBeige] (product) at (0,5.2) {Product Interface\\{\tiny Apps, Dashboards}};
+            \node[box, fill=TuebingenBeige] (govern) at (0,6.5) {Monitoring \& Governance\\{\tiny Compliance, Ops}};
+            
+            % Arrows
+            \draw[arrow] (infra) -- (data);
+            \draw[arrow] (data) -- (software);
+            \draw[arrow] (software) -- (ai);
+            \draw[arrow] (ai) -- (product);
+            \draw[arrow] (product) -- (govern);
+            
+            % Business context
+            \node[anchor=west, align=left, font=\small, TuebingenAnthrazit] at (3,3.9) {
+                \textbf{Executive Reality:}\\[0.3em]
+                $\blacktriangleright$ AI requires \textit{all} layers working\\[0.2em]
+                $\blacktriangleright$ Model is often < 20\% of effort\\[0.2em]
+                $\blacktriangleright$ Data quality gates success\\[0.2em]
+                $\blacktriangleright$ Governance is not optional
+            };
+        \end{tikzpicture}
+    \end{center}
+    
+    \vspace{0.5em}
+    \begin{center}
+        \small\color{TuebingenRot} \textbf{Key insight:} "AI" is software + data + evaluation. Invest across the stack.
+    \end{center}
+\end{frame}
+
+% ==============================================================================
+% 0.2 Programming Languages: What Exists and Why It Matters (2 slides)
+% ==============================================================================
+
+\begin{frame}{Programming Languages: The Landscape}
+    \framesubtitle{Why language choice matters for your AI initiatives}
+    
+    {\color{TuebingenGray} Different languages serve different purposes. Understanding this helps evaluate team composition and vendor choices.}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{\color{TuebingenRot}Data \& ML Ecosystem:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{Python} — dominant for ML/AI
+                \begin{itemize}
+                    \item Rich libraries (TensorFlow, PyTorch)
+                    \item Rapid prototyping
+                    \item Data science standard
+                \end{itemize}
+            \item \textbf{R / MATLAB} — statistical analysis niches
+        \end{itemize}
+        
+        \vspace{0.5em}
+        \textbf{\color{TuebingenGold}Enterprise \& Backend:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{Java} — enterprise systems, stability
+            \item \textbf{Go} — cloud infrastructure, concurrency
+            \item \textbf{C\#} — Microsoft ecosystem
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{\color{TuebingenGreen}Performance-Critical:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{C/C++} — model runtimes, systems
+            \item \textbf{Rust} — safety + performance
+            \item \textbf{CUDA} — GPU programming
+        \end{itemize}
+        
+        \vspace{0.5em}
+        \textbf{\color{TuebingenCyan}Product Interfaces:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{JavaScript/TypeScript} — web, full-stack
+            \item \textbf{Swift/Kotlin} — mobile apps
+        \end{itemize}
+        
+        \vspace{0.5em}
+        \textbf{\color{TuebingenAnthrazit}Specialized:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item \textbf{Haskell/Scala} — type safety, correctness
+            \item \textbf{SQL} — data querying (ubiquitous)
+        \end{itemize}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Why Language Choice Matters for AI}
+    \framesubtitle{Ecosystems, talent, and AI assistance quality}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.55\textwidth}
+        \textbf{The "Gravity Well" Effect:}
+        \begin{itemize}
+            \setlength\itemsep{0.5em}
+            \item ML research concentrates in \textbf{Python}
+            \item Enterprise gravity in \textbf{Java/Go}
+            \item Performance work in \textbf{C++/Rust}
+            \item Each ecosystem has its own:
+                \begin{itemize}
+                    \item Package libraries
+                    \item Community expertise
+                    \item Hiring pool
+                \end{itemize}
+        \end{itemize}
+        
+        \column{0.42\textwidth}
+        \begin{theorembox}{AI Coding Assistant Quality}
+            LLM coding tools perform best where \textbf{training data is abundant}.
+            
+            \vspace{0.3em}
+            {\small
+            \textbf{Strong support:} Python, JavaScript, Java, Go
+            
+            \textbf{Moderate:} C++, Rust, TypeScript
+            
+            \textbf{Weaker:} MATLAB, R, niche languages}
+        \end{theorembox}
+    \end{columns}
+    
+    \vspace{0.8em}
+    \begin{center}
+        \small\color{TuebingenRot} \textbf{Executive takeaway:} Language choice shapes experimentation speed, maintainability, hiring, and AI-assistance leverage.
+    \end{center}
+\end{frame}
+
+% ==============================================================================
+% 0.3 One Identical Example in Three Languages (3 slides)
+% ==============================================================================
+
+\begin{frame}[fragile]{Code Comparison: The Same Task in Three Languages}
+    \framesubtitle{Task: Load CSV, compute summary, detect anomalies, output JSON}
+    
+    {\color{TuebingenGray} Seeing the same logic expressed differently reveals language philosophies.}
+    
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \begin{codebox}
+            {\small\textbf{\color{TuebingenGreen}Python} — Concise, library-rich}
+            \vspace{0.3em}
+\begin{lstlisting}[style=pythonstyle, basicstyle=\ttfamily\tiny]
+import pandas as pd
+import json
+
+# Load and analyze
+df = pd.read_csv("transactions.csv")
+summary = {
+    "total": df["amount"].sum(),
+    "mean": df["amount"].mean(),
+    "count": len(df)
+}
+
+# Detect anomalies (simple rule)
+threshold = summary["mean"] * 3
+anomalies = df[df["amount"] > threshold]
+summary["anomalies"] = len(anomalies)
+
+# Output
+with open("report.json", "w") as f:
+    json.dump(summary, f)
+\end{lstlisting}
+        \end{codebox}
+        
+        \column{0.48\textwidth}
+        {\small\color{TuebingenAnthrazit}
+        \textbf{Characteristics:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item 15 lines of code
+            \item Rich standard library
+            \item Readable, minimal boilerplate
+            \item Dynamic typing (flexible)
+            \item Dominant in data science
+        \end{itemize}
+        
+        \vspace{0.5em}
+        \textbf{Trade-offs:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Slower runtime than compiled
+            \item Type errors found at runtime
+            \item GIL limits parallelism
+        \end{itemize}
+        }
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Code Comparison: Java — Enterprise Standard}
+    \framesubtitle{Same task: More structure, explicit types, verbose}
+    
+    \begin{columns}[T]
+        \column{0.55\textwidth}
+        \begin{codebox}
+            {\small\textbf{\color{TuebingenGreen}Java} — Explicit, structured}
+            \vspace{0.2em}
+\begin{lstlisting}[style=javastyle, basicstyle=\ttfamily\tiny]
+public class TransactionAnalyzer {
+    public static void main(String[] args) {
+        List<Transaction> txns = loadCSV("transactions.csv");
+        
+        double total = txns.stream()
+            .mapToDouble(Transaction::getAmount)
+            .sum();
+        double mean = total / txns.size();
+        double threshold = mean * 3;
+        
+        long anomalyCount = txns.stream()
+            .filter(t -> t.getAmount() > threshold)
+            .count();
+        
+        Summary summary = new Summary(
+            total, mean, txns.size(), anomalyCount);
+        
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.writeValue(
+            new File("report.json"), summary);
+    }
+}
+\end{lstlisting}
+        \end{codebox}
+        
+        \column{0.42\textwidth}
+        {\small\color{TuebingenAnthrazit}
+        \textbf{Characteristics:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item ~25 lines (plus class definitions)
+            \item Static typing (compile-time safety)
+            \item Explicit structure
+            \item Enterprise conventions
+            \item Long-lived, maintainable codebases
+        \end{itemize}
+        
+        \vspace{0.5em}
+        \textbf{Trade-offs:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item More boilerplate
+            \item Slower iteration
+            \item Steeper learning curve
+        \end{itemize}
+        }
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Code Comparison: Go — Modern Systems Language}
+    \framesubtitle{Same task: Explicit error handling, built for services}
+    
+    \begin{columns}[T]
+        \column{0.55\textwidth}
+        \begin{codebox}
+            {\small\textbf{\color{TuebingenGreen}Go} — Explicit, concurrent-ready}
+            \vspace{0.2em}
+\begin{lstlisting}[style=gostyle, basicstyle=\ttfamily\tiny]
+func analyzeTransactions() error {
+    file, err := os.Open("transactions.csv")
+    if err != nil {
+        return fmt.Errorf("open: %w", err)
+    }
+    defer file.Close()
+    
+    txns, err := parseCSV(file)
+    if err != nil {
+        return fmt.Errorf("parse: %w", err)
+    }
+    
+    var total float64
+    for _, t := range txns {
+        total += t.Amount
+    }
+    mean := total / float64(len(txns))
+    threshold := mean * 3
+    
+    var anomalies int
+    for _, t := range txns {
+        if t.Amount > threshold {
+            anomalies++
+        }
+    }
+    
+    summary := Summary{Total: total, Mean: mean,
+        Count: len(txns), Anomalies: anomalies}
+    return writeJSON("report.json", summary)
+}
+\end{lstlisting}
+        \end{codebox}
+        
+        \column{0.42\textwidth}
+        {\small\color{TuebingenAnthrazit}
+        \textbf{Characteristics:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item ~30 lines
+            \item \textbf{Explicit error handling}
+            \item Compiled, fast execution
+            \item Built-in concurrency
+            \item Cloud/DevOps standard
+        \end{itemize}
+        
+        \vspace{0.5em}
+        \textbf{Go Philosophy:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item "Errors are values"
+            \item Simplicity over cleverness
+            \item Designed for services
+        \end{itemize}
+        
+        \vspace{0.5em}
+        \color{TuebingenRot}\small\textit{Used by: Docker, Kubernetes, most cloud infrastructure}
+        }
+    \end{columns}
+\end{frame}
+
+% ==============================================================================
+% 0.5 Editors and AI Coding Copilots (1 slide)
+
+% ------------------------------------------------------------------------------
+\begin{frame}{Development Tools: Editors and AI Coding Assistants}
+    \framesubtitle{The delivery vehicle for AI in engineering}
+    {\color{TuebingenGray} Modern editors are where AI meets developers—and where governance matters most.}
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        	extbf{Popular Development Environments:}
+        \begin{itemize}
+            \setlength\itemsep{0.4em}
+            \item \textbf{VS Code}: Free, open source, huge extension ecosystem, strong AI integration (Copilot, etc.), cross-platform. Used by individuals and enterprises.
+            \item \textbf{Cursor}: AI-native fork of VS Code, built-in copilots, context window navigation, paid plans for advanced AI features.
+            \item \textbf{JetBrains Suite} (IntelliJ, PyCharm, etc.): Paid, advanced refactoring, deep language support, enterprise features, strong static analysis, AI assistant (paid add-on).
+            \item \textbf{Vim/Neovim}: Free, highly customizable, keyboard-driven, used on servers and by power users. AI plugins available.
+        \end{itemize}
+        \vspace{0.5em}
+        	extbf{AI Coding Assistant Capabilities:}
+        \begin{itemize}
+            \setlength\itemsep{0.3em}
+            \item Code completion (line/block)
+            \item Refactoring suggestions
+            \item Test generation
+            \item Documentation writing
+            \item Code search and explanation
+            \item Agentic workflows (bounded)
+        \end{itemize}
+        \column{0.48\textwidth}
+        \begin{theorembox}{Governance Implications}
+            AI coding tools require explicit policies:
+            \vspace{0.3em}
+            \begin{itemize}
+                \setlength\itemsep{0.3em}
+                \item \textbf{Secrets} — API keys, credentials exposure
+                \item \textbf{IP/Licensing} — training data, code ownership
+                \item \textbf{Security} — vulnerable code suggestions
+                \item \textbf{Auditability} — who wrote what?
+                \item \textbf{Data residency} — where does code go?
+            \end{itemize}
+        \end{theorembox}
+        \vspace{0.3em}
+        {\small\color{TuebingenRot} \textit{Productivity gains of 20-40\% reported, but governance is non-negotiable.}}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Editor Comparison: Features and Pricing}
+    \framesubtitle{What do you get, and at what cost?}
+    \begin{center}
+    \begin{tabular}{|l|l|l|l|}
+        \hline
+        	extbf{Editor} & \textbf{Key Features} & \textbf{AI Integration} & \textbf{Pricing} \\
+        \hline
+        VS Code & Extensible, cross-platform & Copilot, 3rd-party & Free \\
+        Cursor & AI-native, context tools & Built-in, advanced & Free basic, Paid Pro (\euro20+/mo) \\
+        JetBrains & Refactoring, static analysis & AI Assistant (add-on) & \euro20-50/mo/user \\
+        Vim/Neovim & Lightweight, scriptable & Plugins (Copilot, etc.) & Free \\
+        \hline
+    \end{tabular}
+    \end{center}
+    \vspace{0.5em}
+    {\small\color{TuebingenGray} *Prices as of 2026, may vary by region and plan.}
+\end{frame}
+
+% ==============================================================================
+% 0.6 Database Systems Overview (2 slides)
+% ==============================================================================
+
+\begin{frame}{Database Systems: Choosing the Right Tool}
+    \framesubtitle{Different data patterns require different systems}
+    
+    {\color{TuebingenGray} "Which database?" is really "What are your query patterns and constraints?"}
+    
+    \vspace{0.3em}
+    \begin{columns}[T]
+        \column{0.48\textwidth}
+        \textbf{\color{TuebingenRot}Relational (SQL):}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item PostgreSQL, MySQL, Oracle
+            \item Transactions, consistency, reporting
+            \item Structured business data
+            \item \textit{Most enterprise use cases}
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{\color{TuebingenGold}Document Stores:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item MongoDB, CouchDB
+            \item Flexible schemas
+            \item Product data, events, logs
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{\color{TuebingenGreen}Key-Value Stores:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Redis, DynamoDB
+            \item Caching, session state
+            \item Sub-millisecond latency
+        \end{itemize}
+        
+        \column{0.48\textwidth}
+        \textbf{\color{TuebingenCyan}Columnar / Data Warehouses:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Snowflake, BigQuery, Redshift
+            \item Analytics at scale
+            \item Historical analysis, BI
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{\color{TuebingenAnthrazit}Graph Databases:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Neo4j, Amazon Neptune
+            \item Relationships, knowledge graphs
+            \item Entity resolution, networks
+        \end{itemize}
+        
+        \vspace{0.3em}
+        \textbf{\color{TuebingenRot}Vector Databases:}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Pinecone, Weaviate, Qdrant
+            \item \textbf{Embeddings for RAG/AI}
+            \item Similarity search
+        \end{itemize}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Database Selection: Executive Decision Framework}
+    \framesubtitle{Match the system to your constraints}
+    
+    \vspace{0.5em}
+    \begin{center}
+        \begin{tikzpicture}[
+            node distance=1.5cm,
+            box/.style={draw=TuebingenAnthrazit, rounded corners=3pt, minimum width=3cm, minimum height=0.8cm, align=center, font=\small, fill=TuebingenBeige},
+            decision/.style={draw=TuebingenRot, rounded corners=3pt, minimum width=2.5cm, minimum height=0.6cm, align=center, font=\scriptsize, fill=TuebingenRot!10},
+            arrow/.style={->, thick, TuebingenAnthrazit}
+        ]
+            \node[decision] (q1) at (0,0) {Need ACID transactions?};
+            \node[box] (sql) at (5,0) {\textbf{SQL Database}\\PostgreSQL, MySQL};
+            \node[decision] (q2) at (0,-1.5) {Analytics at scale?};
+            \node[box] (warehouse) at (5,-1.5) {\textbf{Data Warehouse}\\Snowflake, BigQuery};
+            \node[decision] (q3) at (0,-3) {AI similarity search?};
+            \node[box] (vector) at (5,-3) {\textbf{Vector DB}\\Pinecone, Weaviate};
+            \node[decision] (q4) at (0,-4.5) {Complex relationships?};
+            \node[box] (graph) at (5,-4.5) {\textbf{Graph DB}\\Neo4j};
+            
+            \draw[arrow] (q1) -- node[above]{\tiny Yes} (sql);
+            \draw[arrow] (q1) -- node[left]{\tiny No} (q2);
+            \draw[arrow] (q2) -- node[above]{\tiny Yes} (warehouse);
+            \draw[arrow] (q2) -- node[left]{\tiny No} (q3);
+            \draw[arrow] (q3) -- node[above]{\tiny Yes} (vector);
+            \draw[arrow] (q3) -- node[left]{\tiny No} (q4);
+            \draw[arrow] (q4) -- node[above]{\tiny Yes} (graph);
+        \end{tikzpicture}
+    \end{center}
+    
+    \vspace{0.5em}
+    \begin{theorembox}{Executive Rule of Thumb}
+        Choose databases based on \textbf{query patterns} and \textbf{constraints} (latency, consistency, scale)—not vendor marketing or "fashion". Most organizations need \textbf{multiple} database types working together.
+    \end{theorembox}
+\end{frame}
+
+% ==============================================================================
+% 0.7 Compute Basics: CPU vs GPU (1 slide)
+
+% ------------------------------------------------------------------------------
+\begin{frame}{Compute Infrastructure: CPU, GPU, and Beyond}
+    \framesubtitle{Understanding what powers AI workloads}
+    {\color{TuebingenGray} AI's compute demands are fundamentally different from traditional software.}
+    \vspace{0.5em}
+    \begin{columns}[T]
+        \column{0.32\textwidth}
+        \begin{center}
+            {\Large \color{TuebingenRot} \textbf{CPU}}
+        \end{center}
+        \vspace{0.2em}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item General-purpose processor for all software
+            \item Handles complex logic, branching, and orchestration
+            \item Low to moderate parallelism (8-64 cores typical)
+            \item Used for data processing, serving, business logic
+            \item Widely available, cost-effective
+        \end{itemize}
+        \vspace{0.3em}
+        {\scriptsize\color{TuebingenGray} \textit{Best for: Traditional software, ETL, web servers, orchestration}}
+        \column{0.32\textwidth}
+        \begin{center}
+            {\Large \color{TuebingenGold} \textbf{GPU}}
+        \end{center}
+        \vspace{0.2em}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item Massively parallel (10,000+ cores)
+            \item Optimized for matrix math, deep learning
+            \item Essential for AI model training and fast inference
+            \item High memory bandwidth, but expensive
+            \item Used in cloud and on-prem for ML/AI
+        \end{itemize}
+        \vspace{0.3em}
+        {\scriptsize\color{TuebingenGray} \textit{Best for: Deep learning, large-scale analytics, simulation}}
+        \column{0.32\textwidth}
+        \begin{center}
+            {\Large \color{TuebingenGreen} \textbf{TPU/NPU}}
+        \end{center}
+        \vspace{0.2em}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item AI-specialized silicon (Google TPU, Apple NPU, etc.)
+            \item Even more efficient for neural nets
+            \item Used in cloud (TPU) and edge/mobile (NPU)
+            \item Vendor lock-in risk, less flexible
+            \item Can dramatically reduce inference cost at scale
+        \end{itemize}
+        \vspace{0.3em}
+        {\scriptsize\color{TuebingenGray} \textit{Best for: Cloud AI services, edge inference, mobile AI}}
+    \end{columns}
+    \vspace{0.8em}
+    \begin{columns}[T]
+        \column{0.65\textwidth}
+        	extbf{\color{TuebingenRot}On "Quantum Computing":}
+        \begin{itemize}
+            \setlength\itemsep{0.2em}
+            \item \textbf{Not relevant} for mainstream ML today
+            \item Potential future niche: optimization, simulation
+            \item Separate timeline from current AI ROI discussions
+        \end{itemize}
+        \column{0.32\textwidth}
+        {\small\color{TuebingenAnthrazit}
+        	extbf{Cost Reality:}\\
+        GPU compute is expensive.\\
+        H100: \$25-50/hour (cloud)\\
+        Training GPT-4: \$50-100M+\\
+        CPU: \$0.05-0.20/hour\\
+        TPU: \$10-30/hour (cloud)
+        }
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Compute in Practice: Cost and Selection}
+    \framesubtitle{How to choose and what to expect}
+    \begin{itemize}
+        \item \textbf{Cost drivers:} Model size, training duration, inference volume, hardware type, cloud vs. on-prem
+        \item \textbf{Cloud pricing (2026):}
+        \begin{itemize}
+            \item CPU: \$0.05–0.20/hour (AWS, Azure, GCP)
+            \item GPU (NVIDIA H100): \$25–50/hour
+            \item TPU: \$10–30/hour
+        \end{itemize}
+        \item \textbf{Example:} Training a large LLM (GPT-4 scale) can cost \$50–100M+ in compute alone
+        \item \textbf{Inference:} Serving a single query can cost \$0.001–0.01 (GPU), much less on CPU for small models
+        \item \textbf{Selection guide:}
+        \begin{itemize}
+            \item \textbf{CPU:} Use for traditional software, small models, orchestration
+            \item \textbf{GPU:} Use for deep learning, large models, fast inference
+            \item \textbf{TPU/NPU:} Use for specialized AI, edge/mobile, or when vendor lock-in is acceptable
+        \end{itemize}
+        \item \textbf{Tip:} Start with cloud GPUs for flexibility, optimize for cost as usage grows
+    \end{itemize}
+    \vspace{0.5em}
+    {\small\color{TuebingenGray} Always monitor usage and optimize for your workload.}
+\end{frame}
