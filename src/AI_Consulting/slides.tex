@@ -215,13 +215,13 @@
 \newcommand{\CoffeeBreakFrame}{
 \begin{frame}[plain]
     \begin{tikzpicture}[overlay]
-        % Decorative circles in background (drawn first so they're behind everything)
-        \fill[TuebingenGold!10] (current page.center) circle (4cm);
-        \fill[TuebingenGold!5] ([xshift=-3cm, yshift=2cm]current page.center) circle (2cm);
-        \fill[TuebingenGold!5] ([xshift=3cm, yshift=-2cm]current page.center) circle (2cm);
+        % Decorative circles in background (all shifted 6cm lower and 1cm to the left)
+        \fill[TuebingenGold!10] ([xshift=-1cm, yshift=-6cm]current page.center) circle (4cm);
+        \fill[TuebingenGold!5] ([xshift=-3cm-1cm, yshift=2cm-6cm]current page.center) circle (2cm);
+        \fill[TuebingenGold!5] ([xshift=3cm-1cm, yshift=-2cm-6cm]current page.center) circle (2cm);
         
-        % Coffee cup illustration (positioned above the main decorative circle)
-        \node[anchor=center] at ([yshift=1.125cm]current page.center) {
+        % Coffee cup illustration (shifted 6cm lower and 1cm to the left)
+        \node[anchor=center] at ([xshift=-1cm, yshift=1.125cm-6cm]current page.center) {
             \begin{tikzpicture}[scale=1.0]
                 % Cup body (trapezoid shape - wider at top)
                 \fill[TuebingenGold!15] (-0.6,0) -- (-0.75,0) -- (-0.9,1.8) -- (-0.9,2.1) -- (0.9,2.1) -- (0.9,1.8) -- (0.75,0) -- (0.6,0) -- cycle;
@@ -245,15 +245,15 @@
             \end{tikzpicture}
         };
         
-        % Subtitle with decorative elements (centered below circle)
-        \node[anchor=center, align=center] at ([yshift=-2.5cm]current page.center) {
+        % Subtitle with decorative elements (shifted 6cm lower and 1cm to the left)
+        \node[anchor=center, align=center] at ([xshift=-1cm, yshift=-2.5cm-6cm]current page.center) {
             {\Large \color{TuebingenAnthrazit} Take a moment to refresh}
             \\[0.3cm]
             {\normalsize \color{TuebingenGray} We'll resume shortly}
         };
         
-        % Main title in top left corner (drawn last so it's in front)
-        \node[anchor=north west, align=left] at ([xshift=0.5cm, yshift=-0.5cm]current page.north west) {
+        % Main title in top left corner (shifted 6cm lower and 1cm to the left)
+        \node[anchor=north west, align=left] at ([xshift=0.5cm-1cm, yshift=-0.5cm-6cm]current page.north west) {
             {\Huge \color{TuebingenGold} \textbf{COFFEE BREAK}}
         };
     \end{tikzpicture}
