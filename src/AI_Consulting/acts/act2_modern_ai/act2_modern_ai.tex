@@ -830,11 +830,6 @@
         \vspace{0.3em}
         {\small\color{TuebingenGray} \textbf{Geometric view:} The encoder maps data to a lower-dimensional manifold; the decoder reconstructs it.}
     \end{columns}
-    
-    \vspace{0.3em}
-    \begin{center}
-        \small\color{TuebingenGold} \textbf{Bridge:} This encoder→latent→decoder pattern is fundamental to modern generative AI.
-    \end{center}
 \end{frame}
 
 % ------------------------------------------------------------------------------
@@ -878,15 +873,18 @@
         \vspace{0.2em}
         {\small\color{TuebingenGreen} All share the concept: \textit{learned representations enable generation}}
     \end{columns}
-    
+\end{frame}
+
+\begin{frame}{From Autoencoders to Generative AI}
+    \framesubtitle{The conceptual bridge to LLMs and diffusion models}
     \vspace{0.3em}
     \begin{theorembox}{Conceptual Link}
         \textbf{Encoder} produces embeddings (representations) \\
         \textbf{Decoder} generates outputs conditioned on representations \\[0.3em]
         LLMs are essentially very large decoders that generate text conditioned on the prompt.
     \end{theorembox}
-\end{frame}
 
+\end{frame}
 % ------------------------------------------------------------------------------
 % II-B.4 Optimization, generalization, and failure modes (2–3 slides)
 % ------------------------------------------------------------------------------
@@ -1301,7 +1299,9 @@
         
         {\small\color{TuebingenGray} Retrieve $k$ nearest neighbors}
     \end{columns}
-    
+\end{frame}
+
+\begin{frame}{Enterprise Value}
     \vspace{0.3em}
     \begin{theorembox}{Enterprise Value}
         Embedding-based search is the backbone of \textbf{RAG systems}. \\
@@ -1638,7 +1638,9 @@
             \item Clearer citation/attribution
         \end{itemize}
     \end{columns}
-    
+\end{frame}
+
+\begin{frame}{RAG: Design Principle}
     \vspace{0.3em}
     \begin{theorembox}{Design Principle}
         \textbf{RAG + small context} often outperforms \textbf{no RAG + huge context}. \\
@@ -1963,11 +1965,6 @@
         {\small\centering Green = retrieved documents}
     \end{columns}
     
-    \vspace{0.3em}
-    \begin{theorembox}{vs. Keyword Search}
-        \textbf{Keyword:} "vacation policy" finds docs with those exact words \\
-        \textbf{Vector:} "vacation policy" also finds "PTO rules", "time off", "leave entitlement"
-    \end{theorembox}
 \end{frame}
 
 \begin{frame}{Building Block 3: LLM Generation}
@@ -2025,45 +2022,49 @@
 \begin{frame}{Putting It Together: The RAG Flow}
     \framesubtitle{How the three building blocks combine}
     
-    \vspace{0.3em}
+    % Increase vertical spacing for more slide coverage
+    \vspace{0.8em}
     \begin{center}
-        \begin{tikzpicture}[scale=0.85, every node/.style={font=\small}]
-            % User query
-            \node[draw, fill=TuebingenBeige, rounded corners, minimum width=3cm] (query) at (0, 3) {User: "What's our PTO policy?"};
+        \begin{tikzpicture}[scale=1.13, every node/.style={font=\small}]
+            % User query (far left, near top)
+            \node[draw, fill=TuebingenBeige, rounded corners, minimum width=3.2cm, minimum height=1cm] (query) at (-5, 3.4) {User: "What's our PTO policy?"};
             
-            % Step 1: Embed query
-            \node[draw, fill=TuebingenRot!20, rounded corners, minimum width=2.5cm] (embed) at (0, 1.5) {1. Embed Query};
-            \node[font=\tiny, TuebingenGray, right] at (1.5, 1.5) {[0.23, -0.41, ...]};
+            % Step 1: Embed query (closer to left, a bit lower)
+            \node[draw, fill=TuebingenRot!20, rounded corners, minimum width=2.8cm, minimum height=1cm] (embed) at (-3.5, 1.5) {1. Embed Query};
+            \node[font=\tiny, TuebingenGray, right] at (-1.7, 1.3) {[0.23, -0.41, ...]};
             
-            % Step 2: Vector search
-            \node[draw, fill=TuebingenGold!20, rounded corners, minimum width=2.5cm] (search) at (0, 0) {2. Vector Search};
+            % Step 2: Vector search (center left)
+            \node[draw, fill=TuebingenGold!20, rounded corners, minimum width=2.8cm, minimum height=1cm] (search) at (-2, -0.4) {2. Vector Search};
             
-            % Vector DB
-            \node[draw, fill=TuebingenGray!20, rounded corners, minimum width=2cm] (db) at (4, 0) {Vector DB};
+            % Vector DB (center right)
+            \node[draw, fill=TuebingenGray!20, rounded corners, minimum width=2.2cm, minimum height=1cm] (db) at (2, -0.4) {Vector DB};
             
-            % Step 3: Retrieved docs
-            \node[draw, fill=TuebingenGold!40, rounded corners, minimum width=3cm, align=center] (docs) at (4, 1.5) {Retrieved Docs\\{\tiny HR-Policy-PTO.pdf}};
+            % Step 3: Retrieved docs (center top)
+            \node[draw, fill=TuebingenGold!40, rounded corners, minimum width=3.2cm, minimum height=1cm, align=center] (docs) at (2, 1.5) {Retrieved Docs\\{\tiny HR-Policy-PTO.pdf}};
             
-            % Step 4: LLM
-            \node[draw, fill=TuebingenGreen!20, rounded corners, minimum width=2.5cm] (llm) at (4, 3) {3. LLM Generate};
+            % Step 4: LLM (far right, top)
+            \node[draw, fill=TuebingenGreen!20, rounded corners, minimum width=2.8cm, minimum height=1cm] (llm) at (5.5, 3.4) {3. LLM Generate};
             
-            % Answer
-            \node[draw, fill=TuebingenCyan!30, rounded corners, minimum width=5cm, align=center] (answer) at (2, -1.5) {Answer: "You receive 20 days PTO per year.\\ See HR-Policy-PTO.pdf §3.1"};
+            % Answer (center, bottom)
+            \node[draw, fill=TuebingenCyan!30, rounded corners, minimum width=6cm, minimum height=1.3cm, align=center] (answer) at (2, -2.8) 
+                {Answer: "You receive 20 days PTO per year.\\ See HR-Policy-PTO.pdf §3.1"};
             
-            % Arrows
+            % Arrows (splitting lines for clarity and longer verticals/horizontals)
             \draw[->, thick] (query) -- (embed);
             \draw[->, thick] (embed) -- (search);
             \draw[->, thick] (search) -- (db);
             \draw[->, thick] (db) -- (docs);
             \draw[->, thick] (docs) -- (llm);
-            \draw[->, thick] (query.east) -- ++(0.5,0) |- (llm.west);
-            \draw[->, thick] (llm) -- (answer);
+            \draw[->, thick] (query.east) -- ++(0.7,0) |- (llm.west);
+            \draw[->, thick] (llm) -- ++(0,-1.2) -| (answer.east); % Answer from LLM to answer box
         \end{tikzpicture}
     \end{center}
     
-    \vspace{0.3em}
+    \vspace{1.2em}
+
     \begin{center}
-        \small\color{TuebingenGray} This is the core RAG pattern. Now let's explore each step in detail.
+        \Large\color{TuebingenGray} This is the core RAG pattern.\\[0.4em] 
+        \normalsize Now let's explore each step in detail.
     \end{center}
 \end{frame}
 
@@ -2107,14 +2108,6 @@
             \end{tikzpicture}
         \end{center}
     \end{columns}
-    
-    \vspace{0.5em}
-    \begin{theorembox}{Learning Goal}
-        By the end of this section, you'll understand: \\
-        • How to design a RAG system for your use case \\
-        • Which variants apply to which problems \\
-        • How to evaluate if your RAG system is working
-    \end{theorembox}
 \end{frame}
 
 % ------------------------------------------------------------------------------
@@ -2186,37 +2179,43 @@
 
 \begin{frame}{The Canonical RAG Pipeline: Overview}
     \framesubtitle{Nine stages from document to answer}
-    
-    \vspace{0.3em}
+
+    \vspace{0.5em}
     \begin{center}
-        \begin{tikzpicture}[scale=0.8, every node/.style={font=\footnotesize}]
-            % Pipeline stages
-            \node[draw, fill=TuebingenRot!20, rounded corners, minimum width=1.4cm, minimum height=0.7cm] (ingest) at (0,0) {1. Ingest};
-            \node[draw, fill=TuebingenGold!20, rounded corners, minimum width=1.4cm, minimum height=0.7cm] (chunk) at (2,0) {2. Chunk};
-            \node[draw, fill=TuebingenGreen!20, rounded corners, minimum width=1.4cm, minimum height=0.7cm] (embed) at (4,0) {3. Embed};
-            \node[draw, fill=TuebingenCyan!20, rounded corners, minimum width=1.4cm, minimum height=0.7cm] (retrieve) at (6,0) {4. Retrieve};
-            \node[draw, fill=TuebingenRot!30, rounded corners, minimum width=1.4cm, minimum height=0.7cm] (rerank) at (8,0) {5. Rerank};
-            
-            \node[draw, fill=TuebingenGold!30, rounded corners, minimum width=1.4cm, minimum height=0.7cm] (prompt) at (2,-1.5) {6. Prompt};
-            \node[draw, fill=TuebingenGreen!30, rounded corners, minimum width=1.4cm, minimum height=0.7cm] (generate) at (4,-1.5) {7. Generate};
-            \node[draw, fill=TuebingenCyan!30, rounded corners, minimum width=1.4cm, minimum height=0.7cm] (post) at (6,-1.5) {8. Post-proc};
-            \node[draw, fill=TuebingenAnthrazit!20, rounded corners, minimum width=1.4cm, minimum height=0.7cm] (feedback) at (8,-1.5) {9. Feedback};
-            
+        \begin{tikzpicture}[scale=0.88, every node/.style={font=\footnotesize}]
+            % Offline (Indexing) Block
+            \node[draw, fill=TuebingenRot!20, rounded corners, minimum width=1.8cm, minimum height=0.8cm, align=center] (ingest) at (0,0) {1. Ingest};
+            \node[draw, fill=TuebingenGold!20, rounded corners, minimum width=1.8cm, minimum height=0.8cm, align=center] (chunk) at (2.1,0) {2. Chunk};
+            \node[draw, fill=TuebingenGreen!20, rounded corners, minimum width=1.8cm, minimum height=0.8cm, align=center] (embed) at (4.2,0) {3. Embed};
+
+            \node[draw, very thick, fit=(ingest) (chunk) (embed), inner sep=0.4cm, label={[align=center, font=\scriptsize, yshift=1.05cm]above:\textbf{Offline} \\ (Indexing)}, color=TuebingenGray] (offlinebox) {};
+
+            % Online (Query) Block
+            \node[draw, fill=TuebingenCyan!20, rounded corners, minimum width=1.8cm, minimum height=0.8cm, align=center] (retrieve) at (6.7,0) {4. Retrieve};
+            \node[draw, fill=TuebingenRot!30, rounded corners, minimum width=1.8cm, minimum height=0.8cm, align=center] (rerank) at (8.8,0) {5. Rerank};
+            \node[draw, fill=TuebingenGold!30, rounded corners, minimum width=1.8cm, minimum height=0.8cm, align=center] (prompt) at (10.9,0) {6. Prompt};
+            \node[draw, fill=TuebingenGreen!30, rounded corners, minimum width=1.8cm, minimum height=0.8cm, align=center] (generate) at (13,0) {7. Generate};
+            \node[draw, fill=TuebingenCyan!30, rounded corners, minimum width=1.8cm, minimum height=0.8cm, align=center] (post) at (15.1,0) {8. Post-proc};
+            \node[draw, fill=TuebingenAnthrazit!20, rounded corners, minimum width=1.8cm, minimum height=0.8cm, align=center] (feedback) at (17.2,0) {9. Feedback};
+
+            \node[draw, very thick, fit=(retrieve) (rerank) (prompt) (generate) (post) (feedback), inner sep=0.45cm,
+                  label={[align=center, font=\scriptsize, yshift=1.05cm]above:\textbf{Online} \\ (Query Time)}, color=TuebingenGray] (onlinebox) {};
+
             % Arrows
             \draw[->, thick] (ingest) -- (chunk);
             \draw[->, thick] (chunk) -- (embed);
             \draw[->, thick] (embed) -- (retrieve);
             \draw[->, thick] (retrieve) -- (rerank);
-            \draw[->, thick] (rerank) -- (8, -0.75) -- (prompt);
+            \draw[->, thick] (rerank) -- (prompt);
             \draw[->, thick] (prompt) -- (generate);
             \draw[->, thick] (generate) -- (post);
             \draw[->, thick] (post) -- (feedback);
-            
-            % Feedback loop
-            \draw[->, dashed, TuebingenGray] (feedback) -- (8, -2.5) -- (0, -2.5) -- (ingest);
+
+            % Feedback loop: from feedback to ingest
+            \draw[->, dashed, TuebingenGray] (feedback.south) .. controls +(down:1.2cm) and +(down:1.2cm) .. (ingest.south);
         \end{tikzpicture}
     \end{center}
-    
+
     \vspace{0.5em}
     \begin{columns}[T]
         \column{0.48\textwidth}
@@ -2907,220 +2906,63 @@
     \end{theorembox}
 \end{frame}
 
-\begin{frame}{Enterprise RAG: Why Audit Matters}
-    \framesubtitle{Business value of traceability}
-    
+\begin{frame}{Enterprise RAG: Why Audit?}
+    \framesubtitle{Audit is non-negotiable in production}
     \vspace{0.5em}
-    \textbf{Audit Enables:}
-    
-    \vspace{0.3em}
-    \begin{columns}[T]
-        \column{0.48\textwidth}
-        \begin{itemize}
-            \setlength\itemsep{0.6em}
-            \item \textbf{Compliance:} Demonstrate data handling
-            \item \textbf{Investigation:} Trace problematic answers
-            \item \textbf{Quality debugging:} Why did it fail?
-        \end{itemize}
-        
-        \column{0.48\textwidth}
-        \begin{itemize}
-            \setlength\itemsep{0.6em}
-            \item \textbf{Improvement:} Build evaluation datasets
-            \item \textbf{Cost tracking:} Token usage per query
-            \item \textbf{User feedback:} Connect ratings to queries
-        \end{itemize}
-    \end{columns}
-    
+    \begin{itemize}
+        \item \textbf{Traceability:} Know exactly which sources were used for every answer.
+        \item \textbf{Compliance:} Prove data handling meets legal and policy requirements.
+        \item \textbf{Debugging:} Quickly identify and fix root causes of errors.
+    \end{itemize}
     \vspace{0.5em}
-    {\color{TuebingenGray}\textbf{Implementation:} Use structured logging with query IDs that link retrieval, generation, and user feedback.}
+    {\color{TuebingenGray}\textbf{Implementation:} Log every query, answer, and source with a unique query ID.}
 \end{frame}
 
-\begin{frame}{Evaluating RAG: Retrieval Metrics}
-    \framesubtitle{Did we find the right documents?}
-    
+\begin{frame}{RAG: Precise Evaluation Metrics}
+    \framesubtitle{Objectively assess retrieval and generation}
     \vspace{0.5em}
-    \textbf{Key Retrieval Metrics:}
-    
-    \vspace{0.3em}
+    \textbf{Retrieval:}
     \begin{itemize}
-        \setlength\itemsep{0.6em}
-        \item \textbf{Recall@k:} Did we retrieve the right docs in top k results?
-        \item \textbf{Precision@k:} How much noise/irrelevant content in top-k?
-        \item \textbf{MRR (Mean Reciprocal Rank):} Where does first relevant doc appear?
-        \item \textbf{nDCG:} Overall ranking quality considering position
+        \item \textbf{Recall@k:} Are the right docs included in top results?
+        \item \textbf{Precision@k:} How much noise is present?
     \end{itemize}
-    
+    \textbf{Generation:}
+    \begin{itemize}
+        \item \textbf{Groundedness:} Only claims supported by retrieved docs.
+        \item \textbf{Citation Accuracy:} Every citation matches its claim.
+        \item \textbf{Factuality \& Completeness:} All info is correct and fully answers the question.
+    \end{itemize}
     \vspace{0.5em}
-    \begin{theorembox}{Key Insight}
-        If retrieval fails, generation can't succeed. \\
-        \textbf{Always measure retrieval quality separately from generation quality.}
+    {\color{TuebingenGray}Evaluate retrieval and generation independently.}
+\end{frame}
+
+\begin{frame}{RAG: Example Query Trace}
+    \framesubtitle{Every answer must be auditable}
+    \vspace{0.3em}
+    \textbf{Example:}
+    \begin{itemize}
+        \item \textbf{User query:} "What is our remote work policy?"
+        \item \textbf{Retrieved docs:} HR-Policy.pdf, Exception-Approval.docx (scored for relevance)
+        \item \textbf{Generated answer:} Policy summary and approval process with document citations
+        \item \textbf{Log:} Query ID, user, timestamp, sources, confidence, final answer
+    \end{itemize}
+    \vspace{0.5em}
+    {\color{TuebingenGreen}\textbf{Key:} Every answer should be fully traceable to sources via logs.}
+\end{frame}
+
+\begin{frame}{RAG: Production-Ready Checklist}
+    \framesubtitle{Essentials for enterprise deployment}
+    \vspace{0.5em}
+    \begin{itemize}
+        \item \textbf{Permissions:} Enforced at retrieval, not just UI.
+        \item \textbf{Audit:} Source-to-answer logging for every query.
+        \item \textbf{Evaluation:} Objective metrics and monitoring in place.
+        \item \textbf{Feedback:} Users can rate answers and see improvements.
+    \end{itemize}
+    \vspace{0.5em}
+    \begin{theorembox}{If any box is missing, it's not enterprise RAG.}
     \end{theorembox}
-\end{frame}
 
-\begin{frame}{Evaluating RAG: Generation Metrics}
-    \framesubtitle{Is the answer good?}
-    
-    \vspace{0.5em}
-    \textbf{Key Generation Metrics:}
-    
-    \vspace{0.3em}
-    \begin{itemize}
-        \setlength\itemsep{0.6em}
-        \item \textbf{Groundedness:} Is answer supported by retrieved sources?
-        \item \textbf{Citation accuracy:} Do citations actually match claims?
-        \item \textbf{Factuality:} Is the answer correct?
-        \item \textbf{Completeness:} Did we fully answer the question?
-        \item \textbf{Refusal behavior:} Appropriate "I don't know" when needed?
-    \end{itemize}
-    
-    \vspace{0.5em}
-    {\color{TuebingenGray}\textbf{Tip:} Use LLM-as-judge for scalable automated evaluation.}
-    
-    \vspace{0.3em}
-    \begin{center}
-        \small\color{TuebingenGold} \textbf{Diagnose failures:} Poor answer = retrieval problem OR generation problem. Metrics tell you which.
-    \end{center}
-\end{frame}
-
-\begin{frame}{Evaluating RAG: Building Your Test Set}
-    \framesubtitle{Creating a reliable evaluation foundation}
-    
-    \vspace{0.5em}
-    \textbf{Building Your Evaluation Set:}
-    
-    \vspace{0.3em}
-    \begin{enumerate}
-        \setlength\itemsep{0.6em}
-        \item \textbf{Collect} realistic queries from actual users
-        \item \textbf{Identify} authoritative source for each answer
-        \item \textbf{Create} "golden answers" with expert review
-        \item \textbf{Track} which sources should be retrieved
-        \item \textbf{Version} the eval set as docs change
-    \end{enumerate}
-    
-    \vspace{0.5em}
-    {\color{TuebingenGray}\textbf{Target:} 100+ representative queries covering edge cases and common requests.}
-\end{frame}
-
-\begin{frame}{Evaluating RAG: Evaluation Cadence}
-    \framesubtitle{When and how to evaluate}
-    
-    \vspace{0.5em}
-    \textbf{Recommended Cadence:}
-    
-    \vspace{0.3em}
-    \begin{itemize}
-        \setlength\itemsep{0.6em}
-        \item \textbf{Automated:} Run on every change to retrieval or prompts
-        \item \textbf{Human spot-check:} Weekly sample review of outputs
-        \item \textbf{Deep dive:} Monthly comprehensive audit
-        \item \textbf{User feedback:} Continuous collection and analysis
-    \end{itemize}
-    
-    \vspace{0.5em}
-    \begin{theorembox}{Evaluation Governance}
-        Treat your evaluation set like code: \textbf{version controlled}, \textbf{reviewed}, and \textbf{protected}. \\
-        A contaminated eval set gives false confidence.
-    \end{theorembox}
-\end{frame}
-
-\begin{frame}{RAG Example: Enterprise Policy Query}
-    \framesubtitle{A realistic walkthrough}
-    
-    \vspace{0.3em}
-    \textbf{User Query:} "What is our policy for remote work, and who approves exceptions?"
-    
-    \vspace{0.5em}
-    \begin{columns}[T]
-        \column{0.48\textwidth}
-        \textbf{1. Retrieval Results:}
-        \begin{itemize}
-            \setlength\itemsep{0.2em}
-            \item[$\checkmark$] HR-Policy-2024-Remote-Work.pdf (score: 0.92)
-            \item[$\checkmark$] Exception-Approval-Process.docx (score: 0.87)
-            \item[$\times$] Travel-Policy.pdf (score: 0.71, filtered)
-        \end{itemize}
-        
-        \vspace{0.3em}
-        \textbf{2. Reranking:}
-        \begin{itemize}
-            \setlength\itemsep{0.2em}
-            \item Cross-encoder promotes Exception doc
-            \item Final context: 2 docs, 4 chunks
-        \end{itemize}
-        
-        \column{0.48\textwidth}
-        \textbf{3. Generated Answer:}
-        
-        {\small "Our remote work policy (HR-2024-RW) allows up to 3 days/week remote for eligible roles. \textbf{[Source 1, §2.1]}
-        
-        Exceptions require approval from your department head and HR Business Partner. \textbf{[Source 2, §4.2]}
-        
-        Submit exception requests via ServiceNow."}
-        
-        \vspace{0.3em}
-        \textbf{4. Audit Log:}
-        {\footnotesize Query ID, User, Timestamp, Sources used, Confidence scores}
-    \end{columns}
-    
-    \vspace{0.5em}
-    {\color{TuebingenGreen}\textbf{Key features:} Citations, specific references, actionable answer, traceable to sources.}
-\end{frame}
-
-\begin{frame}{RAG: Key Takeaways}
-    \framesubtitle{Summary for decision-makers}
-    
-    \vspace{0.5em}
-    \textbf{RAG Is The Enterprise Pattern:}
-    \begin{itemize}
-        \setlength\itemsep{0.5em}
-        \item Grounds LLMs in \textbf{your} knowledge
-        \item Enables \textbf{citations} and \textbf{audit trails}
-        \item Keeps data \textbf{current} without retraining
-        \item Respects \textbf{permissions} and \textbf{compliance}
-    \end{itemize}
-    
-    \vspace{0.5em}
-    \textbf{Choose Your Variant:}
-    \begin{itemize}
-        \setlength\itemsep{0.4em}
-        \item Start with \textbf{hybrid retrieval} (vector + keyword)
-        \item Add \textbf{reranking} for precision
-        \item Use \textbf{hierarchical chunking} for large document sets
-        \item Add \textbf{GraphRAG} for complex relationships
-        \item Use \textbf{Text-to-SQL} for structured data
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{RAG: Success Criteria}
-    \framesubtitle{Non-negotiables for production}
-    
-    \vspace{0.5em}
-    \textbf{Non-Negotiable Requirements:}
-    \begin{itemize}
-        \setlength\itemsep{0.5em}
-        \item Permission enforcement at retrieval time
-        \item Complete audit logging
-        \item Evaluation set and metrics
-        \item Feedback loop for improvement
-    \end{itemize}
-    
-    \vspace{0.5em}
-    \textbf{Questions to Answer "Yes" To:}
-    \begin{itemize}
-        \setlength\itemsep{0.4em}
-        \item Can you trace every answer to sources?
-        \item Can you measure retrieval quality?
-        \item Can you prove permission compliance?
-        \item Can you show improvement over time?
-    \end{itemize}
-    
-    \vspace{0.3em}
-    \begin{theorembox}{The Bottom Line}
-        RAG transforms LLMs from \textbf{impressive demos} into \textbf{trustworthy enterprise tools}. \\
-        The investment is in the \textbf{retrieval infrastructure}, not the model.
-    \end{theorembox}
 \end{frame}
 
 % ==============================================================================
@@ -3308,37 +3150,6 @@
         \item Create "golden set" of Q/A pairs
         \item Expert-validated reference answers
         \item Versioned and maintained over time
-    \end{itemize}
-    
-    \vspace{0.3em}
-    \begin{theorembox}{Executive Mandate}
-        Require documented evaluation governance for every AI project. \\
-        Ask: "Who has access to test data? How many times has it been used?"
-    \end{theorembox}
-\end{frame}
-
-\begin{frame}{Production Monitoring: What to Track}
-    \framesubtitle{Deployment is just the beginning}
-    
-    \vspace{0.5em}
-    \textbf{Key Monitoring Dimensions:}
-    \begin{itemize}
-        \setlength\itemsep{0.5em}
-        \item \textbf{Input drift:} Are user queries changing over time?
-        \item \textbf{Output quality:} Hallucination rate, inappropriate refusals
-        \item \textbf{Retrieval health:} Empty results, low confidence scores
-        \item \textbf{Latency:} Response time percentiles (p50, p95, p99)
-        \item \textbf{Cost:} Tokens used, API spend per query
-        \item \textbf{Security:} Injection attempts, PII exposure
-    \end{itemize}
-    
-    \vspace{0.5em}
-    \textbf{Feedback Integration:}
-    \begin{itemize}
-        \setlength\itemsep{0.4em}
-        \item User thumbs up/down on responses
-        \item Escalation to human operators
-        \item Correction submissions from users
     \end{itemize}
 \end{frame}
 

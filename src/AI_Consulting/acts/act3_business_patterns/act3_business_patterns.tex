@@ -17,6 +17,7 @@
         {\color{TuebingenGray} Six proven patterns for enterprise AI deployment}
     \end{center}
     
+
     \vspace{0.3em}
     \textbf{What We'll Cover:}
     \begin{enumerate}
@@ -30,7 +31,10 @@
         \item Pattern 6: Operations and quality
         \item Why pilots fail and what success looks like
     \end{enumerate}
-    
+\end{frame}
+
+\begin{frame}{Purpose of This Act}
+    \framesubtitle{Apply Act II's technical foundation to templates executives can fund, govern, and scale.}
     \vspace{0.3em}
     \begin{theorembox}{Purpose of This Act}
         Apply Act II's technical foundation to templates executives can \textbf{fund}, \textbf{govern}, and \textbf{scale}.
@@ -176,9 +180,8 @@
     {\color{TuebingenGray}\textbf{Executive insight:} Knowledge assistants have clear, measurable ROI. Start here if you need quick wins.}
 \end{frame}
 
-\begin{frame}{Knowledge Assistant: Risks \& Mitigations}
-    \framesubtitle{What can go wrong and how to prevent it}
-    
+\begin{frame}{Knowledge Assistant: Risks \& Mitigations (1/2)}
+    \framesubtitle{Data and Generation Risks}
     \vspace{0.3em}
     \begin{columns}[T]
         \column{0.48\textwidth}
@@ -195,8 +198,8 @@
             \item Inherit ACLs from source systems
             \item Audit every query
         \end{itemize}
-        
-        \vspace{0.3em}
+
+        \vspace{0.6em}
         {\color{TuebingenRot}\textbf{Risk 2: Hallucination}}
         \begin{itemize}
             \setlength\itemsep{0.2em}
@@ -210,7 +213,14 @@
             \item Confidence indicators
             \item "I don't know" training
         \end{itemize}
-        
+
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Knowledge Assistant: Risks \& Mitigations (2/2)}
+    \framesubtitle{Lifecycle and Adoption Risks}
+    \vspace{0.3em}
+    \begin{columns}[T]
         \column{0.48\textwidth}
         {\color{TuebingenRot}\textbf{Risk 3: Stale Information}}
         \begin{itemize}
@@ -225,8 +235,8 @@
             \item Version tracking in metadata
             \item Freshness indicators in UI
         \end{itemize}
-        
-        \vspace{0.3em}
+
+        \vspace{0.6em}
         {\color{TuebingenRot}\textbf{Risk 4: Adoption Failure}}
         \begin{itemize}
             \setlength\itemsep{0.2em}
@@ -295,196 +305,6 @@
     
     \vspace{0.3em}
     {\color{TuebingenGray}\textbf{Timeline:} Pilot in 4-8 weeks. Broad rollout in 3-6 months.}
-\end{frame}
-
-% ==============================================================================
-% SECTION 3.3: PATTERN 2 — CUSTOMER SUPPORT AUGMENTATION
-% ==============================================================================
-
-\begin{frame}{Pattern 2: Customer Support Augmentation}
-    \framesubtitle{AI-assisted customer service}
-    
-    \vspace{0.3em}
-    \begin{columns}[T]
-        \column{0.48\textwidth}
-        \textbf{What It Is:}
-        \begin{itemize}
-            \setlength\itemsep{0.3em}
-            \item AI assists human agents (not replaces)
-            \item Combines customer context + knowledge
-            \item Improves speed and consistency
-        \end{itemize}
-        
-        \vspace{0.3em}
-        \textbf{Capabilities:}
-        \begin{itemize}
-            \setlength\itemsep{0.3em}
-            \item \textbf{Triage:} Classify, route, prioritize
-            \item \textbf{Suggested replies:} Draft responses
-            \item \textbf{Summarization:} Ticket history
-            \item \textbf{Next-best-action:} Recommend resolution
-            \item \textbf{Knowledge lookup:} Find relevant docs
-        \end{itemize}
-        
-        \column{0.48\textwidth}
-        \begin{center}
-            \begin{tikzpicture}[scale=0.65, font=\footnotesize]
-                % Flow
-                \node[draw, fill=TuebingenBeige, rounded corners] (customer) at (0,3) {Customer};
-                \node[draw, fill=TuebingenCyan!30, rounded corners] (triage) at (0,2) {AI Triage};
-                \node[draw, fill=TuebingenGold!30, rounded corners] (agent) at (-1.5,0.8) {Human Agent};
-                \node[draw, fill=TuebingenGreen!30, rounded corners] (ai) at (1.5,0.8) {AI Assistant};
-                \node[draw, fill=TuebingenRot!30, rounded corners] (resolve) at (0,-0.3) {Resolution};
-                
-                \draw[->, thick] (customer) -- (triage);
-                \draw[->, thick] (triage) -- (agent);
-                \draw[<->, thick, dashed] (agent) -- (ai);
-                \draw[->, thick] (agent) -- (resolve);
-                
-                % Labels
-                \node[font=\tiny, TuebingenGray] at (0.3, 0.8) {assists};
-            \end{tikzpicture}
-        \end{center}
-        
-        \vspace{0.3em}
-        \textbf{Key Principle:}
-        
-        \vspace{0.2em}
-        {\color{TuebingenGreen} Human in the loop for decisions.}
-        
-        {\color{TuebingenGreen} AI handles information retrieval + drafting.}
-    \end{columns}
-\end{frame}
-
-\begin{frame}{Customer Support: Compliance Constraints}
-    \framesubtitle{Guardrails for customer-facing AI}
-    
-    \vspace{0.5em}
-    {\color{TuebingenRot}\textbf{Compliance Requirements:}}
-    \begin{itemize}
-        \setlength\itemsep{0.6em}
-        \item \textbf{Regulated industries:} Financial advice, medical, legal — AI suggests, human approves
-        \item \textbf{PII handling:} Don't expose customer data in logs or outputs
-        \item \textbf{Promises:} AI cannot make commitments on behalf of the company
-        \item \textbf{Disclaimers:} Required disclosures in regulated contexts
-    \end{itemize}
-    
-    \vspace{0.5em}
-    \textbf{Content Policies:}
-    \begin{itemize}
-        \setlength\itemsep{0.5em}
-        \item Tone guidelines and brand voice consistency
-        \item Prohibited topics list
-        \item Approved response templates for sensitive issues
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Customer Support: Escalation Rules}
-    \framesubtitle{When to hand off to humans}
-    
-    \vspace{0.5em}
-    \textbf{Escalation Triggers:}
-    \begin{itemize}
-        \setlength\itemsep{0.6em}
-        \item \textbf{Sentiment:} Angry or frustrated customer → human agent
-        \item \textbf{Complexity:} Multi-issue or edge case → human agent
-        \item \textbf{Risk:} Legal threat → human + legal team
-        \item \textbf{Value:} High-value customer → human agent
-        \item \textbf{Uncertainty:} Low confidence score → human agent
-    \end{itemize}
-    
-    \vspace{0.5em}
-    \begin{theorembox}{Golden Rule}
-        When in doubt, escalate. \\
-        The cost of over-escalation is always less than the cost of a wrong answer.
-    \end{theorembox}
-\end{frame}
-
-\begin{frame}{Customer Support: Efficiency Metrics}
-    \framesubtitle{Measuring operational impact}
-    
-    \vspace{0.5em}
-    \textbf{Core Efficiency Metrics:}
-    \begin{itemize}
-        \setlength\itemsep{0.6em}
-        \item \textbf{Average Handle Time (AHT):}
-        \begin{itemize}
-            \item Target: 15-30\% reduction
-            \item Measure: Time from ticket open to close
-        \end{itemize}
-        \item \textbf{First Contact Resolution (FCR):}
-        \begin{itemize}
-            \item Target: 5-10\% improvement
-            \item Measure: Issues resolved without transfer
-        \end{itemize}
-        \item \textbf{Agent Utilization:}
-        \begin{itemize}
-            \item More tickets handled per agent
-            \item Less time spent searching for information
-        \end{itemize}
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Customer Support: Quality Metrics}
-    \framesubtitle{Ensuring answers are correct}
-    
-    \vspace{0.5em}
-    \textbf{Quality Metrics:}
-    \begin{itemize}
-        \setlength\itemsep{0.5em}
-        \item \textbf{CSAT:} Customer satisfaction score
-        \item \textbf{QA Score:} Compliance with guidelines
-        \item \textbf{Error Rate:} Wrong answers caught in review
-        \item \textbf{Escalation Rate:} Should stay stable
-    \end{itemize}
-    
-    \vspace{0.5em}
-    \textbf{AI-Specific Metrics:}
-    \begin{itemize}
-        \setlength\itemsep{0.5em}
-        \item Suggestion acceptance rate
-        \item Time saved per AI suggestion
-        \item Retrieval accuracy
-    \end{itemize}
-    
-    \vspace{0.3em}
-    {\color{TuebingenGray}\textbf{Warning:} Don't optimize AHT at the expense of quality. Balance is key.}
-\end{frame}
-
-\begin{frame}{Customer Support: Implementation Approach}
-    \framesubtitle{Phased rollout for risk control}
-    
-    \vspace{0.3em}
-    \textbf{Phase 1: Shadow Mode (4-6 weeks)}
-    \begin{itemize}
-        \setlength\itemsep{0.2em}
-        \item AI generates suggestions, agents see but don't have to use
-        \item Collect feedback: Was this helpful? What was wrong?
-        \item Build evaluation dataset from real interactions
-    \end{itemize}
-    
-    \vspace{0.3em}
-    \textbf{Phase 2: Assisted Mode (6-8 weeks)}
-    \begin{itemize}
-        \setlength\itemsep{0.2em}
-        \item AI suggestions integrated into workflow
-        \item One-click acceptance with edit capability
-        \item Measure adoption and quality metrics
-    \end{itemize}
-    
-    \vspace{0.3em}
-    \textbf{Phase 3: Enhanced Automation (Optional)}
-    \begin{itemize}
-        \setlength\itemsep{0.2em}
-        \item Auto-draft for simple, low-risk queries
-        \item Human review before send (not edit)
-        \item Only for high-confidence, low-risk categories
-    \end{itemize}
-    
-    \vspace{0.3em}
-    \begin{theorembox}{Success Factor}
-        Agent buy-in is critical. Involve agents in design. Position AI as \textbf{tool}, not \textbf{replacement}.
-    \end{theorembox}
 \end{frame}
 
 % ==============================================================================

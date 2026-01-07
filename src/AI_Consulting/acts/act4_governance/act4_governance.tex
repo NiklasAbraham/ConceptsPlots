@@ -29,7 +29,9 @@
         \item Economics and capacity planning
         \item Security, privacy, and IP
     \end{enumerate}
-    
+\end{frame}
+
+\begin{frame}{Purpose of This Act}
     \vspace{0.3em}
     \begin{theorembox}{Purpose of This Act}
         Ensure you can \textbf{operationalize} AI safely, avoid common traps, \\
@@ -204,9 +206,6 @@
         
         {\footnotesize Score each 1-5, weight by priority}
     \end{columns}
-    
-    \vspace{0.3em}
-    {\color{TuebingenGray}\textbf{Key insight:} Don't just chase highest value. Balance portfolio across risk and timeline.}
 \end{frame}
 
 \begin{frame}{Building Your AI Portfolio: Project Types}
@@ -340,8 +339,6 @@
             \draw[<->, thick] (plat) -- (sec);
         \end{tikzpicture}
     \end{center}
-    
-    {\color{TuebingenGray}\textbf{Critical:} Product owner must have authority and accountability for business outcomes.}
 \end{frame}
 
 \begin{frame}{Operating Model: Team Structures}
@@ -496,63 +493,11 @@
             \bottomrule
         \end{tabular}
     \end{center}
-    
-    \vspace{0.5em}
-    {\color{TuebingenGray}\textbf{Note:} Thresholds are use-case specific. Define them before building.}
-    
+
     \vspace{0.3em}
     \begin{theorembox}{Governance Rule}
         No deployment without passing quality gates. No exceptions without executive sign-off.
     \end{theorembox}
-\end{frame}
-
-\begin{frame}{Audit and Review Cadence}
-    \framesubtitle{Continuous oversight, not one-time approval}
-    
-    \vspace{0.3em}
-    \begin{columns}[T]
-        \column{0.48\textwidth}
-        \textbf{Audit Log Requirements:}
-        \begin{itemize}
-            \setlength\itemsep{0.4em}
-            \item Every query logged
-            \item Every response logged
-            \item Sources/retrieval logged
-            \item User identity captured
-            \item Timestamp and session ID
-        \end{itemize}
-        
-        \vspace{0.3em}
-        \textbf{What Audit Enables:}
-        \begin{itemize}
-            \setlength\itemsep{0.3em}
-            \item Incident investigation
-            \item Quality trend analysis
-            \item Compliance proof
-            \item Feedback loop data
-        \end{itemize}
-        
-        \column{0.48\textwidth}
-        \textbf{Periodic Review Cadence:}
-        
-        \vspace{0.3em}
-        \begin{tabular}{@{}p{1.8cm}p{4cm}@{}}
-            \toprule
-            \textbf{Frequency} & \textbf{Activity} \\
-            \midrule
-            \textbf{Daily} & Automated metric checks, alert review \\
-            \addlinespace
-            \textbf{Weekly} & Sample output review, user feedback triage \\
-            \addlinespace
-            \textbf{Monthly} & Full eval set run, trend analysis \\
-            \addlinespace
-            \textbf{Quarterly} & Red team exercise, model refresh decision \\
-            \bottomrule
-        \end{tabular}
-    \end{columns}
-    
-    \vspace{0.3em}
-    {\color{TuebingenGray}\textbf{Key insight:} AI systems drift. Ongoing monitoring is not optional.}
 \end{frame}
 
 \begin{frame}{Red Team Exercises: What to Test}
@@ -734,7 +679,9 @@
             \item Integration ecosystem?
         \end{itemize}
     \end{columns}
-    
+\end{frame}
+
+\begin{frame}{Vendor Selection: Data Handling Terms}
     \vspace{0.3em}
     \begin{theorembox}{Recommendation}
         Negotiate data handling terms explicitly. Ensure contractual right to delete. \\
@@ -895,57 +842,6 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}{Executive Unit Economics}
-    \framesubtitle{Metrics that matter for business cases}
-    
-    \vspace{0.3em}
-    \begin{columns}[T]
-        \column{0.48\textwidth}
-        \textbf{Cost Per Unit of Work:}
-        \begin{itemize}
-            \setlength\itemsep{0.4em}
-            \item \textbf{Cost per ticket:} Support automation
-            \item \textbf{Cost per document:} Document processing
-            \item \textbf{Cost per query:} Knowledge assistant
-            \item \textbf{Cost per code suggestion:} Dev tools
-        \end{itemize}
-        
-        \vspace{0.3em}
-        \textbf{Example Calculation:}
-        \begin{itemize}
-            \setlength\itemsep{0.2em}
-            \item Knowledge assistant: 10K queries/month
-            \item Total AI cost: \$2,000/month
-            \item Cost per query: \$0.20
-            \item Value per query: \$5 (time saved)
-            \item ROI: 25x
-        \end{itemize}
-        
-        \column{0.48\textwidth}
-        \textbf{Value Metrics to Track:}
-        \begin{itemize}
-            \setlength\itemsep{0.4em}
-            \item Time saved per interaction
-            \item Error reduction rate
-            \item Throughput increase
-            \item Customer satisfaction delta
-        \end{itemize}
-        
-        \vspace{0.3em}
-        \textbf{Risk-Adjusted Value:}
-        \begin{itemize}
-            \setlength\itemsep{0.3em}
-            \item Compliance incident avoided
-            \item Security breach prevented
-            \item Reputation protection
-            \item Regulatory penalty avoided
-        \end{itemize}
-    \end{columns}
-    
-    \vspace{0.3em}
-    {\color{TuebingenGray}\textbf{Track religiously:} Cost per unit and value per unit. If value/cost < 1, stop.}
-\end{frame}
-
 % ==============================================================================
 % SECTION 4.7: SECURITY, PRIVACY, AND IP
 % ==============================================================================
@@ -1088,11 +984,6 @@
             \item Right to audit
         \end{itemize}
     \end{columns}
-    
-    \vspace{0.2em}
-    \begin{theorembox}{Legal Review Required}
-        Involve legal early. IP implications vary by jurisdiction and use case.
-    \end{theorembox}
 \end{frame}
 
 \begin{frame}{Incident Response for AI Systems}
@@ -1122,23 +1013,6 @@
             \item \textbf{Learn:} Update controls
         \end{enumerate}
     \end{columns}
-    
-    \vspace{0.3em}
-    \textbf{Escalation Matrix:}
-    \begin{center}
-        {\footnotesize
-        \begin{tabular}{@{}lll@{}}
-            \toprule
-            \textbf{Severity} & \textbf{Example} & \textbf{Response} \\
-            \midrule
-            Low & Wrong but harmless answer & Log, add to eval set \\
-            Medium & PII in output & Investigate, notify privacy \\
-            High & Harmful content served & Disable, executive notice \\
-            Critical & Data breach via AI & Full incident response \\
-            \bottomrule
-        \end{tabular}
-        }
-    \end{center}
 \end{frame}
 
 \begin{frame}{Act IV: Summary}

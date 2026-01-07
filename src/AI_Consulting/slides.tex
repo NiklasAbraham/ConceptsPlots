@@ -7,7 +7,7 @@
 \usepackage{fontspec}
 \usepackage{graphicx}
 \usepackage{tikz}
-\usetikzlibrary{shapes.geometric, positioning, arrows.meta}
+\usetikzlibrary{shapes.geometric, positioning, arrows.meta, fit}
 \usepackage[table]{xcolor}
 \usepackage{amsmath, amssymb}
 \usepackage{booktabs}
@@ -214,7 +214,7 @@
 % --- COFFEE BREAK (Use the Act 0 version everywhere) ---
 \newcommand{\CoffeeBreakFrame}{
 \begin{frame}[plain]
-    \begin{tikzpicture}[remember picture, overlay]
+    \begin{tikzpicture}[overlay]
         % Decorative circles in background (drawn first so they're behind everything)
         \fill[TuebingenGold!10] (current page.center) circle (4cm);
         \fill[TuebingenGold!5] ([xshift=-3cm, yshift=2cm]current page.center) circle (2cm);
